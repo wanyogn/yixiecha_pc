@@ -7,6 +7,12 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
     <link rel="stylesheet" type="text/css" href="css/usercenter.css">
+    <link rel="stylesheet" href="css/beAlert.css">
+    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/qrcode.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="js/usercenter.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
 </head>
 <body>
 	<iframe name="iframe_top_name" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="header.html" height="188px" width="100%"></iframe>
@@ -35,44 +41,44 @@
 					<div class="bgContent">
 						<div class="bgContent_left pull-left">
 							<div class="intro-head-g1">基本信息</div>
+                            <input type="hidden" value="" id="userid">
 							<div class="input-group pb-24">
 								<span class="input-group-addon">账&emsp;&emsp;号</span>
-								<input type="text" class="form-control" placeholder="1436010367@qq.com" disabled="disabled">
+								<input type="text" class="form-control" disabled="disabled" id="email">
 							</div>
 							<div class="input-group pb-24">
 								<span class="input-group-addon">姓&emsp;&emsp;名</span>
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" id="realname">
 							</div>
 							<div class="input-group pb-24">
 								<span class="input-group-addon">手&emsp;&emsp;机</span>
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" id="mobile">
 							</div>
 							<div class="intro-head-g1">公司信息</div>
 							<div class="input-group pb-24">
 								<span class="input-group-addon">公司名称</span>
-								<input type="text" class="form-control" >
+								<input type="text" class="form-control" id="companyname">
 							</div>
 							<div class="input-group pb-24">
 								<span class="input-group-addon">公司地址</span>
-								<input type="text" class="form-control" >
+								<input type="text" class="form-control" id="companyaddress">
 							</div>
 							<div class="input-group pb-24">
 								<span class="input-group-addon">部&emsp;&emsp;门</span>
-								<input type="text" class="form-control" >
+								<input type="text" class="form-control" id="department">
 							</div>
 							<div class="input-group pb-24">
 								<span class="input-group-addon">职&emsp;&emsp;位</span>
-								<input type="text" class="form-control" >
+								<input type="text" class="form-control" id="job">
 							</div>
 							<div class="input-group pb-24 center-block" style="width: 70%;">
-								<button type="button" class="btn btn-primary pull-left">保存修改</button>
-								<button type="button" class="btn btn-success pull-right" onclick="makeCode()">生成二维码</button>
+								<button type="button" class="btn btn-primary pull-left" id="saveInfo">保存修改</button>
+								<button type="button" class="btn btn-success pull-right" id="makeCode">生成二维码</button>
 							</div>
 						</div>
 						<div class="bgContent_right pull-right">
 							<div class="intro-head-g1">企业名片二维码</div>
 							<div id="qrcode">
-								
 							</div>
 						</div>
 					</div>
@@ -82,18 +88,6 @@
 		</div>
 	</div>
 	<iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
-    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/qrcode.min.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			$('#qrcode img').unbind('hover');
-		})
-		function makeCode () {
-			$("#qrcode").html("");    
-		    var qrcode = new QRCode("qrcode");
 
-		    qrcode.makeCode("wanyong");
-		}
-	</script>
 </body>
 </html>

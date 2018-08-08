@@ -368,6 +368,11 @@ function getSameProURL(num,keyword,size){
 	var url = "http://localhost:9001/method/search_product_same_name?keyword="+keyword+"&num="+num+"&size="+size;
 	return url;
 }
+function getUserCenter(userid){
+    var url = "http://localhost:9001/method/userCenterInfo?userid="+userid;
+    //var url = /method/userCenterInfo?userid="+userid;
+    return url;
+}
 
 /*插入用户的搜索记录*/
 function getInsertUsersearchURL(user_id,class_type,key_word,result_count){
