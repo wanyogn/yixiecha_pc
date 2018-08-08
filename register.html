@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>医械查 | 最好用的医疗器械查询工具</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" href="css/register.css" >
+    <link rel="stylesheet" href="css/beAlert.css">
+    <link rel="stylesheet" type="text/css" href="css/verify.css">
+    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/header.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/register.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/verify.js" ></script>
+</head>
+
+<body id="body">
+
+    <div class="header">
+        <div class="header_top">
+            <div class="top_main">
+                <div class="top_height left">
+                    <div class="top_left_tip"><a class="wx_xcx">微信小程序</a></div>
+                    <div class="top_left_tip"><a onclick="toIndex()">医械查首页</a></div>
+                </div>
+                <div class="top_height right">
+                    <span class="home_h"></span>
+                </div>  
+            </div>
+        </div>
+        
+        <div class="header_bottom">
+            <div class="bottom_main">
+                <div class="weixin_content">
+                    <img src="images/weixin.jpg">
+                </div>              
+            </div>
+        </div>
+    </div>
+
+<div class="container">
+
+    <div class="row" id="danger_div" style="display: none;">
+        <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
+
+            <div class="alert alert-danger col-lg-8 col-md-8 col-sm-10 col-xs-10">
+                <a href="#" class="close" id="danger_icon">
+                    &times;
+                </a>
+                <strong>警告！</strong>
+                <span id="danger_tip"></span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
+            <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8" id="content_div">
+                <div class="content_head">
+                    <div class="register_head">用户注册</div>
+                </div>
+                <div class="content_content">
+
+                    <div class="login_input_div">
+                        <div class="login_icon_div">
+                            <img src="img/icon_login_default.png" class="login_icon">
+                        </div>
+                        <div>
+                            <input class="login_input" id="ver_username_input" type="text" maxlength="20" placeholder="输入合法邮箱"  >
+                        </div>
+                    </div>
+
+                    <div class="verify_div">
+                        <div class="verify_input_div">
+                            <input class="verify_input" id="register_code_input" placeholder="请输入短信验证码">
+                        </div>
+                        <div style="width: 35%;float: right;">
+                           <button class="verify_button sendMsg" style="border: none;width: 100%" onclick="sendMsg1();">获取验证码</button>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+
+                    <div class="login_input_div">
+                        <div class="login_icon_div">
+                            <img src="img/icon_password_default.png" class="login_icon">
+                        </div>
+                        <div>
+                            <input class="login_input" id="register_password_input" type="password" maxlength="20" placeholder="密码（8-20位字母和数字）">
+                        </div>
+                    </div>
+
+                    <div class="login_input_div">
+                        <div class="login_icon_div">
+                            <img src="img/icon_password_repeat.png" class="login_icon">
+                        </div>
+                        <div>
+                            <input class="login_input" id="repeat_password_input" type="password" maxlength="20" placeholder="请确认密码">
+                        </div>
+                    </div>
+                    <!-- <div style="width: 100%;">
+                        <div class="login_input_div" style="width: 65%;float: left;margin-right: 0">
+                            <div class="login_icon_div" style="width: 20%;">
+                                <img src="img/icon_password_repeat.png" class="login_icon">
+                            </div>
+                            <div>
+                                <input class="login_input" id="register_code_input" type="password" maxlength="20" placeholder="请输入邮箱验证码" style="width: 80%;">
+                            </div>
+                        </div>
+                        <div style="width: 20%; height: 46px;float: right;margin-right: 20px;">
+                            <button style="width: 100%;height: 100%;" class="sendMsg" onclick="sendMsg1();">发送</button>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div> -->
+                    
+                        
+                    <div class="login_tip_div">
+                        <a class="register_link" href="login.html">返回登录</a>
+                        <!--<a class="pull-right forget_link" id="register_forget_a">忘记密码</a>-->
+                    </div>
+
+                    <div class="login_button_div">
+                        <div class="login_button" id="register_login_button">注册</div>
+                    </div>
+
+                    <div class="service_tip_div">
+                        <div class="service_tip_bottom">点击[注册]即表示您同意<a href="agreement.html" style="color: red" target="_blank">《服务协议》</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
+</div>
+<div class="login_register" style="display: none;">
+    <a href="register.html">免费注册</a>
+    <a href="login.html">登录</a>
+</div>
+<div style="" class="code_cov">
+    <div class="code_con">
+        <div id="mpanel4"></div>
+    </div>
+</div>
+</body>
+
+</html>

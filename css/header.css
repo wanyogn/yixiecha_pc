@@ -1,0 +1,40 @@
+/* 头部 */
+.header{width: 100%;height: 188px;background: url(../images/header_01.png) no-repeat;background-size: cover;}
+.header_top{width: 100%;height: 44px;border-bottom: 1px solid #8ec6ef;}
+.top_main,.bottom_main{margin:0 auto;}
+.top_main{height: 44px;}
+.top_height{line-height: 44px;}
+.top_height .top_left_tip{width: 86px;float: left;}
+.header_bottom{height: 144px;}
+.top_main div:first-child a:last-child{margin-left: 10px;}
+.top_main div:last-child a:not(:last-child){margin-right: 32px;}
+.bottom_main_content{width: 100%;padding-top: 28px;}
+.search1{padding-top: 7px;float: right;}
+.search1 input[type='text']{width: 535px;height: 33px;padding-left: 45px;float: left;border-top-right-radius: 0;border-bottom-right-radius: 0;}
+.search1 input[type='button']{width: 35px;height: 33px;background: url(../images/search_bg.png);}
+.search2 {padding-top: 7px;float: left;}
+.search2 select{width: 261px;height: 33px;}
+.other{color: #fff;font-size: 12px;margin-top: 20px;display: inline-flex;}
+.other a{margin-left: 20px;}
+
+#nav li {float: left;display: block;background: none;position: relative;z-index: 999;height: 44px;width: 150px;}
+#nav li a {display: block;width: 100%;font-weight: 700;line-height: 44px;text-decoration: none;color: #fff;zoom: 1;border-left: 1px solid transparent;border-right: 1px solid transparent;text-align: center;}
+#nav li a:hover, #nav li a.hov {background-color: #fff;border-left: 1px solid #d5dce8;border-right: 1px solid #d5dce8;color: #576482;}
+/* @group subnav */
+#nav ul {background: #fff;position: absolute;display: none;list-style: none;-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);-o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2)}
+#nav ul li {width: 150px;float: left;border-top: 1px solid #fff;text-align: left}
+#nav ul li:hover {border-left: 0px solid transparent;border-right: 0px solid transparent}
+#nav ul a {display: block;height: 20px;line-height: 20px;padding: 8px 5px;color: #666;border-bottom: 1px solid transparent;text-transform:  uppercase;color: #797979;font-weight: normal}
+#nav ul a:hover {text-decoration: none;border-right-color: transparent;border-left-color: transparent;background: transparent;color: #4e4e4e}
+
+
+/* 重写select标签 */
+.search2 select{appearance:none;  -moz-appearance:none;  -webkit-appearance:none;background: url(../images/throw.png) no-repeat right #fff;border: none;}
+.search2 option::-ms-expand{ display: none; }
+.search2 option{-moz-appearance:none; /* Firefox */-webkit-appearance:none; /* Safari 和 Chrome */appearance:none;height: 28px;}
+.search2 option:hover{color:#000;background-color:#1E90FF;}
+
+@media screen and (min-width: 992px){
+	.top_main{width: 1200px}
+	.bottom_main{width: 1200px}
+}

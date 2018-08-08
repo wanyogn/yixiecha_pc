@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医械查 | 最好用的医疗器械查询工具</title>
+	<meta name="keywords" content="医疗器械,医械,数据库,大数据,医疗器械查询,医疗器械技术,医疗器械研发,医疗器械注册,医疗查询,医疗数据,医械查,智械">
+	<meta name="description" content="医械查是南京智械开发的医疗器械商业信息查询系统，旨在为用户提供快速查询医疗器械注册产品、生产企业、经营企业、互联网服务企业、政府集中采购和招投标等行业信息的服务。是医疗器械行业研究开发、市场推广、投融资咨询、销售采购相关人士的首选工具！">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/beAlert.css">
+	<link rel="stylesheet" href="css/menu.css">
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/beAlert.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/header.js"></script>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?a682153e748c3ea879d3ee5e305d3196";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+<body>
+	<div class="header">
+		<div class="main">
+			<div class="header_main_left">
+				<div><a class="wx_xcx">微信小程序</a></div>
+				<div><a onclick="toIndex()">医械查首页</a></div>
+			</div>
+			<div class="header_main_right">
+				<sapn class="home"></span>
+			</div>
+		</div>
+	</div>
+	<div class="content_index">
+		<div class="main" style="position: relative;">
+			<div class="weixin_content">
+				<img src="images/weixin.jpg">
+			</div>
+			<img src="images/logo.png" onclick="toIndex()">
+			<div class="form_main">
+				<h1>最好用的医疗器械查询工具</h1>
+				<div class="choice">
+					<div id="pro" class="active"><span>产品</span></div>
+					<div id="com"><span>企业</span></div>
+					<div id="hos"><span>医院</span></div>
+					<div id="buy"><span>集中采购价格</span></div>
+					<div id="bid"><span>招标中标公告</span></div>
+				</div>
+				<form method="" action="">
+					<div style="position: relative;">
+						<input type="text" class="form-control input" name="" id="main_search_input" placeholder="请输入您希望搜索的 产品名称/型号..." />
+						<input type="image" class="search" id="main_search_button" src="images/search.png"/>
+					</div>
+				</form>
+				<div class="hot_search">
+					<div style="line-height: 27px;">
+						<img src="images/huo.png">
+						<p style="margin-left: 10px;">热搜词：</p>
+						<a>磁共振</a>
+						<a>血糖仪</a>
+						<a>外伤处理车</a>
+						<a>手术床</a>
+						<a>监护仪</a>
+						<a>麻醉机</a>
+						<a>呼吸机</a>
+					</div>
+					<div style="line-height: 27px;">
+						<!-- <img src="images/change.png">
+						<p>换一批</p> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footer_main">
+			<div class="foot_first">
+				<ul>
+					<li>
+						<img src="images/icon1.png" />
+						<div>
+							<h3>精准搜索</h3>
+							<p>多模块精准选择搜索</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/icon2.png" />
+						<div>
+							<h3>信息多元化</h3>
+							<p>企业信息+产品信息+医院信息</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/icon3.png" />
+						<div>
+							<h3>快速便捷</h3>
+							<p>无需等待，节约时间</p>
+						</div>
+					</li>
+					<li>
+						<img src="images/icon4.png" />
+						<div>
+							<h3>真实安全性</h3>
+							<p>数据信息可靠安全</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="foot_second">
+				<table class="left">
+					<tr>
+						<td style="width: 144px;">
+							<div class="tab" style="width: 99px;">关于我们</div>
+						</td>
+						<td style="width: 335px;">
+							<div class="tab" style="width: 270px;">联系我们</div>
+						</td>
+						<td style="width: 350px;">
+							<div class="tab" style="width: 350px;">数据来源</div>
+						</td>
+					</tr>
+					<tr>
+						<td><a href="aboutus.html" target="_blank">关于我们</a></td>
+						<td>工作时间：周一至周五&nbsp;9:00-18:00</td>
+						<td>
+							<a href="http://samr.cfda.gov.cn/WS01/CL0001/" target="_blank">国家药品监督管理局</a>  I  
+							<a href="http://www.nhfpc.gov.cn/" target="_blank">国家卫生健康委员会</a>
+						</td>
+					</tr>
+					<tr>
+						<td><a href="agreement.html" target="_blank" target="_blank">服务协议</a></td>
+						<td>商务合作：BD@zhixie.info</td>
+						<td>
+							<a href="http://www.cmdi.gov.cn" target="_blank">中国医疗器械信息网</a>  I  
+							<a href="http://www.cmde.org.cn" target="_blank">医疗器械技术审评中心</a>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>
+							<a href="http://www.ccgp.gov.cn" target="_blank">中国政府采购网</a>  I  
+							<a href="http://www.ggzy.gov.cn" target="_blank">全国公共资源交易平台</a>
+						</td>
+					</tr>
+				</table>
+			
+				<table>
+					<tr>
+						<td>
+							<img src="images/weixin.jpg" style="width: 111px;margin-right: 30px;">
+						</td>
+						<td>
+							<img src="images/wxgz.jpg" style="width: 111px;">
+						</td>
+					</tr>
+					<tr>
+						<td><p>微信小程序</p></td>
+						<td><p>公众号</p></td>
+					</tr>
+				</table>
+			</div>
+			<p class="company">苏ICP备18028618号&nbsp;&nbsp;&nbsp;&nbsp;南京智械信息科技有限公司&nbsp;&nbsp;&nbsp;&nbsp;版权所有©2015 - 2018</p>
+		</div>
+	</div>
+	<div class="service">
+		<div class="service_li wx">
+			<div class="service_image">
+				<img src="images/wx_03.png">
+			</div>
+			<p>微信 </p>
+		</div>
+		<!-- <div class="service_li app">
+			<div class="service_image">
+				<img src="images/app_03.png">
+			</div>
+			<p>APP </p>
+		</div> -->
+		<div class="service_li fk">
+			<div class="service_image">
+				<img src="images/fankui_07.png">
+			</div>
+			<p>反馈 </p>
+		</div>
+		<div class="service_li zd" >
+			<div class="service_image">
+				<img src="images/zhiding_07.png">
+			</div>
+			<p>置顶 </p>
+		</div>
+		<div class="appcontent collapse code_main" style="bottom: 25px">
+			<img src="images/weixin.jpg">
+			<p style="padding-bottom: 15px;">关注微信小程序</p>
+		</div>
+		<div class="wxcontent collapse code_main" style="bottom: 24px;">
+			<img src="images/weixin.jpg">
+			<p style="padding-bottom: 15px;">关注微信小程序</p>
+		</div>
+	</div>
+	<div class="login_register" style="display: none;">
+		<a href="register.html">免费注册</a>
+		<a href="login.html">登录</a>
+	</div>
+	<div class="welcome" style="display: none;">
+		<div id="lr_systembtn" class="lr_systembtn"> 
+			<a href="#" class="lr_abtn">
+				<span class="username_h"></span>
+			</a>
+		    <div id="lr_menu" class="lr_menu">
+			    <dl>
+			       <dt><a href="usercenter.html">个人信息</a></dt>
+			    </dl>
+			    <dl>
+			        <dt><a onclick="loginout()">注销</a></dt>
+			    </dl>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

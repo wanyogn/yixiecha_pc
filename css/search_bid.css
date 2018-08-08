@@ -1,0 +1,132 @@
+#body{
+    background-color: rgb(221,226,228);
+    height: auto;
+}
+.content_wrap {
+    width: 100%;
+    margin: 20px auto;
+    height:625px;
+}
+/*分页*/
+.ex_tab{
+    height: 40px;
+}
+.tab_first{
+    float: left;
+    text-align: center;
+    background-color: #e6f0f6;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-right: solid 1px #ccc;
+    width: 11%;
+}
+.tab_second{
+    float: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #e6f0f6;
+    text-align: center;
+    width: 11%;
+}
+.tab_first:hover,.tab_second:hover{
+    cursor: pointer;
+    background-color: #0fbbe9;
+}
+.active{
+    background-color: white;
+}
+
+.acquisite_div,.tender_div{
+    height: auto;
+    border: 1px solid gray;
+    margin-bottom: 20px;
+}
+.acquisite_div_title,.tender_div_title{
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+.acquisite_div_tip,.tender_div_tip{
+    margin-bottom: 10px;
+}
+
+.acquisite_result_div,.tender_result_div{
+    margin: 10px;
+    border-bottom: 1px solid gray;
+}
+.acquisite_search_keyword,.tender_search_keyword{
+    color: red;
+}
+.acquisite_match_num,.tender_match_num{
+    padding: 4px;
+    color: red;
+}
+
+.data_list_item {
+    height: auto;
+    border-bottom: 1px solid #CCC;
+}
+.data_list_content {
+    height: auto;
+    padding-top: 1px;
+    padding-bottom: 10px;
+}
+.bid_row{
+    margin: 10px;
+    margin-left: 20px;
+}
+.bid_name{
+    font-size: 20px;
+}
+.bid_price,.bid_unit{
+    margin-right: 50px;
+    line-height: 30px;
+    color: red;
+}
+.bid_info_div{
+    padding-right: 10px;
+    height: 18px;
+    overflow: hidden;
+    width: 92%;
+}
+.bid_specification_condition,.bid_model_number_condition{
+    margin-top: -16px;
+}
+.bid_specification_condition:hover,.bid_model_number_condition:hover{
+    cursor: pointer;
+    color: #fd6600;
+}
+.ex_up_down_name{
+    font-size: 12px;
+}
+.ex_up_down_icon{
+    width: 15px;
+}
+#tender_box,#acquisite_box{
+    margin: 20px;
+    margin-left: 26%;
+}
+
+.right_bottom_div{
+    width: 5%;
+    height: 13%;
+    left: 95%;
+    top: 84%;
+    position: fixed;
+}
+.right_bottom_first,.right_bottom_second{
+    height: 50%;
+    width: 100%;
+    border: solid 1px lightgray;
+    text-align: center;
+    line-height: 50px;
+    background-color: white;
+    margin-bottom: 5px;
+}
+.right_bottom_first:hover,.right_bottom_second:hover{
+    cursor: pointer;
+    background-color: #0fbbe9;
+    color: white;
+}
+ul li {
+    list-style: none;
+}

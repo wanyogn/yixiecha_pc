@@ -1,0 +1,44 @@
+@charset "utf-8";
+#cate {
+	float: left;
+
+	line-height: 33px;
+	text-align: left;
+	width:260px;
+	position: relative;
+}
+#cate .cate_wrp {
+	overflow: hidden;
+}
+#cate .cate_inp {
+	padding-left:15px;
+	height: 33px;
+	width: 224px;
+	border-radius: 3px 0 0 3px;
+	border: 1px solid #D4D4D4;
+	border-right:none;
+	background: #fff;
+	float: left;
+}
+#cate a.cate_tri:link,  #cate a.cate_tri:visited {
+	width:36px;
+	height:33px;
+	float: left;
+	background: transparent url('../images/throw.png') no-repeat center center;
+}
+#cate .cate_drop {
+	position: absolute;
+	background:#1f95e2;
+	color: #fff;
+	width:260px;
+	border-radius: 2px;
+}
+#cate .cate_drop li {
+	padding-left:15px;
+	width:260px;
+}
+#cate .cate_drop li:hover {
+	background: #fff;
+	color: #1f95e2;
+	cursor: pointer;
+}

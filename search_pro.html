@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医械查 | 最好用的医疗器械查询工具</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/search.css">
+	<link rel="stylesheet" href="css/beAlert.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.pagination.css">
+    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
+    <script type="text/javascript" src="js/jquery.pagination.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/search_pro.js"></script>
+
+</head>
+<body>
+	<div style="width: 100%;height: 188px;">
+		<iframe name="iframe_top_name" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="header.html" height="188px" width="100%"></iframe>
+	</div>
+	
+	<div class="content">
+		<div class="content_main">
+			<div class="main_left">
+				<div class="left_one" >
+					<table>
+						<tr>
+							<td>产品归属</td>
+							<td>
+								
+								<a class="click_on" id="-1">全部</a>
+							</td>
+							<td>
+								<a id="0">国产</a>
+							</td>
+							<td>
+								<a id="1">进口</a>
+							</td>
+							<td><a id="2">港澳台</a></td>
+						</tr>
+						<tr>
+							<td>注册状态</td>
+							<td ><a class="click_on">全部</a></td>
+							<td><a>有效</a></td>
+							<td><a>无效</a></td>
+							<!-- <td><a>注销</a></td> -->
+						</tr>
+						<tr>
+							<td >管理类别</td>
+							<td><a class="click_on" id=-1>全部</a></td>
+							<td><a id="1">I类</a></td>
+							<td><a id="2">II类</a></td>
+							<td><a id="3">III类</a></td>
+						</tr>
+					</table>
+				</div>
+				<div class="left_two">
+					<div class="choose_result">
+						您搜索的关键词是：
+						<span class="key"></span>
+						，医械查为您找到
+						<span class="num"></span>
+						条结果
+						<div class="right choose" style="cursor: pointer;">
+							<img src="images/icon_up.png" class="choose_img">
+							<span class="choose_tip">收起筛选条件</span>
+						</div>
+					</div>
+					<div class="cli_re">
+						<ul>
+							<li class="0" style="padding: 0px 15px;">
+								
+							</li>
+						</ul>
+					</div>
+					<div class="dT">
+						<div style="width: 100%;height: 100%;overflow: auto;">
+							<!-- <table class="table">
+								 <tr>
+																		<th style="width: 25%;">产品名称</th>
+																		<th style="width: 15%;">品种数量</th>
+																		<th style="width: 15%;">生产企业数量</th>
+																		<th style="width: 15%;">分类目录数量</th>
+																		<th style="width: 15%;">最早时间</th>
+																		<th style="width: 15%;">最新时间</th>
+																	</tr>	 				
+							</table> -->
+						</div>
+					</div>
+				</div>
+				<div class="left_three" style="background: #fff;">
+					<div class="third_main">
+						<div id="product_content">
+							
+						</div>
+						<div class="page">
+							<!-- <a href="">1</a>
+							<a href="">2</a>
+							<a href="">3</a>
+							<a href="">4</a>
+							<a href="">5</a>
+							...
+							<a href="">尾页</a>
+							<a href="">下一页</a>
+							&nbsp;&nbsp;到第&nbsp;<input type="number"  /> &nbsp;页&nbsp;&nbsp;
+							<input type="button" name="" value="确定" /> -->
+						</div>	 
+				</div>
+				
+				</div>
+			</div>
+			<div class="main_right right">
+				<!-- <div class="see">
+					<a href="index.html" target="_blank"><img src="images/chanpin1.jpg" style="margin-bottom: 15px;"></a>
+					<a href="http://liexin.zhixie.info" target="_blank"><img src="images/chanpin2.jpg"></a>
+				</div> -->
+				<iframe  marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="right_iframe.html" height="300px;" width="100%"></iframe>
+			</div>
+		</div>
+	</div>
+	<iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
+	<div class="service">
+		<div class="service_li wx">
+			<div class="service_image">
+				<img src="images/wx_03.png">
+			</div>
+			<p>微信 </p>
+		</div>
+		<div class="service_li fk">
+			<div class="service_image">
+				<img src="images/fankui_07.png">
+			</div>
+			<p>反馈 </p>
+		</div>
+		<div class="service_li zd" >
+			<div class="service_image">
+				<img src="images/zhiding_07.png">
+			</div>
+			<p>置顶 </p>
+		</div>
+		<div class="wxcontent collapse code_main" style="bottom: 24px;">
+			<img src="images/weixin.jpg">
+			<p style="padding-bottom: 15px;">关注微信小程序</p>
+		</div>
+	</div>
+	<div id="product_template"  style="display: none;">
+		<div class="data_list">
+			<div class="list_outer">
+				<!-- <img src="images/produce.png" alt="" class="left"> -->
+				<div class="product_img_body left">
+					<img src="" alt="" class="product_img_main">
+				</div>
+				<div class="list_inner right">
+					<div>
+						<a href="product.html?class=pro&id=" target="_blank" class="product_name">
+							<!-- <h3><em>髋关节</em>手术工具</h3> -->
+							
+							<h3></h3>
+						</a>
+						<h4></h4>
+					</div>
+					<table>
+						<tr>
+							<td style="width: 12% ">注册证号：</td>
+							<td style="width: 38% ">
+								<a href="product.html?class=pro&id=" target="_blank" class="result_register_code">
+							</td>
+							<td style="width: 12% ">注册公司：</td>
+							<td style="width: 38% ">
+								<a href="company.html?class=com&keyword=" target="_blank"  class="result_company"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>产品归属：</td>
+							<td class="result_src_loc_revised"></td>
+							<td>管理类别：</td>
+							<td class="result_main_class_revised"></td>
+						</tr>
+						<tr>
+							<td>型号规格：</td>
+							<td colspan="3" class="result_product_mode"></td>
+						</tr>
+						<tr>
+							<td>分类目录：</td>
+							<td colspan="3" class="result_class_code_revised"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+/* 底部 */
+ .footer{width: 100%;height: auto;background: #efefef;}
+ .footer_main{margin: 0 auto;padding-top: 60px;}
+ .foot_first{width: 100%;height: auto;background: #fff;padding:70px 30px;}
+ .foot_first ul{height: 48px;}
+ .foot_first li{width: 25%;float: left;text-align: center;}
+ .foot_first li img{float: left;}
+ .foot_first li div{float: left;margin-top: 5px;padding-left: 15px;}
+ .foot_first li h3{font-size: 18px;color: #898989;text-align: left;}
+ .foot_first li p{font-size: 14px;color: #b5b5b6;}
+ .foot_second{height: 190px;width: 100%;margin-top:65px;border-bottom: 1px solid #b5b5b6 }
+ .foot_second table:first-child{font-size: 16px;color: #7d7d7d;border-collapse:separate; border-spacing:0px 6px;}
+ .foot_second table:last-child{float: right;text-align: center;font-size: 12px;}
+ .foot_second table span{font-size: 20px;font-weight: bold;color: #f2b874}
+ .foot_second table a{color: #7d7d7d;}
+ .foot_second table a:hover{color: #f39800;}
+ .foot_second .tab{font-size: 16px;font-weight: bold;padding:7px 0;border-top: 1px solid #b5b5b6;border-bottom:  1px solid #b5b5b6;}
+ .company{margin-top: 25px;padding-bottom: 130px;font-size: 16px;color: #7d7d7d;}
+
+ @media screen and (min-width: 992px){
+	.footer_main{width: 1200px}
+}

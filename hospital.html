@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医械查 | 最好用的医疗器械查询工具</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/product.css">
+	<link rel="stylesheet" href="css/beAlert.css">
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/hospital.js"></script>
+	<!--高德地图-->
+	<link rel="stylesheet" href="css/main1119.css"/>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=f368ce6c82d250ec5c0ed0c323a1a400&plugin=AMap.Geocoder"></script>
+    
+    <!--高德地图-->
+</head>
+<body>
+	<iframe name="iframe_top_name" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="header.html" height="188px" width="100%"></iframe>
+	<div class="content">
+		<div class="content_main">
+			<div class="main_left">
+				<div class="left_one" >
+					<div class="left_one_a">
+						<h3 class="general_hospital_name_ch"></h3>
+					</div>
+					<table class="tab tab1">
+						<tr>
+							<td width="10%">医院别名</td>
+							<td class="general_old_name"></td>
+						</tr>
+						<tr>
+							<td>登记证号</td>
+							<td class="general_register_code"></td>
+						</tr>
+					</table>
+					<table class="tab tab2">
+						<tr>
+							<td style="width: 10%">医院分级</td>
+							<td style="width: 20%" class="general_level"></td>
+							<td style="width: 10%">医院定等</td>
+							<td style="width: 60%" class="general_grade"></td>
+						</tr>
+						
+						<tr>
+							<td>经济类型</td>
+							<td class="general_type_nature"></td>
+							<td>是否医保</td>
+							<td class="general_isYB"></td>
+						</tr>
+						<tr>
+							<td>网址</td>
+							<td colspan="3" class="general_website"></td>
+						</tr>
+						<tr>
+							<td>地址</td>
+							<td colspan="3" class="general_hospital_address"></td>
+						</tr>
+						<tr>
+							<td>电话</td>
+							<td colspan="3" class="general_hospital_phone"></td>
+						</tr>
+					</table>
+					<div id="container" style="border: 1px solid lightgrey"></div>
+				</div>
+				<div class="left_two">
+					<table class="table table-striped table-bordered">
+						<tr>
+							<td style="width: 30%;">单位名称</td>
+							<td class="table_hospital_name"></td>
+						</tr>
+						<tr>
+							<td>省份</td>
+							<td class="table_province"></td>
+						</tr>
+						<tr>
+							<td>所属区县市</td>
+							<td class="table_area"></td>
+						</tr>
+						<tr>
+							<td>详细地址</td>
+							<td class="table_hospital_address"></td>
+						</tr>
+						<tr>
+							<td>邮编</td>
+							<td class="table_zipcode"></td>
+						</tr>
+						<tr>
+							<td>区号</td>
+							<td class="table_area_code"></td>
+						</tr>
+						<tr>
+							<td>电话</td>
+							<td class="table_hospital_phone"></td>
+						</tr>
+						<tr>
+							<td>传真</td>
+							<td class="table_facsimile"></td>
+						</tr>
+						<tr>
+							<td>网址</td>
+							<td class="table_website"></td>
+						</tr>
+						<tr>
+							<td>卫生机构登记号</td>
+							<td class=""></td>
+						</tr>
+						<tr>
+							<td>卫生机构类别</td>
+							<td class=""></td>
+						</tr>
+						<tr>
+							<td>医院等级</td>
+							<td class="table_hospital_grade">/</td>
+						</tr>
+						<tr>
+							<td>分类性质</td>
+							<td class="table_type_nature"></td>
+						</tr>
+						<tr>
+							<td>建院时间</td>
+							<td class="table_build_hospital_date"></td>
+						</tr>
+						<tr>
+							<td>法人或院长</td>
+							<td class="table_legal_person"></td>
+						</tr>
+						<tr>
+							<td>职工人数</td>
+							<td class="table_worker_number"></td>
+						</tr>
+						<tr>
+							<td>床位数</td>
+							<td class="table_sickbed_count"></td>
+						</tr>
+						<tr>
+							<td>年门诊数</td>
+							<td class="table_outpatient_number_year"></td>
+						</tr>
+						<tr>
+							<td>年住院人数</td>
+							<td class="table_hospital_number_year"></td>
+						</tr>
+						<tr>
+							<td>特色专科</td>
+							<td class="table_cha_special_sub"></td>
+						</tr>
+						<tr>
+							<td>主要设备</td>
+							<td class="table_main_equipment"></td>
+						</tr>
+						<tr>
+							<td>医院简介</td>
+							<td class="table_brief_intro"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="main_right right">
+				<iframe  marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="right_iframe.html" height="300px;" width="100%"></iframe>
+			</div>
+		</div>
+	</div>
+	<iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
+	<div class="service">
+		<div class="service_li wx">
+			<div class="service_image">
+				<img src="images/wx_03.png">
+			</div>
+			<p>微信 </p>
+		</div>
+		
+		<div class="service_li fk">
+			<div class="service_image">
+				<img src="images/fankui_07.png">
+			</div>
+			<p>反馈 </p>
+		</div>
+		<div class="service_li zd" >
+			<div class="service_image">
+				<img src="images/zhiding_07.png">
+			</div>
+			<p>置顶 </p>
+		</div>
+		
+		<div class="wxcontent collapse code_main" style="bottom: 24px;">
+			<img src="images/weixin.jpg">
+			<p style="padding-bottom: 15px;">关注微信小程序</p>
+		</div>
+	</div>
+</body>
+</html>

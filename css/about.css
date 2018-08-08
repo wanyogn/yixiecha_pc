@@ -1,0 +1,13 @@
+.main_title_s{border: 1px solid #c9c2c5;border-radius: 4px;box-sizing: border-box;margin-right: 15px;}
+.main_title_s a{color:#43464f;display: block;height: 60px;font-size: 18px;line-height: 60px;padding-left: 25px;border-bottom: 1px solid #c9c2c5;cursor: pointer;}
+.main_title_s a:last-child{border-bottom: 0;}
+.main_title_s a:hover{background: #efefef;}
+.active{background: #0fbbe9!important;color: #fff!important;}
+.section_title{border-left: 6px solid #0fbbe9;padding-left: 8px;font-size: 16px;margin-top: 10px;}
+.section_content{margin-top: 15px!important;margin-bottom: 15px!important;line-height: 25px;}
+.h4{margin-top: 15px;}
+.margin-t{margin-top: 30px;}
+.margin-v-0-3x{margin-top: 5px!important;margin-bottom: 5px!important;}
+.margin-v-0-3x a{color: #0fbbe9}
+.clear{clear: both;}
+.pagehead{font-size: 30px;color: #43464f;text-align: center;padding: 10px 0;}

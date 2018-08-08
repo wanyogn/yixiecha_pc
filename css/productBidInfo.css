@@ -1,0 +1,122 @@
+#body{
+    background-color: rgb(221,226,228);
+    height: auto;
+}
+.content_wrap {
+    width: 100%;
+    margin: 50px auto;
+}
+.detail_module_general_wrap {
+    height: 300px;
+}
+.detail_module_main {
+    width: 50%;
+    height: 300px;
+    float: left;
+    background-color: white;
+}
+.detail_module_title {
+    margin: 0px auto;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 20px;
+    background-color: #f5f5f5;
+    border-bottom: solid 1px #CCCCCC;
+}
+.detail_module_main_content {
+    margin: 0 10px;
+    padding-top: 20px;
+}
+.detail_module_main .general_product_class {
+    background-color: #C36;
+}
+.general_product_name{
+    font-size: 20px;
+    font-weight: bold;
+}
+.detail_module_classification {
+    width: 23%;
+    height: 300px;
+    position: relative;
+    float: left;
+    margin-left: 2%;
+    background-color: white;
+}
+.detail_module_classification_content {
+    margin: 0 10px;
+    padding-top: 20px;
+    text-align: center;
+}
+.detail_module_property {
+    margin: 10px auto;
+}
+.detail_module_property span {
+    color: cadetblue;
+}
+.detail_module_application {
+    width: 23%;
+    height: 300px;
+    position: relative;
+    float: left;
+    margin-left: 2%;
+    background-color: white;
+}
+.detail_module_application_content {
+    margin: 0 10px;
+    padding-top: 20px;
+    text-align: center;
+}
+.detail_module_table_wrap {
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin: 20px auto;
+    padding: 20px 60px;
+    /*background-color: rgb(246,251,252);*/
+    background-color: white;
+}
+td{
+    width: 50%;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+#to_top{
+    right: 30px;
+    bottom: 30px;
+    position: fixed;
+    cursor: pointer;
+}
+.product_name_down{
+    margin-top: 15px;
+}
+.product_name_down_value{
+    margin-bottom: 5px;
+}
+.table_left{
+    width: 15%;
+}
+.general_purchase_price{
+    font-size: 18px;
+    color: orange;
+}
+.right_bottom_div{
+    width: 5%;
+    height: 13%;
+    left: 95%;
+    top: 84%;
+    position: fixed;
+}
+.right_bottom_first,.right_bottom_second{
+    height: 50%;
+    width: 100%;
+    border: solid 1px lightgray;
+    text-align: center;
+    line-height: 50px;
+    background-color: white;
+    margin-bottom: 5px;
+}
+.right_bottom_first:hover,.right_bottom_second:hover{
+    cursor: pointer;
+    background-color: #0fbbe9;
+    color: white;
+}

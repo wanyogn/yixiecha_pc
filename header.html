@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医械查 | 最好用的医疗器械查询工具</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" href="css/beAlert.css">
+	<link rel="stylesheet" href="css/menu.css">
+    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/common.js"></script>
+	<script type="text/javascript" src="js/header.js"></script>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?a682153e748c3ea879d3ee5e305d3196";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#header_search_input").keypress(function(e){
+        	var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+	        if (eCode == 13){
+	            $("#header_search_button").click();
+	        }
+	    });
+	    $(".wx_xcx").mouseover(function(){
+	    	$(".weixin_content").show();
+	    }).mouseout(function(){
+	    	$(".weixin_content").hide();
+	    });
+		
+	})
+	 function toIndex(){
+        top.window.location.href = "index.html";
+     }
+	function loginout(){
+		clearStorage("user");
+		top.window.location.href = "index.html";
+	}
+	function toLogin(){
+		top.window.location.href = "login.html";
+	}
+	function toRegister(){
+		top.window.location.href = "register.html";
+	}
+	function toUsercenter(){
+		top.window.location.href = "usercenter.html";
+	}
+</script>
+<body>
+	<div class="header">
+		<div class="header_top">
+			<div class="top_main">
+				<div class="top_height left">
+					<div class="top_left_tip"><a class="wx_xcx">微信小程序</a></div>
+					<div class="top_left_tip"><a onclick="toIndex()">医械查首页</a></div>
+				</div>
+				<div class="top_height right">
+					<span class="home_h"></span>
+					<!-- <a onclick="loginout()">注销</a> -->
+					<!-- <a href="login.html">登录</a> -->
+				</div>	
+			</div>
+		</div>
+		
+		<div class="header_bottom">
+			<div class="bottom_main">
+				<div class="weixin_content">
+					<img src="images/weixin.jpg">
+				</div>
+				<div class="bottom_main_content">
+					<div class="left">
+						<a onclick="toIndex()">
+							<img src="images/logo.png" alt="">
+						</a>
+					</div>
+					
+					<div class="right" style="width: 885px;">
+						<div class="search_need">
+							<div class="search1">
+								<input type="text" name="" class="form-control " id="header_search_input" placeholder="请输入名称">
+								<input type="button" name="" class="btn" id="header_search_button">
+							</div>
+						    <div class="search2">
+								<select class="form-control" id="header_select">
+									<option value="pro">产品</option>
+									<option value="com">企业</option>
+									<option value="hos">医院</option>
+									<option value="pri">集中采购价格</option>
+									<option value="bid">招标中标公告</option>
+								</select>
+							</div>
+
+							<div style="clear: both;"></div>
+						</div>
+
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+				
+			</div>
+		</div>
+		<div id="isFind" style="display: none;">
+			<div class="other">
+				<span>您是不是想找：</span>
+				<div></div>
+			</div>
+		</div>
+	</div>
+	<div class="login_register_h" style="display: none;">
+		<a onclick="toRegister()">免费注册</a>
+		<a onclick="toLogin()">登录</a>
+	</div>
+	<div class="welcome_h" style="display: none;">
+		<div id="lr_systembtn" class="lr_systembtn"> 
+			<a href="#" class="lr_abtn">
+				<span class="username_h"></span>
+			</a>
+		    <div id="lr_menu" class="lr_menu">
+			    <dl>
+			       <dt><a onclick="toUsercenter()">个人信息</a></dt>
+			    </dl>
+			    <dl>
+			        <dt><a onclick="loginout()">注销</a></dt>
+			    </dl>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			var lr_systembtn = $("#lr_systembtn");
+			var lr_menu = $("#lr_menu");
+			lr_systembtn.mouseenter(function(){
+				t_delay= setTimeout(function(){
+					lr_menu.fadeIn();
+				},200);
+			});
+			lr_systembtn.mouseleave(function(){
+				clearTimeout(t_delay);
+				lr_menu.fadeOut();
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+#body{
+    background-color: rgb(221,226,228);
+    height: auto;
+}
+.container{
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#content_div{
+    background-color: white;
+    height: 500px;
+}
+.content_head{
+    height: 60px;
+    text-align: center;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.content_content{
+    margin-top: 40px;
+}
+/*登录页面的head*/
+#password_tab{
+    text-align: center;
+    font-size: 18px;
+    font-family: inherit;
+    font-weight: 300;
+    float: left;
+    width: 50%;
+    line-height: 60px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+.content_head_left{
+    float: left;
+    width: 50%;
+    border-right: 1px solid #ccc;
+}
+.content_head_tab{
+    line-height: 60px;
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 18px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    background-color: #f8f8f8;
+    width: 50%;
+    float: left;
+}
+.active{
+    cursor: default;
+    /*border-bottom: 1px solid transparent;*/
+    border-bottom: none !important;
+    transition: all .3s;
+    background-color: white !important;
+}
+/*密码登录*/
+
+.login_icon_div{
+    float: left;
+    width: 16%;
+}
+.login_icon{
+    width: 25px;
+    margin-left: 13px;
+    margin-top: 10px;
+}
+.login_input_div,.verify_div{
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 1px solid #e0e3ec;
+    margin-bottom: 15px;
+}
+.login_input{
+    font-size: 15px;
+    height: 46px;
+    width: 84%;
+    border: 0px;
+    outline: none;
+}
+.login_tip_div{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 15px;
+    height: 20px;
+    text-align: center;
+}
+.register_link,.forget_link{
+    color: #0fbbe9;
+}
+.register_link:focus, .register_link:hover , .forget_link:focus, .forget_link:hover{
+    color: #fd6600;
+    cursor: pointer;
+    text-decoration: none;
+}
+.login_button_div{
+    text-align: center;
+    height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #0fbbe9;
+    margin-bottom: 15px;
+}
+.login_button{
+    height: 100%;
+    line-height: 50px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+}
+.login_button:hover{
+    cursor: pointer;
+    background-color: #0c95b9;
+}
+.other_way_div{
+    text-align: center;
+    color: #a6acbc;
+}
+/*验证码登录*/
+.verify_input_div{
+    float: left;
+    width: 65%;
+}
+.verify_input{
+    height: 46px;
+    width: 100%;
+    border: 0px solid #e0e3ec;
+    outline: none;
+    padding-left: 10px;
+    font-size: 15px;
+}
+.verify_button{
+    height: 46px;
+    text-align: center;
+    color: white;
+    background-color: #0fbbe9;
+    line-height: 45px;
+}
+.verify_button:hover{
+    cursor: pointer;
+    background-color: #0c95b9;
+}
+.service_tip_div{
+    margin-bottom: 15px;
+}
+.service_tip_top{
+    color: #fd6600;
+    font-size: 85%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.service_tip_bottom{
+    font-size: 85%;
+    text-align: center;
+}
+.way_icon{
+    width: 55px;
+}
+.way_icon_div:hover{
+    cursor: pointer;
+}
+.forget_title{
+    border-bottom: 1px solid #e0e0e0;color: #333;padding-top: 20px;padding-bottom: 15px;margin-bottom: 20px;text-align: center;    font-size: 24px;
+}
+

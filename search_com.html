@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医械查 | 最好用的医疗器械查询工具</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/search.css">
+	<link rel="stylesheet" type="text/css" href="css/search_com.css">
+	<link rel="stylesheet" href="css/beAlert.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.pagination.css">
+    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
+    <script type="text/javascript" src="js/jquery.pagination.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/search_com.js"></script>
+
+</head>
+<style type="text/css">
+	.left_one table{width:77%;}
+</style>
+<body>
+	<iframe name="iframe_top_name" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="header.html" height="188px" width="100%"></iframe>
+	<div class="content">
+		<div class="content_main">
+			<div class="main_left">
+			 	<div class="left_one" >
+					<table>
+						<tr>
+							<td>生产资质</td>
+							<td>
+								
+								<a class="click_on" id="-1">全部</a>
+							</td>
+							<td>
+								<a id="3">III类生产许可</a>
+							</td>
+							<td>
+								<a id="2">II类生产许可</a>
+							</td>
+							<td><a id="1">I类生产备案</a></td>
+						</tr>
+						<tr>
+							<td>经营资质</td>
+							<td><a class="click_on" id="-1">全部</a></td>
+							<td><a id="3">III类经营许可</a></td>
+							<td><a id="2">II类经营备案</a></td>
+							<td><a id="1">I类经营列名</a></td>
+						</tr>
+						<tr>
+							<td>服务资质</td>
+							<td><a class="click_on" id=-1>全部</a></td>
+							<td><a id="1">互联网信息服务</a></td>
+							<td><a id="2">互联网交易服务</a></td>
+						</tr>
+					</table>
+				</div>
+				<div class="left_two">
+					<div class="choose_result">
+						您搜索的关键词是：
+						<span class="key"></span>
+						，医械查为您找到
+						<span class="num"></span>
+						条结果
+						<div class="right choose" style="cursor: pointer;">
+							<img src="images/icon_up.png" class="choose_img">
+							<span class="choose_tip">收起筛选条件</span>
+						</div>
+					</div>
+					
+				</div>
+				<div class="left_three" style="margin-top: 0px;">
+					<div class="third_main" style="padding-top: 0;">
+						<div id="product_content">
+							<!--<div class="comList">
+								<div class="comList_main">
+									<div>
+										<div class="comList_img">
+											<img src="images/company.png"/>
+										</div>
+										<div class="left">
+											<h3>南京伟思医疗科技股份有限公司</h3>
+											<p>曾用名：南京伟思医疗科技责任有限公司</p>
+										</div>
+										<div style="clear: both;"></div>
+									</div>
+									<div>
+										<div class="tip" style="margin-top: 20px;">
+											<h4 class="tip_title left">生产资质</h4>
+											<span class="ti">III类许可</span>
+											<span class="ti">II类许可</span>
+											<span class="ti_none">I类备案</span>
+											<span class="tip_title margin" >相关产品</span>
+											<span class="ti" style="padding: 1px 4px;">8</span>
+										</div>
+										<div class="tip" style="margin-top: 8px;">
+											<span class="tip_title left">经营资质</span>
+											<span class="ti">III类许可</span>
+											<span class="ti">II类备案</span>
+											<span class="ti">I类列名</span>
+											<span class="tip_title margin">中标公告</span>
+											<span class="ti" style="padding: 1px 4px;">8</span>
+										</div>
+										<div class="tip" style="margin-top: 8px;">
+											<span class="tip_title">服务资质</span>
+											<span class="ti">互联网信息服务</span>
+											<span class="ti">互联网交易服务</span>
+										</div>
+										<div class="friend" style="margin-top: 35px;">
+											<h3>他的合作伙伴</h3>
+							
+											<a class="tt">南京伟思医疗科技有限公司第一销售分公司</a>
+											<a class="tt">南京伟思医疗科技有限责任公司</a>
+											<div >
+												<a class="left" style="display: inline;">南京伟思医疗科技股份有限公司</a>
+												<a class="right">+更多</a>
+											</div>
+										</div>
+									</div>
+								</div> 
+							</div>-->
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+				
+				</div>
+				<div class="left_four" style="width: 100%;margin:auto;">
+					<div class="page">
+						
+					</div>	 
+				</div>
+			</div>
+			<div class="main_right right">
+				<iframe  marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="right_iframe.html" height="300px;" width="100%"></iframe>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+	<iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
+	<div class="service">
+		<div class="service_li wx">
+			<div class="service_image">
+				<img src="images/wx_03.png">
+			</div>
+			<p>微信 </p>
+		</div>
+		
+		<div class="service_li fk">
+			<div class="service_image">
+				<img src="images/fankui_07.png">
+			</div>
+			<p>反馈 </p>
+		</div>
+		<div class="service_li zd" >
+			<div class="service_image">
+				<img src="images/zhiding_07.png">
+			</div>
+			<p>置顶 </p>
+		</div>
+		<div class="wxcontent collapse code_main" style="bottom: 24px;">
+			<img src="images/weixin.jpg">
+			<p style="padding-bottom: 15px;">关注微信小程序</p>
+		</div>
+	</div>
+	<!--公司的列表-->
+	<div id="product_template" style="display: none;">
+		<div class="comList">
+			<div class="comList_main">
+				<div>
+					<div class="comList_img">
+						<img src="images/company.png"/>
+					</div>
+					<div class="left">
+						<a href="company.html?class=com&keyword=" target="_blank" class="com_name_a"><h3 class="com_name"></h3></a>
+						<p class="com_oldName"></p>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+				<div>
+					<div class="tip product_zi" style="margin-top: 20px;">
+						<h4 class="tip_title left">生产资质</h4>
+						<span class="ti_none" id="3">III类许可</span>
+						<span class="ti_none" id="2">II类许可</span>
+						<span class="ti_none" id="1">I类备案</span>
+						<span class="tip_title margin" >相关产品</span>
+						<span class="ti product_count" style="padding: 1px 4px;"></span>
+					</div>
+					<div class="tip salary_zi" style="margin-top: 8px;">
+						<h4 class="tip_title left">经营资质</h4>
+						<span class="ti_none" id="3">III类许可</span>
+						<span class="ti_none" id="2">II类备案</span>
+						<span class="ti_none" id="1">I类列名</span>
+						<span class="tip_title margin">中标公告</span>
+						<span class="ti tenderbid_count" style="padding: 1px 4px;"></span>
+					</div>
+					<div class="tip service_zi" style="margin-top: 8px;">
+						<h4 class="tip_title left">服务资质</h4>
+						<span class="ti_none" id="1">互联网信息服务</span>
+						<span class="ti_none" id="2">互联网交易服务</span>
+					</div>
+					<div class="friend" style="margin-top: 35px;">
+						<h3>竞争对手</h3>
+
+						<a class="tt"></a>
+						<a class="tt"></a>
+						<div >
+							<a class="left" style="display: inline;"></a>
+							<a class="right"></a>
+						</div>
+						<div style="clear: both"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

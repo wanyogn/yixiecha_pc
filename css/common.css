@@ -1,0 +1,54 @@
+body{margin:0;padding:0;font-size:14px;color:#505050; font-family:微软雅黑; font-weight:normal; }
+div, dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6, pre, code,
+form, fieldset, input, button,
+textarea, p, table, th, td ,iframe{margin:0px;padding:0px; }
+img{border:0;}
+ul,li{list-style-type:none;}
+:focus {outline:0;}
+a {color:#fff;text-decoration:none;cursor: pointer;transition: all .3s}
+a:hover {color:#ab0003;text-decoration:none;}
+a:focus {text-decoration:none;}
+
+.left{float: left;}
+.right{float: right;}
+
+ .content{width:100%;height: auto;background: #efefef;margin-top: -5px;padding-top: 23px;}
+ .content_main {width: 1200px;margin:0 auto;}
+
+.weixin_content{width: 86px;height: 98px;background: #fff;border: 1px solid #e0e0e0;display: none;position: absolute;}
+.weixin_content img{width: 100%;height: 100%}
+
+  /* 客服 */
+ .service{position: fixed;right: 10px;z-index: 1020px;border:1px solid #e0e0e0;bottom: 146px;background: #efefef;}
+ .service .service_li{width: 39px;height: 61px;position: relative;border-bottom: 1px solid #fff;cursor: pointer;}
+ .service .zd{border-bottom: none;}
+ .service_image{line-height: 30px;}
+ .service_image img{padding-left: 9px;}
+ .service p{color: #7d8292;text-align: center;}
+ .code_main{width: 129px;height: 160px;background: #fff;border: 1px solid #e0e0e0;position: absolute;right: 39px;text-align: center;}
+ .code_main img{width: 129px;height: 129px;}
+
+ .code_cov{
+            width:100%;
+            height:100%;
+            background-color:rgba(0, 0, 0, 0.5);
+            z-index:1000;
+            display:none;
+            position:absolute;
+            left: 0;
+            top: 0;
+            text-align:center;
+            font-size: 16px;
+            box-shadow:0px 0px 5px black;
+        }
+        .code_con{
+            z-index:1100;
+            width:auto;
+            height:auto
+            background-color:white;
+            position:fixed;
+            right:40%;
+            top:30%;
+            box-shadow: 0px 0px 15px black;
+        }

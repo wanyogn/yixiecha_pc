@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医械查 | 最好用的医疗器械查询工具</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" href="css/about.css">
+	<link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" href="css/menu.css">
+    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/header.js"></script>
+</head>
+<body>
+	<div class="header">
+		<div class="header_top">
+			<div class="top_main">
+				<div class="top_height left">
+					<div class="top_left_tip"><a class="wx_xcx">微信小程序</a></div>
+					<div class="top_left_tip"><a onclick="toIndex()">医械查首页</a></div>
+				</div>
+				<div class="top_height right">
+					<span class="home_h"></span>
+				</div>	
+			</div>
+		</div>
+		
+		<div class="header_bottom">
+			<div class="bottom_main">
+				<div class="weixin_content">
+					<img src="images/weixin.jpg">
+				</div>				
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="content_main">
+			<div class="main_title left" style="width: 25%;">
+				<div class="main_title_s">
+					<a href="aboutus.html" class="active">关于我们</a>
+					<!-- <a href="">常见问题</a> -->
+					<a href="agreement.html">服务协议</a>
+				</div>
+			</div>
+			<div class="main_content left" style="width: 75%;">
+				<div class="main_content_s" style="margin-left: 15px;">
+					<h5 class="section_title">
+						<strong>关于医械查</strong>
+					</h5>
+					<p class="section_content">
+						医械查是南京智械信息科技有限公司旗下的一款医疗器械商业信息查询软件，旨在为用户提供快速查询医疗器械注册产品信息、生产企业信息、经营企业信息、互联网服务企业信息、集中采购价格信息、招标中标信息、医疗机构信息等服务。通过多模式查询，多选项筛选，让查询结果更准确，查询内容更详尽！是医疗器械行业研究开发、市场推广、投融资咨询、销售采购相关人士的首选工具！
+					</p>
+					<h5 class="section_title margin-t">
+						<strong>联系方式</strong>
+					</h5>
+					<div class="h4" style="font-weight:normal;">南京智械信息科技有限公司</div>
+					<div class="margin-v-0-3x">邮箱：<a href="mailto:contact@zhixie.info">contact@zhixie.info</a></div>
+					<div class="margin-v-0-3x">地址：南京市建邺区云锦路45号14幢522室</div>
+				</div>
+			</div>
+			
+			<div class="clear"></div>
+		</div>
+	</div>
+	<iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
+
+	<div class="login_register" style="display: none;">
+		<a href="register.html">免费注册</a>
+		<a href="login.html">登录</a>
+	</div>
+	<div class="welcome" style="display: none;">
+		<div id="lr_systembtn" class="lr_systembtn"> 
+			<a href="#" class="lr_abtn">
+				<span class="username_h"></span>
+			</a>
+		    <div id="lr_menu" class="lr_menu">
+			    <dl>
+			       <dt><a href="">个人信息</a></dt>
+			    </dl>
+			    <dl>
+			        <dt><a onclick="loginout()">注销</a></dt>
+			    </dl>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+			var status = getStorage("user");
+			if(status == "noLogin"){
+		    	$(".home_h").before($(".login_register").html());
+			}else if(status == "outTime"){
+		   		$(".home_h").before($(".login_register").html());
+			}else{
+				$(".home_h").after($(".welcome").html());
+				if(status.username == undefined || status.username == ""){
+			      $(".username_h").html(status.nickname);
+			    }else{
+			      $(".username_h").html(status.username);
+			    }
+			}
+	</script>
+</body>
+</html>

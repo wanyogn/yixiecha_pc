@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>医械查 | 最好用的医疗器械查询工具</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/usercenter.css">
+</head>
+<body>
+	<iframe name="iframe_top_name" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="header.html" height="188px" width="100%"></iframe>
+	<div class="content">
+		<div class="content_main">
+			<div class="main_left left">
+				<div class="user-box">
+					<div class="user-box-top">
+						<div class="">
+							<div class="user-pic text-center"><span class="glyphicon glyphicon-user"></span></div>
+							<div class="mobile pt10 sec-c1 pb10">1436010367@qq.com</div>
+						</div>
+					</div>
+					<div class="list-group">
+						<a href="#" class="list-group-item">供求信息</a>
+						<a href="#" class="list-group-item">安全中心</a>
+						<a href="#" class="list-group-item active">个人中心</a>
+					</div>
+				</div>
+			</div>
+			<div class="main_right right">
+				<div class="user-body">
+					<div class="body-head">
+						<span class="blueborder bluetip">个人信息</span>
+					</div>
+					<div class="bgContent">
+						<div class="bgContent_left pull-left">
+							<div class="intro-head-g1">基本信息</div>
+							<div class="input-group pb-24">
+								<span class="input-group-addon">账&emsp;&emsp;号</span>
+								<input type="text" class="form-control" placeholder="1436010367@qq.com" disabled="disabled">
+							</div>
+							<div class="input-group pb-24">
+								<span class="input-group-addon">姓&emsp;&emsp;名</span>
+								<input type="text" class="form-control">
+							</div>
+							<div class="input-group pb-24">
+								<span class="input-group-addon">手&emsp;&emsp;机</span>
+								<input type="text" class="form-control">
+							</div>
+							<div class="intro-head-g1">公司信息</div>
+							<div class="input-group pb-24">
+								<span class="input-group-addon">公司名称</span>
+								<input type="text" class="form-control" >
+							</div>
+							<div class="input-group pb-24">
+								<span class="input-group-addon">公司地址</span>
+								<input type="text" class="form-control" >
+							</div>
+							<div class="input-group pb-24">
+								<span class="input-group-addon">部&emsp;&emsp;门</span>
+								<input type="text" class="form-control" >
+							</div>
+							<div class="input-group pb-24">
+								<span class="input-group-addon">职&emsp;&emsp;位</span>
+								<input type="text" class="form-control" >
+							</div>
+							<div class="input-group pb-24 center-block" style="width: 70%;">
+								<button type="button" class="btn btn-primary pull-left">保存修改</button>
+								<button type="button" class="btn btn-success pull-right" onclick="makeCode()">生成二维码</button>
+							</div>
+						</div>
+						<div class="bgContent_right pull-right">
+							<div class="intro-head-g1">企业名片二维码</div>
+							<div id="qrcode">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="clear: both;"></div>	
+		</div>
+	</div>
+	<iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
+    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/qrcode.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#qrcode img').unbind('mouseenter').unbind('mouseleave');
+		})
+		function makeCode () {
+			$("#qrcode").html("");    
+		    var qrcode = new QRCode("qrcode");
+
+		    qrcode.makeCode("wanyong");
+		}
+	</script>
+</body>
+</html>

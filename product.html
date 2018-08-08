@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>医械查 | 最好用的医疗器械查询工具</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/product.css">
+	<link rel="stylesheet" href="css/beAlert.css">
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
+	<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/product.js"></script>
+</head>
+<style type="text/css">
+	.td_width{width: 20%;}
+	.tag {width:0;height:0;border-width:20px 20px 20px 20px;border-style:solid;border-color:transparent transparent green green;position: absolute;z-index: 100;bottom: 0;left: 0}
+    .ivd_title{position: relative;}
+    .ivd_p{margin-left: -20px;margin-bottom: 10px;color: #fff}
+</style>
+<body>
+	<iframe name="iframe_top_name" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="header.html" height="188px" width="100%"></iframe>
+	<div class="content">
+		<div class="content_main">
+			<div class="main_left">
+				<div class="left_one" >
+					<div class="left_one_a">
+						<h3 class="general_product_name_ch"></h3>
+						<h4 class="general_ivd"></h4>
+					</div>
+					<table class="tab tab1">
+						<tr>
+							<td width="10%">注册证号</td>
+							<td class="general_register_code"></td>
+						</tr>
+						<tr>
+							<td>注册公司</td>
+							<td class="general_maker_name_ch"></td>
+						</tr>
+						<tr>
+							<td>型号规格</td>
+							<td class="general_product_mode"></td>
+						</tr>
+					</table>
+					<table class="tab tab2">
+						<tr>
+							<td width="10%" style="letter-spacing: 7px;">原产地</td>
+							<td width="20%" class="general_src_loc_revised"></td>
+							<td width="10%;" style="vertical-align: top;" rowspan="2">适用范围</td>
+							<td width="60%;" style="vertical-align: top;" rowspan="2" class="general_product_scope"></td>
+						</tr>
+						<tr>
+							<td>管理类别</td>
+							<td class="general_main_class_revised"></td>
+						</tr>
+						<tr>
+							<td>分类目录</td>
+							<td class="general_class_code_revised"></td>
+							<td>适用科室</td>
+							<td class="general_deptFlagsCH"></td>
+						</tr>
+						<tr>
+							<td>注册状态</td>
+							<td class="general_valid_state"></td>
+							<td>相关疾病</td>
+							<td class="general_diseaseFlagsCH"></td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="left_two">
+					
+				</div>
+			</div>
+			
+			<div class="main_right right">
+				<div class="product_image">
+					<div class="product_image_main">
+						
+					</div>
+					<div class="product_image_tip">建议选择500x500尺寸的图片(png,jpg)</div>
+					<div class="product_image_title">
+						<h3>产品图片</h3>
+					</div>
+				</div>
+				<div class="same_product">
+					<div class="same_product_title">
+						<h3>同名产品<span class="count"></span></h3>
+					</div>
+					<div class="same_product_main">		
+						<div class="same_product_page" style="display: none;">
+							<a style="margin-right: 15px;" class="page_before">
+								<img src="images/left.png">
+							</a>
+							<a class="page_after">
+								<img src="images/right.png">
+							</a>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
+	<div class="service">
+		<div class="service_li wx">
+			<div class="service_image">
+				<img src="images/wx_03.png">
+			</div>
+			<p>微信 </p>
+		</div>
+		
+		<div class="service_li fk">
+			<div class="service_image">
+				<img src="images/fankui_07.png">
+			</div>
+			<p>反馈 </p>
+		</div>
+		<div class="service_li zd" >
+			<div class="service_image">
+				<img src="images/zhiding_07.png">
+			</div>
+			<p>置顶 </p>
+		</div>
+		
+		<div class="wxcontent collapse code_main" style="bottom: 24px;">
+			<img src="images/weixin.jpg">
+			<p style="padding-bottom: 15px;">关注微信小程序</p>
+		</div>
+	</div>
+	<div class="same_product_template" style="display: none;">
+		<div class="product">
+			<a href="product.html?class=pro&id=" target="_blank" class="name_a"><h3></h3></a>
+			<a href="company.html?class=com&keyword=" target="_blank" class="company_a"><p class="company_name"></p></a>
+			<a href="product.html?class=pro&id=" target="_blank" class="register_a"><p class="register_code"></p></a>
+		</div>
+	</div>
+	<div class="same_product_page_template">
+		<!-- <div class="same_product_page">
+			<a style="margin-right: 15px;" class="page_before">
+				<img src="images/left.png">
+			</a>
+			<a class="page_after">
+				<img src="images/right.png">
+			</a>
+		</div> -->
+	</div>
+	<div id="no_pic" style="display: none;">
+		<div class="product_image_main_h">
+			<div>
+				<img src="images/product_camera.png" class="no_img">
+				<span>添加图片</span>
+			</div>
+		</div>
+	</div>
+	<div id="pic" style="display: none;">
+		<img src="" class="pro_img" />
+	</div>
+	<!--国产详情-->
+	<div id="product_gc" style="display: none;">
+		<table class="table table-striped table-bordered">
+			<tr>
+				<td class="td_width">注册证编号</td>
+				<td class="table_gc_register_code"></td>
+			</tr>
+			<tr>
+				<td>注册人名称</td>
+				<td class="table_gc_maker_name"></td>
+			</tr>
+			<tr>
+				<td>注册人住所</td>
+				<td class="table_gc_maker_address"></td>
+			</tr>
+			<tr>
+				<td>生产地址</td>
+				<td class="table_gc_production_site"></td>
+			</tr>
+			<tr>
+				<td>代理人名称</td>
+				<td class="table_gc_agent_name"></td>
+			</tr>
+			<tr>
+				<td>代理人住所</td>
+				<td class="table_gc_agent_addr"></td>
+			</tr>
+			<tr>
+				<td>产品名称</td>
+				<td class="table_gc_product_name"></td>
+			</tr>
+
+			<tr>
+				<td>型号与规格</td>
+				<td class="table_gc_product_mode"></td>
+			</tr>
+			<tr>
+				<td>结构及组成</td>
+				<td class="table_gc_product_struct"></td>
+			</tr>
+			<tr>
+				<td>适用范围</td>
+				<td class="table_gc_product_scope"></td>
+			</tr>
+			<!--ivd-->
+			<tr>
+				<td class="ivd_title">主要组成成分
+					<div class="tag">
+						<!-- <p class="ivd_p"></p> -->
+					</div>
+				</td>
+				<td class="table_gc_main_component"></td>
+				
+			</tr>
+			<tr>
+				<td class="ivd_title">预期用途
+					<div class="tag">
+						<!-- <p class="ivd_p"></p> -->
+					</div>
+				</td>
+				<td class="table_gc_expected_use"></td>
+			</tr>
+			<tr>
+				<td class="ivd_title">储存条件及有效期
+					<div class="tag">
+						<!-- <p class="ivd_p"></p> -->
+					</div>
+				</td>
+				<td class="table_gc_storage_condition"></td>
+			</tr>
+			<!--ivd-->
+			<tr>
+				<td>产品标准</td>
+				<td class="table_gc_product_standard"></td>
+			</tr>
+			<tr>
+				<td>其他内容</td>
+				<td class="table_gc_other_thing"></td>
+			</tr>
+			<tr>
+				<td>附件</td>
+				<td class="table_gc_attachment"></td>
+			</tr>
+			<tr>
+				<td>备注</td>
+				<td class="table_gc_remark"></td>
+			</tr>
+			<tr>
+				<td>批准日期</td>
+				<td class="table_gc_approval_date"></td>
+			</tr>
+			<tr>
+				<td>有效期至</td>
+				<td class="table_gc_expiry_date"></td>
+			</tr>
+			<tr>
+				<td>变更日期</td>
+				<td class="table_gc_change_date"></td>
+			</tr>
+			<tr>
+				<td>变更情况</td>
+				<td class="table_gc_change_condition"></td>
+			</tr>
+			<tr>
+				<td>审批部门</td>
+				<td class="table_gc_approval_dept"></td>
+			</tr>
+		</table>
+	</div>
+	<!--进口详情-->
+	<div id="product_jk" style="display: none;">
+		<table class="table table-striped table-bordered">
+			<tr>
+				<td class="td_width">注册证编号</td>
+				<td class="table_jk_register_code"></td>
+			</tr>
+			<tr>
+				<td>注册人名称</td>
+				<td class="table_jk_maker_name"></td>
+			</tr>
+			<tr>
+				<td>注册人中文名称</td>
+				<td class="table_jk_maker_name_ch"></td>
+			</tr>
+			<tr>
+				<td>国家或地区 [中]</td>
+				<td class="table_jk_maker_area_ch"></td>
+			</tr>
+			<tr>
+				<td>国家或地区 [英]</td>
+				<td class="table_jk_maker_area_en"></td>
+			</tr>
+			<tr>
+				<td>注册人住所</td>
+				<td class="table_jk_maker_address"></td>
+			</tr>
+			<tr>
+				<td>生产地址</td>
+				<td class="table_jk_production_site"></td>
+			</tr>
+			<tr>
+				<td>代理人名称</td>
+				<td class="table_jk_agent_name"></td>
+			</tr>
+			<tr>
+				<td>代理人住所</td>
+				<td class="table_jk_agent_addr"></td>
+			</tr>
+			<tr>
+				<td>售后服务机构</td>
+				<td class="table_jk_service_agency"></td>
+			</tr>
+			<tr>
+				<td>产品名称</td>
+				<td class="table_jk_product_name"></td>
+			</tr>
+			<tr>
+				<td>产品名称 [中]</td>
+				<td class="table_jk_product_name_ch"></td>
+			</tr>
+			<tr>
+				<td>型号与规格</td>
+				<td class="table_jk_product_mode"></td>
+			</tr>
+			<tr>
+				<td>结构及组成</td>
+				<td class="table_jk_product_struct"></td>
+			</tr>
+			<tr>
+				<td>适用范围</td>
+				<td class="table_jk_product_scope"></td>
+			</tr>
+			<!--ivd-->
+			<tr>
+				<td class="ivd_title">主要组成成分
+					<div class="tag">
+						<!-- <p class="ivd_p"></p> -->
+					</div>
+				</td>
+				<td class="table_jk_main_component"></td>
+			</tr>
+			<tr>
+				<td class="ivd_title">预期用途
+					<div class="tag">
+						<!-- <p class="ivd_p"></p> -->
+					</div>
+				</td>
+				<td class="table_jk_expected_use"></td>
+			</tr>
+			<tr>
+				<td class="ivd_title">储存条件及有效期
+					<div class="tag">
+						<!-- <p class="ivd_p"></p> -->
+					</div>
+				</td>
+				<td class="table_jk_storage_condition"></td>
+			</tr>
+			<!--ivd-->
+			<tr>
+				<td>产品标准</td>
+				<td class="table_jk_product_standard"></td>
+			</tr>
+			<tr>
+				<td>其他内容</td>
+				<td class="table_jk_other_thing"></td>
+			</tr>
+			<tr>
+				<td>附件</td>
+				<td class="table_jk_attachment"></td>
+			</tr>
+			<tr>
+				<td>备注</td>
+				<td class="table_jk_remark"></td>
+			</tr>
+			<tr>
+				<td>批准日期</td>
+				<td class="table_jk_approval_date"></td>
+			</tr>
+			<tr>
+				<td>有效期至</td>
+				<td class="table_jk_expiry_date"></td>
+			</tr>
+			<tr>
+				<td>变更日期</td>
+				<td class="table_jk_change_date"></td>
+			</tr>
+			<tr>
+				<td>变更情况</td>
+				<td class="table_jk_change_condition"></td>
+			</tr>
+			<tr>
+				<td>审批部门</td>
+				<td class="table_jk_approval_dept"></td>
+			</tr>
+		</table>
+	</div>
+	<!--备案-->
+	<div id="product_ba" style="display: none;">
+		<table class="table table-striped table-bordered">
+			<tr>
+				<td class="td_width">备案号</td>
+				<td class="table_ba_register_code"></td>
+			</tr>
+			<tr>
+				<td>备案人名称</td>
+				<td class="table_ba_maker_name"></td>
+			</tr>
+			<tr>
+				<td>备案人注册地址</td>
+				<td class="table_ba_maker_address"></td>
+			</tr>
+			<tr>
+				<td>生产地址</td>
+				<td class="table_ba_production_site"></td>
+			</tr>
+			<tr>
+				<td>代理人名称</td>
+				<td class="table_ba_agent_name"></td>
+			</tr>
+			<tr>
+				<td>代理人住所</td>
+				<td class="table_ba_agent_addr"></td>
+			</tr>
+			<tr>
+				<td>产品名称</td>
+				<td class="table_ba_product_name"></td>
+			</tr>
+			<tr>
+				<td>产品类别</td>
+				<td class="table_ba_product_level"></td>
+			</tr>
+			<tr>
+				<td>型号与规格</td>
+				<td class="table_ba_product_mode"></td>
+			</tr>
+			<tr>
+				<td>结构及组成</td>
+				<td class="table_ba_product_struct"></td>
+			</tr>
+			<tr>
+				<td>适用范围</td>
+				<td class="table_ba_product_scope"></td>
+			</tr>
+			<tr>
+				<td>主要组成成份</td>
+				<td class="table_ba_main_component"></td>
+			</tr>
+			<tr>
+				<td>预期用途</td>
+				<td class="table_ba_expected_use"></td>
+			</tr>
+			<tr>
+				<td>储存条件及有效期</td>
+				<td class="table_ba_storage_condition"></td>
+			</tr>
+			<tr>
+				<td>备注</td>
+				<td class="table_ba_remark"></td>
+			</tr>
+			<tr>
+				<td>备案日期</td>
+				<td class="table_ba_approval_date"></td>
+			</tr>
+			<tr>
+				<td>备案状态</td>
+				<td class="table_ba_current_state"></td>
+			</tr>
+			<tr>
+				<td>变更情况</td>
+				<td class="table_ba_change_condition"></td>
+			</tr>
+			<tr>
+				<td>备案单位</td>
+				<td class="table_ba_approval_dept"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+.main_left{width: 245px;height: 740px;background: #f9f9f9;border: 1px solid #e0e0e0;}
+.main_right{width: 933px;height: 740px;display: inline-block;background: #f9f9f9;border: 1px solid #e0e0e0;}
+.user-box-top{padding: 10px 20px;}
+.user-pic{margin: auto;width: 72px;height: 72px;border: 1px solid #e0e0e0;border-radius: 50%;line-height: 72px;color: #e0e0e0;background: #fff;font-size: 40px;}
+.mobile{font-size: 18px;text-align: center;padding-top: 10px;padding-bottom: 10px;}
+.user-body{padding: 20px 32px;}
+.body-head{border-bottom: 1px solid #e0e0e0;height: 33px;color: #737373;}
+.blueborder{padding-bottom: 8px;font-size: 17px;color: #202020;position: relative;border-bottom: 2px solid #0084ff}
+.bgContent{padding-top: 60px; }
+.bgContent_left{width: 525px;padding-right: 75px;border-right: 1px solid #e0e0e0;}
+.bgContent_right{width: 270px;}
+.intro-head-g1{line-height: 15px;padding-left: 8px;border-left: 4px solid #FFAE00; font-size: 14px;color: #111;margin-bottom: 10px;margin-top: 20px;}
+.order-email-outer{position: relative;display: inline-block;color: #999;}
+.pb-24{padding-bottom: 24px;}
+#qrcode{width: 200px;height: 200px;background: #efefef}
+#qrcode img{width: 200px !important;height: 200px !important;}
