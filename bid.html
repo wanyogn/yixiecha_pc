@@ -32,13 +32,6 @@
 			$(this).css("color","#000");
 		})
 	});
-	function iFrameHeight() { 
-    var ifm= document.getElementById("iframepage"); 
-    var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument; 
-    if(ifm != null && subWeb != null) { 
-        ifm.height = subWeb.body.scrollHeight; 
-    } 
-}
 </script>
 <body style="overflow: hidden;">
 	<iframe name="iframe_top_name" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="header.html" height="188px" width="100%"></iframe>
@@ -57,7 +50,7 @@
 		</div>
 	</div>
 	<div style="width: 100%;height:800px;" class="main">
-		<iframe src="" style="width:100%;"  marginwidth="0" name="iframepage" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="auto" id="urlIframe" scrolling="auto" onload="iFrameHeight()"></iframe>
+		<iframe src="" style="width:100%;" height="100%"  marginwidth="0" name="iframepage" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="auto" id="urlIframe" scrolling="auto"></iframe>
 	</div>
 </body>
 </html>

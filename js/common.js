@@ -1,3 +1,6 @@
+var url_prex = "http://localhost:9001";
+var area_prex = "http://localhost:9090";
+var to_login = "../newWeb/login.html";
 $(function(){
 	var lr_systembtn = $("#lr_systembtn");
 	var lr_menu = $("#lr_menu");
@@ -313,63 +316,64 @@ function parseDate(timestamp){
     var second = d.getSeconds()<10?"0"+d.getSeconds():d.getSeconds();
     return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
 }
+
 /*产品搜索的url*/
 function getSearch_ProURL(num,key){
 	//var url = "/method/search_product_filter_condition?num="+num+"&keyword="+key;
-	var url = "http://localhost:9001/method/search_product_filter_condition?num="+num+"&keyword="+key;
+	var url = url_prex + "/method/search_product_filter_condition?num="+num+"&keyword="+key;
 	return url;
 }
 /*根据ID查找产品*/
 function getProURL(id){
 	//var url_request = "/method/search_product_id?id=" + id;
-	var url_request = "http://localhost:9001/method/search_product_id?id="+id;
+	var url_request = url_prex + "/method/search_product_id?id="+id;
 	return url_request;
 }
 /*企业搜索的url*/
 function getSearch_ComURL(num,key){
 	//var url = "/method/search_company_filter_condition?num="+num+"&keyword="+key;
-	var url = "http://localhost:9001/method/search_company_filter_condition?num="+num+"&keyword="+key;
+	var url = url_prex +  "/method/search_company_filter_condition?num="+num+"&keyword="+key;
 	return url;
 }
 
 /*根据企业名称查找企业*/
 function getComURL(name){
 	//var url_request = "/method/search_company_specific_name?keyword=" + name;
-    var url_request = "http://localhost:9001/method/search_company_specific_name?keyword="+name;
+    var url_request = url_prex + "/method/search_company_specific_name?keyword="+name;
 	return url_request;
 }
 /*根据企业名称查看产品*/
 function getProByCom(num,com,size){
 	//var url = "/method/search_product_company_name?keyword="+com+"&num="+num+"&size="+size;
-	var url = "http://localhost:9001/method/search_product_company_name?keyword="+com+"&num="+num+"&size="+size;
+	var url = url_prex + "/method/search_product_company_name?keyword="+com+"&num="+num+"&size="+size;
 	return url;
 }
 /*根据公司名称查看招标公告*/
 function getZBGGByCom(num,com,size){
 	//var url = "/method/search_tenderbid_name?keyword="+com+"&num="+num+"&size="+size;
-	var url = "http://localhost:9001/method/search_tenderbid_name?keyword="+com+"&num="+num+"&size="+size;
+	var url = url_prex + "/method/search_tenderbid_name?keyword="+com+"&num="+num+"&size="+size;
 	return url;
 }
 /*医院搜索url*/
 function getSearch_HosURL(num,keyword){
 	//var url = "/method/search_hospital_name?num="+num+"&keyword="+keyword;
-	var url = "http://localhost:9001/method/search_hospital_name?num="+num+"&keyword="+keyword;
+	var url = url_prex + "/method/search_hospital_name?num="+num+"&keyword="+keyword;
 	return url;
 }
 /*医院信息*/
 function getHosURL(id){
 	//var url = "/method/search_hospital_id?id="+id;
-	var url = "http://localhost:9001/method/search_hospital_id?id="+id
+	var url = url_prex + "/method/search_hospital_id?id="+id
 	return url;
 }
 /*根据产品名称查找同名产品信息*/
 function getSameProURL(num,keyword,size){
 	//var url = "/method/search_product_same_name?keyword="+keyword+"&num="+num+"&size="+size;
-	var url = "http://localhost:9001/method/search_product_same_name?keyword="+keyword+"&num="+num+"&size="+size;
+	var url = url_prex + "/method/search_product_same_name?keyword="+keyword+"&num="+num+"&size="+size;
 	return url;
 }
 function getUserCenter(userid){
-    var url = "http://localhost:9001/method/userCenterInfo?userid="+userid;
+    var url = url_prex + "/method/userCenterInfo?userid="+userid;
     //var url = /method/userCenterInfo?userid="+userid;
     return url;
 }
@@ -378,7 +382,7 @@ function getUserCenter(userid){
 function getInsertUsersearchURL(user_id,class_type,key_word,result_count){
 	$.ajax({
         type: 'post',
-        url: 'http://localhost:9001/method/insertUsersearchInfo',
+        url: url_prex + '/method/insertUsersearchInfo',
         //url: '/method/insertUsersearchInfo',
         data: {
         		userid    : user_id, 
@@ -400,7 +404,7 @@ function getInsertUsersearchURL(user_id,class_type,key_word,result_count){
 function getInsertUserurljumpURL(user_id,before_url,after_url,click_name){
 	$.ajax({
         type: 'post',
-        url: 'http://localhost:9001/method/insertUserurljumpInfo',
+        url: url_prex + '/method/insertUserurljumpInfo',
         //url: '/method/insertUserurljumpInfo',
         data: {
         		userid    : user_id, 

@@ -74,7 +74,7 @@ function sureForget(){
     }
     $.ajax({
         type: 'post',
-        url: 'http://localhost:9001/method/updatePsw',
+        url: url_prex + '/method/updatePsw',
         data: {"username": username, "password": hex_md5(pass)},
         async: false,
         success: function (result) {
@@ -184,7 +184,7 @@ function initPasswordLogin(){
             $("#pw_username_input").parent().parent().css("box-shadow", "inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #f2989f");
             f = false;
         }*/
-        if(f) {
+       /* if(f) {
            if (!/(^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$)/.exec(uval)) {
                 $("#danger_tip").html("邮箱输入有误");
                 $("#danger_div").show();
@@ -192,7 +192,7 @@ function initPasswordLogin(){
                 $("#pw_username_input").parent().parent().css("box-shadow", "inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #f2989f");
                 f = false;
             }
-        }
+        }*/
         if(f){
             if(pval.length < 8){
                 $("#danger_tip").html("密码不能小于8位数");
@@ -215,7 +215,7 @@ function initPasswordLogin(){
             $("#danger_div").hide();
              $.ajax({
                 type: 'post',
-                url: 'http://localhost:9001/method/commonUserLogin',
+                url: url_prex + '/method/commonUserLogin',
                 data: {"username": uval, "password": hex_md5(pval)},
                 async: false,
                 success: function (result) {
@@ -307,7 +307,7 @@ function initVerifyLogin() {
         $("#danger_div").hide();
         $.ajax({
             type: 'post',
-            url: 'http://localhost:9001/method/fastUserLogin',
+            url: url_prex + '/method/fastUserLogin',
             data: {"username": mail},
             async: false,
             success: function (result) {
@@ -392,7 +392,6 @@ function contentCode(mail){
             // 
         },
         success : function() {
-            //alert('验证成功，添加你自己的代码！');
             $(".code_cov").hide();
             //timerStart();
             sendCode(mail);
@@ -422,7 +421,7 @@ function sendCode(mail){
     //var mail = $("#ver_username_input").val();
     $.ajax({
         type: 'post',
-        url: 'http://localhost:9001/method/sendCode',
+        url: url_prex + '/method/sendCode',
         //url: '/method/sendCode',
         data: {
             "mail":mail

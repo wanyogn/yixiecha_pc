@@ -551,7 +551,7 @@ function getProvinceById(id){
 	var result = '';
 	$.ajax({
         type: 'post',
-        url: 'http://localhost:9090/daemon/selectAdministrativeRegion',
+        url: area_prex +'/daemon/selectAdministrativeRegion',
         //url: '/daemon/selectAdministrativeRegion',
         data: {
         		id    : id, 

@@ -5,12 +5,12 @@ $(function(){
     if(status == "noLogin"){
         alert("您还未登录，请先进行登录!","", function () {
             setStorage('referTo',window.location.href);
-            top.location.href = "../login.html";
+            top.location.href = to_login;
         }, {type: 'warning', confirmButtonText: '确定'});
     }else if(status == "outTime"){
         alert("您的登录状态已超时，请重新进行登录!","", function () {
             setStorage('referTo',window.location.href);
-            top.location.href = "../login.html";
+            top.location.href = to_login;
              }, {type: 'warning', confirmButtonText: '确定'});
     }else{
         flag = true;
@@ -100,7 +100,7 @@ function changeTwoDecimal_f(x) {
 }
 
 function getProductBidInfoURL(id){
-    var url = "http://localhost:9001/method/search_acquisitebid_id?id="+id;
+    var url = url_prex + "/method/search_acquisitebid_id?id="+id;
     return url;
 }
 

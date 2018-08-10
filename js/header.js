@@ -17,7 +17,12 @@ $(function() {
             $(".username_h").html(status.email);
           }
         }else{
-            $(".username_h").html(status.username);
+            if(status.email == undefined || status.email == ""){
+                $(".username_h").html(status.username);
+            }else{
+                $(".username_h").html(status.email);
+            }
+
         }
     }
 

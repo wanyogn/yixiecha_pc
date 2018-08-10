@@ -2,20 +2,20 @@ var map = '';
 $(document).ready(function(){
 	var flag = false;
     var status = getStorage("user");
-    /*if(status == "noLogin"){
+    if(status == "noLogin"){
     	alert("您还未登录，请先进行登录!","", function () {
     		setStorage('referTo',window.location.href);
-            top.location.href = "../login.html";
+            top.location.href = to_login;
         }, {type: 'warning', confirmButtonText: '确定'});
     }else if(status == "outTime"){
         alert("您的登录状态已超时，请重新进行登录!","", function () {
         	setStorage('referTo',window.location.href);
-            top.location.href = "../login.html";
+            top.location.href = to_login;
              }, {type: 'warning', confirmButtonText: '确定'});
     }else{
         flag = true;
-    }*/
-    //if(flag){
+    }
+    if(flag){
     	var keyword_from_url = window.location.search;//格式是【例：?class=pro&id=*】
 	    var keyword_sub = keyword_from_url.substring(14);
 	    $.getJSON(getHosURL(keyword_sub), function (json) {
@@ -27,7 +27,7 @@ $(document).ready(function(){
             var afterurl = decodeURI(document.location.href);
             getInsertUserurljumpURL(status.userid,beforeurl,afterurl,data.datas[0].hospital_name);
 	    })
-   // }
+    }
 	
 })
 /*$("").html();*/

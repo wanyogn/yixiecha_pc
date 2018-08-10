@@ -222,7 +222,7 @@ function initRegister() {
             $.ajax({
                 type: 'post',
                 //url:'/method/commonUserRegister',
-                url:'http://localhost:9001/method/commonUserRegister',
+                url:url_prex + '/method/commonUserRegister',
                 data: {username: uval, password: hex_md5(pval),code:cval},
                 async:false,
                 success: function(data) {
@@ -292,7 +292,7 @@ function contentCode(){
         },
         success : function() {
             $(".code_cov").hide();
-            sendAjax("http://localhost:9001/method/checkUserExist",{"username":$("#ver_username_input").val()},function(result){
+            sendAjax(url_prex + "/method/checkUserExist",{"username":$("#ver_username_input").val()},function(result){
                 if(result == "exist"){
                     $("#danger_tip").html("该邮箱已被注册");
                     $("#danger_div").show();
@@ -327,7 +327,7 @@ function sendCode(){
     var mail = $("#ver_username_input").val();
     $.ajax({
         type: 'post',
-        url: 'http://localhost:9001/method/sendCode',
+        url: url_prex + '/method/sendCode',
         //url: '/method/sendCode',
         data: {
             "mail":mail

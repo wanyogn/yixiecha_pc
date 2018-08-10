@@ -23,7 +23,7 @@
 					<div class="user-box-top">
 						<div class="">
 							<div class="user-pic text-center"><span class="glyphicon glyphicon-user"></span></div>
-							<div class="mobile pt10 sec-c1 pb10">1436010367@qq.com</div>
+							<div class="mobile pt10 sec-c1 pb10" id="username"></div>
 						</div>
 					</div>
 					<div class="list-group">
@@ -65,11 +65,25 @@
 							</div>
 							<div class="input-group pb-24">
 								<span class="input-group-addon">部&emsp;&emsp;门</span>
-								<input type="text" class="form-control" id="department">
+								<!--<input type="text" class="form-control" id="department">-->
+								<select class="form-control" id="department">
+									<option value="0">请选择部门</option>
+									<option value="1">销售部</option>
+									<option value="2">开发部</option>
+									<option value="3">人事部</option>
+									<option value="4">财务部</option>
+								</select>
 							</div>
 							<div class="input-group pb-24">
 								<span class="input-group-addon">职&emsp;&emsp;位</span>
-								<input type="text" class="form-control" id="job">
+								<!--<input type="text" class="form-control" id="job">-->
+								<select class="form-control" id="job">
+									<option value="0">请选择职位</option>
+									<option value="1">销售人员</option>
+									<option value="2">开发工程师</option>
+									<option value="3">人事经理</option>
+									<option value="4">会计</option>
+								</select>
 							</div>
 							<div class="input-group pb-24 center-block" style="width: 70%;">
 								<button type="button" class="btn btn-primary pull-left" id="saveInfo">保存修改</button>

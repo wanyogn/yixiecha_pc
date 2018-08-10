@@ -70,6 +70,6 @@ function contentTenderBidActive(data){
     });
 }
 function getURL(keyword,num){
-    var url = "http://localhost:9001/method/search_tenderbid_name?keyword="+keyword+"&num="+num;
+    var url = url_prex + "/method/search_tenderbid_name?keyword="+keyword+"&num="+num;
     return url;
 }

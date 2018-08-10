@@ -6,21 +6,21 @@ var start_page = 1;
 var start_page_zb = 1;
 $(document).ready(function(){
 	var scxk = 0,scba = 0,jyxk = 0,jyba = 0,xxfw = 0,jyfw = 0;
-	var flag = true;
+	var flag = false;
     var status = getStorage("user");
-    /*if(status == "noLogin"){
+    if(status == "noLogin"){
     	alert("您还未登录，请先进行登录!","", function () {
     		setStorage('referTo',window.location.href);
-            top.location.href = "../newWeb/login.html";
+            top.location.href = to_login;
         }, {type: 'warning', confirmButtonText: '确定'});
     }else if(status == "outTime"){
         alert("您的登录状态已超时，请重新进行登录!","", function () {
         	setStorage('referTo',window.location.href);
-            top.location.href = "../newWeb/login.html";
+            top.location.href = to_login;
              }, {type: 'warning', confirmButtonText: '确定'});
     }else{
         flag = true;
-    }*/
+    }
     if(flag){
     	var keyword_from_url = window.location.search;//格式是【例：?class=pro&keyword=*】
 	    var keyword_sub = keyword_from_url.substring(19);
@@ -77,13 +77,13 @@ function detailContentActive(data){
 				service_xinxi.push(obj);
 			}
 		}
-	}else{
+	}/*else{
 		 alert("该公司的详细信息暂未收录！","", function () {
 		 		window.opener=null;  
 				window.open('','_self');  
 				window.close();
              }, {type: 'warning', confirmButtonText: '确定'});
-	}
+	}*/
 	if(produce_xuke.length > 0){
 		scxk = 1;
 		var index = getMaxIndex(produce_xuke);
