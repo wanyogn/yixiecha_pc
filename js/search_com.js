@@ -110,7 +110,7 @@ $(document).ready(function(){
 		var data_list = $(".comList");
 		for(var i = 0;i < size;i++){
 			var obj = data.datas[i];
-
+			console.log(obj.production_type);
 			$(data_list[i].getElementsByClassName("com_name")).html(getText(obj.company_name,14));//公司名称
 			$(data_list[i].getElementsByClassName("com_name_a")).attr("href",$(data_list[i].getElementsByClassName("com_name_a")).attr("href")+obj.company_name);
 
@@ -119,27 +119,32 @@ $(document).ready(function(){
 			$(data_list[i].getElementsByClassName("product_count")).html(obj.product_count);//产品数量
 			$(data_list[i].getElementsByClassName("tenderbid_count")).html(obj.tenderbid_count);//中标数量
 
-
-			if(obj.production_type.length > 0){//生产资质
-				var production_type_arr = obj.production_type.split(",");
-				for(var j = 0;j < production_type_arr.length;j++){
-					$(data_list[i].getElementsByClassName("product_zi")).children("#"+production_type_arr[j]).removeClass("ti_none");
-					$(data_list[i].getElementsByClassName("product_zi")).children("#"+production_type_arr[j]).addClass("ti");
-				}
+			if(obj.production_type != undefined){
+                if(obj.production_type.length > 0){//生产资质
+                    var production_type_arr = obj.production_type.split(",");
+                    for(var j = 0;j < production_type_arr.length;j++){
+                        $(data_list[i].getElementsByClassName("product_zi")).children("#"+production_type_arr[j]).removeClass("ti_none");
+                        $(data_list[i].getElementsByClassName("product_zi")).children("#"+production_type_arr[j]).addClass("ti");
+                    }
+                }
 			}
-			if(obj.manage_type.length > 0){//经营资质
-				var manage_type_arr = obj.manage_type.split(",");
-				for(var j = 0;j < manage_type_arr.length;j++){
-					$(data_list[i].getElementsByClassName("salary_zi")).children("#"+manage_type_arr[j]).removeClass("ti_none");
-					$(data_list[i].getElementsByClassName("salary_zi")).children("#"+manage_type_arr[j]).addClass("ti");
-				}
+			if(obj.manage_type != undefined){
+                if(obj.manage_type.length > 0){//经营资质
+                    var manage_type_arr = obj.manage_type.split(",");
+                    for(var j = 0;j < manage_type_arr.length;j++){
+                        $(data_list[i].getElementsByClassName("salary_zi")).children("#"+manage_type_arr[j]).removeClass("ti_none");
+                        $(data_list[i].getElementsByClassName("salary_zi")).children("#"+manage_type_arr[j]).addClass("ti");
+                    }
+                }
 			}
-			if(obj.web_type.length > 0){//经营资质
-				var web_type_arr = obj.web_type.split(",");
-				for(var j = 0;j < web_type_arr.length;j++){
-					$(data_list[i].getElementsByClassName("service_zi")).children("#"+web_type_arr[j]).removeClass("ti_none");
-					$(data_list[i].getElementsByClassName("service_zi")).children("#"+web_type_arr[j]).addClass("ti");
-				}
+			if(obj.web_type != undefined){
+                if(obj.web_type.length > 0){//经营资质
+                    var web_type_arr = obj.web_type.split(",");
+                    for(var j = 0;j < web_type_arr.length;j++){
+                        $(data_list[i].getElementsByClassName("service_zi")).children("#"+web_type_arr[j]).removeClass("ti_none");
+                        $(data_list[i].getElementsByClassName("service_zi")).children("#"+web_type_arr[j]).addClass("ti");
+                    }
+                }
 			}
 		}
 	}

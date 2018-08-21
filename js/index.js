@@ -26,7 +26,7 @@ if(index_url != ""){
               $.ajax({
                 type: 'post',
                 url: '/method/wechatUserLogin',
-                data: {"openid":json.openid,"nickname":json.nickname,"sex":json.sex},
+                data: {"openid":json.openid,"unionid":json.unionid,"nickname":json.nickname,"sex":json.sex,"headimgurl":json.headimgurl},
                 async: false,
                 success: function (result) {
                    //console.log(result);
