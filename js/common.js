@@ -1,6 +1,7 @@
 var url_prex = "http://localhost:9001";
 var area_prex = "http://localhost:9090";
 var to_login = "../newWeb/login.html";
+var to_index = "../newWeb";
 $(function(){
 	var lr_systembtn = $("#lr_systembtn");
 	var lr_menu = $("#lr_menu");
@@ -272,7 +273,7 @@ function getStorage(key){
 function getReferURL(key){
 	var data = localStorage.getItem(key);
 	if(data == null){
-		window.location.href = "../newWeb";
+		window.location.href = to_index;
 	}else{
 		var url = data.substring(1,data.length-1);
 		window.location.href = url ;
@@ -304,7 +305,7 @@ function getCurrentStatus(key){
 }
 function loginout(){
 	clearStorage("user");
-	window.location.href = "../newWeb/index.html";
+	window.location.href = to_index+"/index.html";
 }
 function parseDate(timestamp){
     var d      = new Date(timestamp);

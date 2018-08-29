@@ -241,7 +241,7 @@ function initRegister() {
                     }else{
                         var json = JSON.parse(data);
                         setStorage('user',json);
-                        location.href = "../newWeb";
+                        location.href = "../";
                     }
                 }
             });
@@ -293,7 +293,7 @@ function contentCode(){
         success : function() {
             $(".code_cov").hide();
             sendAjax(url_prex + "/method/checkUserExist",{"username":$("#ver_username_input").val()},function(result){
-                if(result == "exist"){
+                if(result > 0){
                     $("#danger_tip").html("该邮箱已被注册");
                     $("#danger_div").show();
                     $("#ver_username_input").parent().parent().css("border","1px solid #e73d4a");

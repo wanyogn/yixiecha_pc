@@ -36,6 +36,7 @@ if(index_url != ""){
                       var json = JSON.parse(result);
                       setStorage('user',json);
                       getReferURL("referTo");
+                      alert("如需绑定账号，请点击右上角的个人中心！");
                   }
                 },
                 error:function(error){
