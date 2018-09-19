@@ -130,7 +130,7 @@
         //	自动扩展元素到全部显示区域
         function fillToBody( el ){
             el.style.width  = document.documentElement.clientWidth  +'px';
-            el.style.height = document.documentElement.clientHeight + 'px';
+            el.style.height = document.body.scrollHeight  + 'px';
         }
         //	Dialog实例化的方法
         function Dialog( dragId , moveId ){

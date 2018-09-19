@@ -15,6 +15,70 @@ $(function(){
     }else{
         flag = true;
     }
+    var index_url = window.location.search;//格式是【例：?code=*&state=*】
+    var code = getQueryVariable("code");
+    var state = getQueryVariable("state");
+    console.log(code);
+    console.log(state);
+    if(code != "") {
+        $.ajax({
+            type: 'post',
+            url: url_prex + '/method/wxtoken',
+            data: {"code": code},
+            async: false,
+            success: function (result) {
+                var json = JSON.parse(result);
+                console.log(json);
+                if (json != "") {
+                    $.ajax({
+                        type: 'post',
+                        url: url_prex + '/method/queryUserInfo',
+                        data: {"unionid": json.unionid},
+                        async: false,
+                        success: function (res) {
+                            if(res == "fail"){//没有存在数据库中
+                                $.ajax({
+                                    type: 'post',
+                                    url: url_prex + '/method/wxBindUser',
+                                    data: {
+                                        "openid": json.openid,
+                                        "unionid": json.unionid,
+                                        "nickname": json.nickname,
+                                        "sex": json.sex,
+                                        "headimgurl": json.headimgurl,
+                                        state: state
+                                    },
+                                    async: false,
+                                    success: function (res) {
+                                        console.log("绑定成功");
+                                    }
+                                })
+                            }else{
+                                var json1 = JSON.parse(res);
+                                if ((json1.username == "" || json1.username == undefined || json1.username == null) || (json1.email == "" || json1.email == undefined || json1.email == null)) {
+                                    $.ajax({
+                                        type: 'post',
+                                        url: url_prex + '/method/wxBindUserInfo',
+                                        data: {state: state, wxid: json1.id,openid:json.openid},//有可能是只关注了小程序、这时openID为空
+                                        async: false,
+                                        success: function (res) {
+                                            console.log("成功");
+                                        }
+                                    })
+                                } else {
+                                    alert("该微信已绑定账号");
+                                }
+                            }
+                        },
+                        error: function (error) {
+                            alert("系统繁忙。。");
+                        }
+                    });
+                }
+            }
+        })
+    }
+
     if(flag){
         $.getJSON(getUserCenter(status.userid), function (result) {
             contentActive(result);
@@ -34,7 +98,8 @@ $(function(){
         if(resultData.openid == undefined || resultData.openid == ""){
             confirm("是否前往为该账号绑定微信？", "二维码生成失败，该账号未绑定微信！", function (isConfirm) {
                 if (isConfirm) {
-                    window.location.href="wxQrcodeLogin.html";
+                   // window.location.href="wxQrcodeLogin.html";
+                    bindWX(status.userid);
                 } else {
 
                 }
@@ -47,7 +112,7 @@ $(function(){
         if(resultData.openid == undefined || resultData.openid == ""){
             confirm("是否前往为该账号绑定微信？", "修改失败，该账号未绑定微信！", function (isConfirm) {
                 if (isConfirm) {
-                    window.location.href="wxQrcodeLogin.html";
+                    bindWX(status.userid);
                 } else {
 
                 }
@@ -93,8 +158,9 @@ function contentActive(json) {
         $("#wechat").css({
             "color":"red",
         });
+        $("#wx").after("<a href=\"javascript:bindWX("+json.id+");\" style='color: red;text-decoration: underline'>绑定微信</a>");
     }else{
-        if((json.email == "" || json.email == undefined) && json.username == "" || json.username == undefined){
+        if((json.email == "" || json.email == undefined) && (json.username == "" || json.username == undefined)){
             $("#wx").after("<a href=\"javascript:showDialog();\" style='color: red;text-decoration: underline'>绑定账号</a>");
         }else{
             if(json.email != undefined || json.email != ""){
@@ -159,6 +225,42 @@ function updateInfo() {
             alert("系统繁忙。。");
         }
     });
+}
+
+/**
+ * 账号绑定微信
+ */
+function bindWX(userid){
+    $.ajax({
+        type: 'post',
+        url: url_prex + '/method/wxbindopenCode',
+        //url: '/method/wxbindopenCode',
+        data: {
+            userid    : userid,
+        },
+        async: false,
+        success: function (result) {
+            //openwindow(result,"微信绑定",900,500)
+            window.open(result,'_self')
+        },
+        error:function(error){
+            alert("系统繁忙。。");
+        }
+    });
+}
+
+/**
+ *
+ * @param url  转向网页的地址;
+ * @param name  网页名称，可为空;
+ * @param iWidth 弹出窗口的宽度;
+ * @param iHeight 弹出窗口的高度;
+ */
+function openwindow(url,name,iWidth,iHeight)
+{
+    var iTop = (window.screen.height-30-iHeight)/2;       //获得窗口的垂直位置;
+    var iLeft = (window.screen.width-10-iWidth)/2;        //获得窗口的水平位置;
+    window.open(url,name,'height='+iHeight+',,innerHeight='+iHeight+',width='+iWidth+',innerWidth='+iWidth+',top='+iTop+',left='+iLeft+',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
 }
 /*确认绑定事件*/
 function bindLogin(){

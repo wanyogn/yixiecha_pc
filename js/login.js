@@ -370,6 +370,24 @@ function sendMsg1(){
     contentCode(mail);
     $(".code_cov").show();
 }
+
+/**
+ * 微信登录
+ */
+function wxLogin(){
+    $.ajax({
+        type: 'post',
+        url: url_prex + '/method/wxopenCode',
+        data: {},
+        async: false,
+        success: function (result) {
+            window.open(result,'_self')
+        },
+        error:function(error){
+            alert("系统繁忙。。");
+        }
+    });
+}
 function contentCode(mail){
     $('#mpanel4').slideVerify({
         type : 2,       //类型
