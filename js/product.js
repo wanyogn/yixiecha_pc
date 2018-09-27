@@ -28,13 +28,13 @@ $(document).ready(function(){
             data = json;
             setHeader(data);
             detailContentActive(data);
-
             getSamePro(key,0);
 
             var beforeurl = decodeURI(document.referrer);
             var afterurl = decodeURI(document.location.href);
             getInsertUserurljumpURL(status.userid,beforeurl,afterurl,data.datas[0].product_name_ch);
         });
+        queryRecommendPerson(keyword_sub);
     }
     
     $(".page_before").mouseover(function(){
@@ -68,6 +68,48 @@ $(document).ready(function(){
         
      });
 })
+
+/**
+ * 根据产品的ID获的医械推荐人
+ */
+function queryRecommendPerson(id) {
+    /*$.getJSON(url_prex+"/method/selectUsersByProductId", function (json) {
+        console.log(json);
+    })*/
+    $.ajax({
+        type: 'post',
+        url: url_prex + '/method/selectUsersByProductId',
+        data: {"productid":id},
+        async: false,
+        success: function (result) {
+            var json = JSON.parse(result);
+            contentRecommendPerson(json);
+        },
+        error:function () {
+
+        }
+    })
+}
+
+/**
+ * 填充推荐人
+ */
+function contentRecommendPerson(json) {
+    if(json.length > 0){
+        for(let i = 0;i<json.length;i++){
+            $(".person_main").append($("#person_template").html())
+        }
+        var data_list = $(".person");
+        for(var j = 0;j < json.length;j++) {
+            $(data_list[j].getElementsByTagName("img")).attr("src",json[j].userinfo.headimg);
+            $(data_list[j].getElementsByTagName("h4")).html(json[j].userCard.realname);
+            $(data_list[j].getElementsByClassName("person_company")).html(json[j].userCard.job+"-"+json[j].userCard.companyname);
+            $(data_list[j].getElementsByClassName("person_address")).html(json[j].userCard.companyaddress);
+        }
+    }else{
+        $(".person_main").html($("#none_info").html());
+    }
+}
 function detailContentActive(data){
     if(data.datas.length > 0){
         var obj = data.datas[0];

@@ -8,8 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/search.css">
     <link rel="stylesheet" href="css/beAlert.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.pagination.css">
-    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/common.js"></script>
+
 </head>
 <style type="text/css">
     .left_two ,.left_three{margin-top: 0;}
@@ -52,28 +51,7 @@
     </div>
     <iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
     <div class="service">
-        <div class="service_li wx">
-            <div class="service_image">
-                <img src="images/wx_03.png">
-            </div>
-            <p>微信 </p>
-        </div>
-        <div class="service_li fk">
-            <div class="service_image">
-                <img src="images/fankui_07.png">
-            </div>
-            <p>反馈 </p>
-        </div>
-        <div class="service_li zd" >
-            <div class="service_image">
-                <img src="images/zhiding_07.png">
-            </div>
-            <p>置顶 </p>
-        </div>
-        <div class="wxcontent collapse code_main" style="bottom: 24px;">
-            <img src="images/weixin.jpg">
-            <p style="padding-bottom: 15px;">关注微信小程序</p>
-        </div>
+
     </div>
     <!--招标中标公告模板-->
     <div id="tender_bid_template" style="display: none;">
@@ -123,12 +101,14 @@
             </div>
         </div>
     </div>
-
 <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+    <script>
+        $(".service").load("service.html");
+    </script>
+<script type="text/javascript" charset="utf-8" src="js/common.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/jquery.pagination.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/common.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/search_bid.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/base64.min.js"></script>
 </body>

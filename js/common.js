@@ -53,8 +53,10 @@ $(document).ready(function(){
 		$($(this).find("p")).css("color","#7d8292");
 	});
 	$(".fk").click(function(){
-		alert("该模块在建设中,敬请期待。。。^_^");
+		//alert("该模块在建设中,敬请期待。。。^_^");
+        $('#identifier').modal('show')
 	});
+
 	/*置顶*/
 	$(".zd").mouseover(function(){
 		$($(this).find("img")).attr("src","images/zhiding_hover.png");
@@ -399,7 +401,8 @@ function getInsertUsersearchURL(user_id,class_type,key_word,result_count){
         		userid    : user_id, 
         		classtype : class_type,
         		keyword  : key_word,
-        		resultcount : result_count
+        		resultcount : result_count,
+            	searchtype:"YXC_PC"
         	},
         async: false,
         success: function (result) {

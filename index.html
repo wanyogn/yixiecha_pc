@@ -10,11 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/beAlert.css">
 	<link rel="stylesheet" href="css/menu.css">
-	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="js/beAlert.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="js/header.js"></script>
+
 	<script>
 	var _hmt = _hmt || [];
 	(function() {
@@ -61,14 +57,14 @@
 				<div class="hot_search">
 					<div style="line-height: 27px;">
 						<img src="images/huo.png">
-						<p style="margin-left: 10px;">热搜词：</p>
-						<a>磁共振</a>
+						<p style="margin-left: 10px;" class="hot_key">热搜词：</p>
+						<!--<a>磁共振</a>
 						<a>血糖仪</a>
 						<a>外伤处理车</a>
 						<a>手术床</a>
 						<a>监护仪</a>
 						<a>麻醉机</a>
-						<a>呼吸机</a>
+						<a>呼吸机</a>-->
 					</div>
 					<div style="line-height: 27px;">
 						<!-- <img src="images/change.png">
@@ -169,20 +165,46 @@
 			<p class="company">苏ICP备18028618号&nbsp;&nbsp;&nbsp;&nbsp;南京智械信息科技有限公司&nbsp;&nbsp;&nbsp;&nbsp;版权所有©2015 - 2018</p>
 		</div>
 	</div>
+	<!--&lt;!&ndash; 模态框（Modal） &ndash;&gt;
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						意见反馈
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="name">反馈内容</label><span class="tip collapse content_tip">反馈内容不能为空</span>
+						<textarea class="form-control feedback_content" rows="5" placeholder="写点东西吧，我们希望听到您的声音^_^" ></textarea>
+					</div>
+					<div class="form-group">
+						<label for="name">电子邮箱</label><span class="tip collapse way_tip">电子邮箱不能为空</span>
+						<input type="text" class="form-control feedback_way" placeholder="请留下联系方式，以便我们及时联系您">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+					<button type="button" class="btn btn-primary btn_sure">
+						提交
+					</button>
+				</div>
+			</div>&lt;!&ndash; /.modal-content &ndash;&gt;
+		</div>&lt;!&ndash; /.modal &ndash;&gt;
+	</div>-->
 	<div class="service">
-		<div class="service_li wx">
+		<!--<div class="service_li wx">
 			<div class="service_image">
 				<img src="images/wx_03.png">
 			</div>
 			<p>微信 </p>
 		</div>
-		<!-- <div class="service_li app">
-			<div class="service_image">
-				<img src="images/app_03.png">
-			</div>
-			<p>APP </p>
-		</div> -->
-		<div class="service_li fk">
+		<div class="service_li fk" data-toggle="modal" data-target="#myModal">
 			<div class="service_image">
 				<img src="images/fankui_07.png">
 			</div>
@@ -201,7 +223,7 @@
 		<div class="wxcontent collapse code_main" style="bottom: 24px;">
 			<img src="images/weixin.jpg">
 			<p style="padding-bottom: 15px;">关注微信小程序</p>
-		</div>
+		</div>-->
 	</div>
 	<div class="login_register" style="display: none;">
 		<a href="register.html">免费注册</a>
@@ -222,5 +244,14 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script>
+        $(".service").load("service.html");
+	</script>
+	<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/beAlert.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/header.js"></script>
 </body>
 </html>

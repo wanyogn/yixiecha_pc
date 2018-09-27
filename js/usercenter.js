@@ -29,51 +29,52 @@ $(function(){
             success: function (result) {
                 var json = JSON.parse(result);
                 console.log(json);
-                if (json != "") {
-                    $.ajax({
-                        type: 'post',
-                        url: url_prex + '/method/queryUserInfo',
-                        data: {"unionid": json.unionid},
-                        async: false,
-                        success: function (res) {
-                            if(res == "fail"){//没有存在数据库中
-                                $.ajax({
-                                    type: 'post',
-                                    url: url_prex + '/method/wxBindUser',
-                                    data: {
-                                        "openid": json.openid,
-                                        "unionid": json.unionid,
-                                        "nickname": json.nickname,
-                                        "sex": json.sex,
-                                        "headimgurl": json.headimgurl,
-                                        state: state
-                                    },
-                                    async: false,
-                                    success: function (res) {
-                                        console.log("绑定成功");
-                                    }
-                                })
-                            }else{
-                                var json1 = JSON.parse(res);
-                                if ((json1.username == "" || json1.username == undefined || json1.username == null) || (json1.email == "" || json1.email == undefined || json1.email == null)) {
+                if (json != "" && json != null) {
+                        $.ajax({
+                            type: 'post',
+                            url: url_prex + '/method/queryUserInfo',
+                            data: {"unionid": json.unionid},
+                            async: false,
+                            success: function (res) {
+                                if(res == "fail"){//没有存在数据库中
                                     $.ajax({
                                         type: 'post',
-                                        url: url_prex + '/method/wxBindUserInfo',
-                                        data: {state: state, wxid: json1.id,openid:json.openid},//有可能是只关注了小程序、这时openID为空
+                                        url: url_prex + '/method/wxBindUser',
+                                        data: {
+                                            "openid": json.openid,
+                                            "unionid": json.unionid,
+                                            "nickname": json.nickname,
+                                            "sex": json.sex,
+                                            "headimgurl": json.headimgurl,
+                                            state: state
+                                        },
                                         async: false,
                                         success: function (res) {
-                                            console.log("成功");
+                                            console.log("绑定成功");
                                         }
                                     })
-                                } else {
-                                    alert("该微信已绑定账号");
+                                }else{
+                                    var json1 = JSON.parse(res);
+                                    if ((json1.username == "" || json1.username == undefined || json1.username == null) && (json1.email == "" || json1.email == undefined || json1.email == null)) {
+                                        $.ajax({
+                                            type: 'post',
+                                            url: url_prex + '/method/wxBindUserInfo',
+                                            data: {state: state, wxid: json1.id,openid:json.openid},//有可能是只关注了小程序、这时openID为空
+                                            async: false,
+                                            success: function (res) {
+                                                console.log("成功");
+                                            }
+                                        })
+                                    } else {
+                                        alert("该微信已绑定账号");
+                                    }
                                 }
+                            },
+                            error: function (error) {
+                                alert("系统繁忙。。");
                             }
-                        },
-                        error: function (error) {
-                            alert("系统繁忙。。");
-                        }
-                    });
+                        });
+
                 }
             }
         })
@@ -81,21 +82,14 @@ $(function(){
 
     if(flag){
         $.getJSON(getUserCenter(status.userid), function (result) {
-            contentActive(result);
+            contentActive(result.userinfo,result.userCard);
 
-            resultData = result;
+            resultData = result.userinfo;
         });
     }
 
     $("#makeCode").click(function () {
-        /*if(resultData.email == undefined || resultData.email == ""){
-            if(resultData.openid == undefined || resultData.openid == ""){
-                alert("请先绑定邮箱，再生成二维码");
-                return;
-            }
-
-        }*/
-        if(resultData.openid == undefined || resultData.openid == ""){
+        if(resultData.unionid == undefined || resultData.unionid == ""){
             confirm("是否前往为该账号绑定微信？", "二维码生成失败，该账号未绑定微信！", function (isConfirm) {
                 if (isConfirm) {
                    // window.location.href="wxQrcodeLogin.html";
@@ -109,7 +103,7 @@ $(function(){
         }
     });
     $("#saveInfo").click(function () {
-        if(resultData.openid == undefined || resultData.openid == ""){
+        if(resultData.unionid == undefined || resultData.unionid == ""){
             confirm("是否前往为该账号绑定微信？", "修改失败，该账号未绑定微信！", function (isConfirm) {
                 if (isConfirm) {
                     bindWX(status.userid);
@@ -131,29 +125,44 @@ $(function(){
     params += $(this).serialize() + "&";
 });*/
 /*填充信息*/
-function contentActive(json) {
-    if(json.username == undefined || json.username == ""){
+function contentActive(json,json2) {
+    /*if(json.username == undefined || json.username == ""){
         if(json.email == undefined || json.email == ""){
             if(json.nickname == undefined || json.nickname == ""){
             }else{
                 $("#username").html(json.nickname);
             }
-           // $("#email").removeAttr("disabled");
         }else{
             $("#username").html(json.email);
             $("#email").val(json.email);
         }
     }else{
         if(json.email == undefined || json.email == ""){
-            //$("#email").removeAttr("disabled");
             $("#username").html(json.username);
             $("#email").val(json.username);
         }else{
             $("#username").html(json.email);
             $("#email").val(json.email);
         }
+    }*/
+    if(json.nickname == undefined || json.nickname == ""){
+        if(json.email == undefined || json.email == ""){
+            if(json.username == undefined || json.username == ""){
+                $("#username").val("未知用户");
+            }else{
+                $("#username").val(json.username);
+                $("#email").val(json.username);
+            }
+        }else{
+            $("#username").html(json.email);
+            $("#email").val(json.email);
+        }
+    }else{
+        $("#username").html(json.nickname);
+        $("#email").val(json.email);
     }
-    if(json.openid == undefined || json.openid == ""){
+
+    if(json.unionid == undefined || json.unionid == ""){
         $("#wechat").val("未绑定微信");
         $("#wechat").css({
             "color":"red",
@@ -172,14 +181,22 @@ function contentActive(json) {
         $("#wechat").val("已绑定微信");
     }
     $("#userid").val(json.id);
-    //$("#email").val(json.email);
-    $("#realname").val(json.realname);
-    $("#mobile").val(json.mobilephone);
+    if(json.headimg == undefined || json.headimg == ""){
+        $(".user-pic").html("<span class=\"glyphicon glyphicon-user\"></span>");
+    }else{
+        $(".user-pic").html("<img src=\""+json.headimg+"\" class=\"head-img\">")
+    }
+    if(json2 == undefined){
 
-    $("#companyname").val(json.companyname);
-    $("#companyaddress").val(json.companyaddress);
-    $("#department").val(json.department);
-    $("#job").val(json.job);
+    }else{
+        $("#realname").val(json2.realname);
+        $("#mobile").val(json2.mobilephone);
+
+        $("#companyname").val(json2.companyname);
+        $("#companyaddress").val(json2.companyaddress);
+        $("#department").val(json2.department);
+        $("#job").val(json2.job);
+    }
 }
 /*生成企业二维码*/
 function makeCode (id) {

@@ -6,6 +6,7 @@ var src_loc = -1;//产品归属
 var product_state = '全部';//注册状态
 var main_class = -1;//管理类别
 $(document).ready(function(){
+
 	var flag = false;
 	var status = getStorage("user");
 	if(status == "noLogin"){
@@ -29,20 +30,16 @@ $(document).ready(function(){
 	    	all_Count = data.matchCount;
 	    	contentProductActive(data);
 	    	contentProductTable(data);
-	    	//alert($(".other",document.frames("iframe_top_id").document).click());
 	    	ifFind(data);
-	    	if(flag){
+	    	/*if(flag){
 	    		getInsertUsersearchURL(status.userid,"pro",keyword,all_Count);
 	    	}else{
 	    		getInsertUsersearchURL(-1,"pro",keyword,all_Count);
-	    	}
+	    	}*/
 	    	
 	    });
 	   
 	//}
-	
-
-    
 	$(".left_one table tr a").click(function(){
 		var children = $(this).parents("tr").find("a");
 		for (var i = 0; i < children.length; i++) { 

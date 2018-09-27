@@ -9,11 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<link rel="stylesheet" type="text/css" href="css/product.css">
 	<link rel="stylesheet" href="css/beAlert.css">
-	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
-	<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
-	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="js/product.js"></script>
+
 </head>
 <style type="text/css">
 	.td_width{width: 20%;}
@@ -100,37 +96,42 @@
 							</a>
 						</div>
 					</div>
-					
+				</div>
+				<style type="text/css">
+					.person{height: 80px;border-bottom: 1px solid #e5e5e5;}
+					.person_head{height: 80px;width: 55px}
+					.person_content{width: 150px;height: 80px;margin-left: 10px;}
+					.person_main{padding: 0 15px;}
+					.person img{width: 55px;height: 55px;border-radius: 50%;margin-top: 12.5px;}
+					.person h4{font-size: 16px;color: #f39800;font-weight: 700;margin-top: 12px;}
+					.person_content p{text-overflow: ellipsis;white-space:nowrap;overflow:hidden;color: #808080 }
+					.person h3{font-size: 18px;color: #9fa0a0;text-align: center;line-height: 80px;}
+				</style>
+				<div class="same_product">
+					<div class="same_product_title">
+						<h3>医械人推荐<span class="person_count"></span></h3>
+					</div>
+					<div class="person_main">
+						<!--<div class="person">
+							<div class="person_head left">
+								<img src="https://wx.qlogo.cn/mmopen/vi_32/S5wtgJLqc77lLsYKU3D5iaxT6x9lj1yicL6dWlyWBiaydF1An088QYyJic8cziaSFrfV6995IgESIdennIhIm8eqr6Q/132" alt="头像">
+							</div>
+							<div class="person_content right">
+								<h4>万勇</h4>
+								<p>开发经理-南京伟思科技邮箱公司</p>
+								<p>南京建邺区</p>
+							</div>
+						</div>-->
+
+
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
 	<div class="service">
-		<div class="service_li wx">
-			<div class="service_image">
-				<img src="images/wx_03.png">
-			</div>
-			<p>微信 </p>
-		</div>
-		
-		<div class="service_li fk">
-			<div class="service_image">
-				<img src="images/fankui_07.png">
-			</div>
-			<p>反馈 </p>
-		</div>
-		<div class="service_li zd" >
-			<div class="service_image">
-				<img src="images/zhiding_07.png">
-			</div>
-			<p>置顶 </p>
-		</div>
-		
-		<div class="wxcontent collapse code_main" style="bottom: 24px;">
-			<img src="images/weixin.jpg">
-			<p style="padding-bottom: 15px;">关注微信小程序</p>
-		</div>
+
 	</div>
 	<div class="same_product_template" style="display: none;">
 		<div class="product">
@@ -477,5 +478,31 @@
 			</tr>
 		</table>
 	</div>
+	<div id="person_template" style="display: none">
+		<div class="person">
+			<div class="person_head left">
+				<img src="" alt="头像">
+			</div>
+			<div class="person_content right">
+				<h4 class="person_name"></h4>
+				<p class="person_company"></p>
+				<p class="person_address"></p>
+			</div>
+		</div>
+	</div>
+	<div id="none_info" style="display: none">
+		<div class="person">
+			<h3>医械查还未收录！</h3>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+	<script>
+        $(".service").load("service.html");
+	</script>
+	<script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
+	<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/product.js"></script>
 </body>
 </html>

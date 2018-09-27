@@ -2,6 +2,7 @@
 .main_right{width: 933px;height: 740px;display: inline-block;background: #f9f9f9;border: 1px solid #e0e0e0;}
 .user-box-top{padding: 10px 20px;}
 .user-pic{margin: auto;width: 72px;height: 72px;border: 1px solid #e0e0e0;border-radius: 50%;line-height: 72px;color: #e0e0e0;background: #fff;font-size: 40px;}
+.head-img{width: 72px;height: 72px;border-radius: 50%;}
 .mobile{font-size: 18px;text-align: center;padding-top: 10px;padding-bottom: 10px;}
 .user-body{padding: 20px 32px;}
 .body-head{border-bottom: 1px solid #e0e0e0;height: 33px;color: #737373;}

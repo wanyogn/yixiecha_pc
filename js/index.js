@@ -1,11 +1,13 @@
 $(document).ready(function(){
+    $.getJSON(url_prex+"/method/selectUsersearchWordByCondition", function (res) {
+        for(var i = 0;i < res.length;i++){
+            $(".hot_key").append("<a href=\"search_pro.html?class=pro&keyword="+res[i]+"\">"+res[i]+"</a>");
+        }
+    })
 	$(".choice div").click(function(){
 		$(this).addClass("active");
 		$(this).siblings().removeClass("active");
 	});
-	$(".hot_search a").click(function(){
-		  window.location.href = "search_pro.html?class=pro&keyword="+$(this).text();
-	})
 	
 var index_url = window.location.search;//格式是【例：?code=*&state=*】
 if(index_url != ""){
@@ -111,5 +113,42 @@ if(index_url != ""){
    $(".header_main_right > .user").click(function(){
 		$(".loginout").slideToggle();
 	});
+
+    /*/!*反馈提交*!/
+    $(".feedback_content").focus(function () {
+        $(".content_tip").hide();
+    });
+    $(".feedback_way").focus(function () {
+        $(".way_tip").hide();
+    })
+   $(".btn_sure").click(function () {
+       var feedback_content = $(".feedback_content").val();
+       var feedback_way = $(".feedback_way").val();
+       if(feedback_content.trim() == ""){
+            $(".content_tip").show();
+            return;
+       }
+       if(feedback_way.trim() == ""){
+           $(".way_tip").show();
+           return;
+       }
+       $.ajax({
+           type: 'post',
+           url: url_prex + '/method/insertFeedbackInfo',
+           data: {"content": feedback_content,"contactway":feedback_way},
+           async: false,
+           success: function (result) {
+               if(result == "success"){
+                   $("#myModal").modal('hide');
+                   alert("感谢您的建议!","", function () {}, {type: 'success', confirmButtonText: '确定'});
+               }else{
+                   alert("操作失败，请稍后再试！");
+               }
+           },
+           error:function () {
+               alert("系统繁忙。。");
+           }
+       });
+   })*/
 });
 

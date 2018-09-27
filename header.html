@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/beAlert.css">
 	<link rel="stylesheet" href="css/menu.css">
     <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/common.js"></script>
 	<script type="text/javascript" src="js/header.js"></script>
@@ -132,6 +133,38 @@
 			    </dl>
 			</div>
 		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						意见反馈
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="name">反馈内容</label>
+						<textarea class="form-control" rows="5" placeholder="写点东西吧，我们希望听到您的声音^_^"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="name">联系方式</label>
+						<input type="text" class="form-control" placeholder="请留下联系方式，以便我们及时联系您">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+					<button type="button" class="btn btn-primary">
+						提交
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
 	</div>
 	<script type="text/javascript">
 		$(function(){
