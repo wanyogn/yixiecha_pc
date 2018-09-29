@@ -12,10 +12,12 @@
  .foot_second table:first-child{font-size: 16px;color: #7d7d7d;border-collapse:separate; border-spacing:0px 6px;}
  .foot_second table:last-child{float: right;text-align: center;font-size: 12px;}
  .foot_second table span{font-size: 20px;font-weight: bold;color: #f2b874}
- .foot_second table a{color: #7d7d7d;}
- .foot_second table a:hover{color: #f39800;}
+ .footer_main a{color: #7d7d7d;}
+ .footer_main a:hover{color: #f39800;}
  .foot_second .tab{font-size: 16px;font-weight: bold;padding:7px 0;border-top: 1px solid #b5b5b6;border-bottom:  1px solid #b5b5b6;}
- .company{margin-top: 25px;padding-bottom: 130px;font-size: 16px;color: #7d7d7d;}
+.company_div{margin-top: 25px;padding-bottom: 152px;}
+.company{font-size: 16px;color: #7d7d7d;}
+.link_name{color: #7d7d7d;font-size: 16px;font-weight: bold}
 
  @media screen and (min-width: 992px){
 	.footer_main{width: 1200px}
