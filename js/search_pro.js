@@ -31,11 +31,11 @@ $(document).ready(function(){
 	    	contentProductActive(data);
 	    	contentProductTable(data);
 	    	ifFind(data);
-	    	/*if(flag){
+	    	if(flag){
 	    		getInsertUsersearchURL(status.userid,"pro",keyword,all_Count);
 	    	}else{
 	    		getInsertUsersearchURL(-1,"pro",keyword,all_Count);
-	    	}*/
+	    	}
 	    	
 	    });
 	   

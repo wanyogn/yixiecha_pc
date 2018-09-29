@@ -18,8 +18,6 @@ $(function(){
     var index_url = window.location.search;//格式是【例：?code=*&state=*】
     var code = getQueryVariable("code");
     var state = getQueryVariable("state");
-    console.log(code);
-    console.log(state);
     if(code != "") {
         $.ajax({
             type: 'post',
@@ -28,7 +26,6 @@ $(function(){
             async: false,
             success: function (result) {
                 var json = JSON.parse(result);
-                console.log(json);
                 if (json != "" && json != null) {
                         $.ajax({
                             type: 'post',
@@ -183,6 +180,7 @@ function contentActive(json,json2) {
     $("#userid").val(json.id);
     if(json.headimg == undefined || json.headimg == ""){
         $(".user-pic").html("<span class=\"glyphicon glyphicon-user\"></span>");
+        $(".user-pic").addClass("no-pic");
     }else{
         $(".user-pic").html("<img src=\""+json.headimg+"\" class=\"head-img\">")
     }
@@ -196,13 +194,23 @@ function contentActive(json,json2) {
         $("#companyaddress").val(json2.companyaddress);
         $("#department").val(json2.department);
         $("#job").val(json2.job);
+        makeCode(json2.userid,json.headimg);
     }
 }
 /*生成企业二维码*/
-function makeCode (id) {
+function makeCode (id,headimg) {
     $("#qrcode").html("");
-    var qrcode = new QRCode("qrcode");
-    qrcode.makeCode("https://www.yixiecha.cn/cardCode/card?id="+id);
+    $("#qrcode").qrcode({
+        render: "canvas", // 渲染方式有table方式（IE兼容）和canvas方式
+        width: 200, //宽度
+        height: 200, //高度
+        text: utf16to8("https://www.yixiecha.cn/cardCode/card?id="+id), //内容
+        typeNumber: -1,//计算模式
+        correctLevel: 2,//二维码纠错级别
+        background: "#ffffff",//背景颜色
+        foreground: "#000000"  //二维码颜色
+    });
+    $("#qrCodeIco").attr("src",headimg);
 }
 /*验证手机号是否合法*/
 function IsPhone(num){
@@ -337,4 +345,29 @@ function updateWxInfo(binduserid,wxuserid){
         }
     });
 }
+
+/**
+ * utf16转utf8
+ * @param str
+ * @returns {string}
+ */
+function utf16to8(str) {
+    var out, i, len, c;
+    out = "";
+    len = str.length;
+    for (i = 0; i < len; i++) {
+        c = str.charCodeAt(i);
+        if ((c >= 0x0001) && (c <= 0x007F)) {
+            out += str.charAt(i);
+        } else if (c > 0x07FF) {
+            out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+            out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+            out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+        } else {
+            out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+            out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+        }
+    }
+    return out;
+};
 

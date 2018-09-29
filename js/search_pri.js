@@ -580,6 +580,6 @@ function provinceSelectChange(){
 }
 
 function getPriceURL(keyword,num,size){
-	var url = "http://localhost:9001/method/search_acquisitebid_filter_condition?keyword="+keyword+"&num="+num+"&size="+size;
+	var url = url_prex+"/method/search_acquisitebid_filter_condition?keyword="+keyword+"&num="+num+"&size="+size;
 	return url;
 }

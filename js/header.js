@@ -7,7 +7,7 @@ $(function() {
         $(".home_h").before($(".login_register_h").html());
     }else{
         $(".home_h").after($(".welcome_h").html());
-        if(status.username == undefined || status.username == ""){
+        /*if(status.username == undefined || status.username == ""){
           if(status.email == undefined || status.email == ""){
             if(status.nickname == undefined || status.nickname == ""){
             }else{
@@ -23,6 +23,19 @@ $(function() {
                 $(".username_h").html(status.email);
             }
 
+        }*/
+        if(status.nickname == undefined || status.nickname == ""){
+            if(status.email == undefined || status.email == ""){
+                if(status.username == undefined || status.username == ""){
+                    $(".username_h").html("用户异常");
+                }else{
+                    $(".username_h").html(status.username);
+                }
+            }else{
+                $(".username_h").html(status.email);
+            }
+        }else{
+            $(".username_h").html(status.nickname);
         }
     }
 

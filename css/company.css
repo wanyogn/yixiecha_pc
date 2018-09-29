@@ -13,7 +13,7 @@
 .left_two .tip01,.left_two .tip02,.left_three .tip01,.left_three .tip02,.left_four .tip01,.left_five .tip01,.left_six .tip01{height: 26px;border-bottom: 1px solid #efefef;}
 .left_two .tip01 h3,.left_three .tip01 h3,.left_four .tip01 h3,.left_five .tip01 h3,.left_six .tip01 h3{font-size: 18px;float: left;font-weight: bold;}
 .left_two .tip01 div,.left_three .tip01 div,.left_four .tip01 div{width: 153px;height: 100%;float: right;line-height: 26px;text-align: center;cursor: pointer;font-weight: bold;background: #efefef;}
-.left_two .tip02 div:first-child,.left_three .tip02 div:first-child{width: 85px;height: 100%;background: #efefef;text-align: center;color: #848484;line-height: 26px;float: left;}
+.left_two .tip02 div:first-child,.left_three .tip02 div:first-child{padding: 0 10px;height: 100%;background: #efefef;text-align: center;color: #848484;line-height: 26px;float: left;}
 .left_two .tip02 div:last-child,.left_three .tip02 div:last-child{height: 100%;text-align: center;color: #848484;line-height: 26px;float: left;}
 .active{color: #fff;background: #f39e10 !important;}
 

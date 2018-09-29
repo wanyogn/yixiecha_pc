@@ -1,9 +1,4 @@
 $(document).ready(function(){
-    $.getJSON(url_prex+"/method/selectUsersearchWordByCondition", function (res) {
-        for(var i = 0;i < res.length;i++){
-            $(".hot_key").append("<a href=\"search_pro.html?class=pro&keyword="+res[i]+"\">"+res[i]+"</a>");
-        }
-    })
 	$(".choice div").click(function(){
 		$(this).addClass("active");
 		$(this).siblings().removeClass("active");
@@ -31,14 +26,12 @@ if(index_url != ""){
                 data: {"openid":json.openid,"unionid":json.unionid,"nickname":json.nickname,"sex":json.sex,"headimgurl":json.headimgurl},
                 async: false,
                 success: function (result) {
-                   //console.log(result);
                    if(result == "fail"){
                       alert("异常！");
                   }else{
                       var json = JSON.parse(result);
                       setStorage('user',json);
                       getReferURL("referTo");
-                      alert("如需绑定账号，请点击右上角的个人中心！");
                   }
                 },
                 error:function(error){
@@ -54,7 +47,7 @@ if(index_url != ""){
       });
     }
 }
-  
+
 	var status = getStorage("user");
 	if(status == "noLogin"){
     $(".home").before($(".login_register").html());
@@ -62,21 +55,23 @@ if(index_url != ""){
     $(".home").before($(".login_register").html());
 	}else{
 		$(".home").after($(".welcome").html());
-    if(status.username == undefined || status.username == ""){
-      if(status.email == undefined || status.email == ""){
         if(status.nickname == undefined || status.nickname == ""){
+            if(status.email == undefined || status.email == ""){
+                if(status.username == undefined || status.username == ""){
+                    $(".username_h").html("用户异常");
+                }else{
+                    $(".username_h").html(status.username);
+                }
+            }else{
+                $(".username_h").html(status.email);
+            }
         }else{
-          $(".username_h").html(status.nickname);
+            $(".username_h").html(status.nickname);
         }
-      }else{
-        $(".username_h").html(status.email);
-      }
-    }else{
-        $(".username_h").html(status.username);
-    }
 	}
 
 	var url_jump = "search_pro.html?class=pro&keyword=";
+    queryHotSearch("pro");
 	/*首页搜索事件*/
    $("#main_search_button").click(function(){
         var keyword_input = $("#main_search_input").val();
@@ -93,62 +88,44 @@ if(index_url != ""){
    $("#pro").click(function(){
    		$(".input").attr("placeholder","请输入您希望搜索的 产品名称/型号...");
    		url_jump = "search_pro.html?class=pro&keyword=";
+       queryHotSearch("pro");
    });
    $("#com").click(function(){
    		$(".input").attr("placeholder","请输入您希望搜索的 企业名称...");
    		url_jump = "search_com.html?class=com&keyword=";
+       queryHotSearch("com");
    });
    $("#hos").click(function(){
    		$(".input").attr("placeholder","请输入您希望搜索的 医疗机构名称...");
    		url_jump = "search_hos.html?class=hos&keyword=";
+       queryHotSearch("hos");
    });
    $("#buy").click(function(){
       $(".input").attr("placeholder","请输入您希望搜索的 产品名称...");
       url_jump = "search_pri.html?class=pri&keyword=";
+       queryHotSearch("pri");
    });
    $("#bid").click(function(){
    		$(".input").attr("placeholder","请输入您希望搜索的 中标产品...");
       url_jump = "search_bid.html?class=bid&keyword=";
+       queryHotSearch("bid");
    });
    $(".header_main_right > .user").click(function(){
 		$(".loginout").slideToggle();
 	});
-
-    /*/!*反馈提交*!/
-    $(".feedback_content").focus(function () {
-        $(".content_tip").hide();
-    });
-    $(".feedback_way").focus(function () {
-        $(".way_tip").hide();
-    })
-   $(".btn_sure").click(function () {
-       var feedback_content = $(".feedback_content").val();
-       var feedback_way = $(".feedback_way").val();
-       if(feedback_content.trim() == ""){
-            $(".content_tip").show();
-            return;
-       }
-       if(feedback_way.trim() == ""){
-           $(".way_tip").show();
-           return;
-       }
-       $.ajax({
-           type: 'post',
-           url: url_prex + '/method/insertFeedbackInfo',
-           data: {"content": feedback_content,"contactway":feedback_way},
-           async: false,
-           success: function (result) {
-               if(result == "success"){
-                   $("#myModal").modal('hide');
-                   alert("感谢您的建议!","", function () {}, {type: 'success', confirmButtonText: '确定'});
-               }else{
-                   alert("操作失败，请稍后再试！");
-               }
-           },
-           error:function () {
-               alert("系统繁忙。。");
-           }
-       });
-   })*/
 });
+
+/**
+ * 热词展示
+ * @param classtype 热词的分类
+ */
+function queryHotSearch(classtype){
+    $(".hot_key").siblings("a").remove();
+    $.getJSON(url_prex+"/method/selectUsersearchWordByCondition?classtype="+classtype, function (res) {
+        for(var i = 0;i < res.reverse().length;i++){
+            $(".hot_key").after("<a href=\"search_"+classtype+".html?class="+classtype+"&keyword="+res[i]+"\">"+res[i]+"</a>");
+        }
+    })
+}
+
 

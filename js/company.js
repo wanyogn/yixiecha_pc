@@ -27,7 +27,7 @@ $(document).ready(function(){
 	    keyword = decodeURI(keyword_sub);
 
 	    $.getJSON(getComURL(keyword), function (json) {
-	    	data = json;
+	    	data = json;console.log(json);
 	    	detailContentActive(data);
 	    	var beforeurl = decodeURI(document.referrer);
             var afterurl = decodeURI(document.location.href);
@@ -55,8 +55,9 @@ function detailContentActive(data){
 	var service_xinxi = new Array();
 	var datas = data.datas;
 	var size = datas.length;
+    $(".company_name").html(keyword);
 	if(size > 0){
-		$(".company_name").html(data.datas[0].company_name);
+		//$(".company_name").html(data.datas[0].company_name);
 		for(var i = 0;i < size ; i++){
 			var obj = datas[i];
 			if(obj.regulation_type == "生产"){

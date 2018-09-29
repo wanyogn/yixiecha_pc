@@ -1,0 +1,122 @@
+<style type="text/css">
+    .modal-backdrop{z-index:-100}
+    .tip{color: red;font-size: 14px;margin-left: 10px;}
+</style>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    意见反馈
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>反馈内容</label><span class="tip collapse content_tip">反馈内容不能为空</span>
+                    <textarea class="form-control feedback_content" rows="5" placeholder="写点东西吧，我们希望听到您的声音^_^" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label>电子邮箱</label><span class="tip collapse way_tip">电子邮箱有误</span>
+                    <input type="text" class="form-control feedback_way" placeholder="请留下电子邮箱，以便我们及时联系您">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn_close">关闭
+                </button>
+                <button type="button" class="btn btn-primary btn_sure">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+    <div class="service_li wx">
+        <div class="service_image">
+            <img src="images/wx_03.png">
+        </div>
+        <p>微信 </p>
+    </div> <!--data-toggle="modal" data-target="#myModal"-->
+    <div class="service_li fk" >
+        <div class="service_image">
+            <img src="images/fankui_07.png">
+        </div>
+        <p>反馈 </p>
+    </div>
+    <div class="service_li zd" >
+        <div class="service_image">
+            <img src="images/zhiding_07.png">
+        </div>
+        <p>置顶 </p>
+    </div>
+    <div class="wxcontent collapse code_main" style="bottom: 24px;">
+        <img src="images/weixin.jpg">
+        <p style="padding-bottom: 15px;">关注微信小程序</p>
+    </div>
+
+<script type="text/javascript">
+    /*反馈提交*/
+    $(function () {
+        $(".fk").click(function(){
+            $("#myModal").modal('show');
+        });
+        $(".btn_close").click(function () {
+            $("#myModal").modal('hide');
+            $(".feedback_content").val("");
+            $(".feedback_way").val("");
+        })
+        $(".feedback_content").focus(function () {
+            $(".content_tip").hide();
+        });
+        $(".feedback_way").focus(function () {
+            $(".way_tip").hide();
+        })
+        $(".btn_sure").click(function () {
+            var feedback_content = $(".feedback_content").val();
+            var feedback_way = $(".feedback_way").val();
+            if(feedback_content.trim() == ""){
+                $(".content_tip").show();
+                return;
+            }
+            if(feedback_way.trim() == ""){
+                $(".way_tip").show();
+                return;
+            }
+            if (!/(^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$)/.exec(feedback_way.trim())) {
+                $(".way_tip").show();
+                return;
+            }
+            var status = getStorage("user");
+            var userid = -1;
+            if(status == "noLogin"){
+            }else if(status == "outTime"){
+            }else{
+                userid = status.userid;
+            }
+            $.ajax({
+                type: 'post',
+                url: url_prex + '/method/insertFeedbackInfo',
+                data: {"userid":userid,"weburl":decodeURI(document.location.href),"content": feedback_content,"contactway":feedback_way},
+                async: false,
+                success: function (result) {
+                    if(result == "success"){
+                        $(".btn_close").click();
+
+                        alert("感谢您的建议!","", function () {}, {type: 'success', confirmButtonText: '确定'});
+                    }else{
+                        alert("操作失败，请稍后再试！");
+                    }
+                },
+                error:function () {
+                    alert("系统繁忙。。");
+                }
+            });
+         })
+
+    })
+</script>
