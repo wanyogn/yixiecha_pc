@@ -3,6 +3,10 @@ var count = 0;//同名产品的总数量
 var size = 5;//每页的数量
 var num = 0;
 var page = 0;
+var person_page=0;
+var person_num=0;
+var person_size=1;
+var person_key='';
 
 $(document).ready(function(){
 
@@ -23,8 +27,8 @@ $(document).ready(function(){
     }
     if(flag){
         var keyword_from_url = window.location.search;//格式是【例：?class=pro&id=*】
-        var keyword_sub = keyword_from_url.substring(14);
-        $.getJSON(getProURL(keyword_sub), function (json) {
+        person_key = keyword_from_url.substring(14);
+        $.getJSON(getProURL(person_key), function (json) {
             data = json;
             setHeader(data);
             detailContentActive(data);
@@ -34,17 +38,17 @@ $(document).ready(function(){
             var afterurl = decodeURI(document.location.href);
             getInsertUserurljumpURL(status.userid,beforeurl,afterurl,data.datas[0].product_name_ch);
         });
-        queryRecommendPerson(keyword_sub);
+        queryRecommendPerson(person_key,0,person_size);
     }
     
-    $(".page_before").mouseover(function(){
+    $(".page_before,.before").mouseover(function(){
     	$(this).css("background","#f49f11");
     	$(this).find("img").attr("src","images/left_hover.png");
     }).mouseout(function(){
     	$(this).css("background","#fff");
     	$(this).find("img").attr("src","images/left.png");
     });
-    $(".page_after").mouseover(function(){
+    $(".page_after, .after").mouseover(function(){
     	$(this).css("background","#f49f11");
     	$(this).find("img").attr("src","images/right_hover.png");
     }).mouseout(function(){
@@ -67,23 +71,72 @@ $(document).ready(function(){
         }
         
      });
-})
+     /*医械人*/
+    $(".before").click(function(){
+        if(person_num > 0){
+            person_num--;console.log(person_num)
+            queryRecommendPerson(person_key,person_num,person_size);
+        }else{
+            console.log("before error")
+        }
+    });
+    $(".after").click(function(){
+        if(person_num < person_page-1){console.log(person_page);
+            person_num++;
+            queryRecommendPerson(person_key,person_num,person_size);
+        }else{
+            console.log("after error")
+        }
 
+    });
+
+    /*$(".person").hover(function () {console.log(111)
+        var userid = $(this).find(".userid").val();
+        makeCode(userid);
+        $(this).find(".qrcode").show();
+    },function () {
+        $(this).find(".qrcode").hide();
+    })*/
+})
+function bindmouseover(obj) {
+    var userid = $(obj).find(".userid").val();
+    makeCode(userid);
+    $(obj).find(".qrcode").show();
+}
+function bindmouseout(obj){
+    $(obj).find(".qrcode").hide();
+}
+function makeCode(id){
+    $(".qrcode"+id).html("");
+    $(".qrcode"+id).qrcode({
+        render: "canvas", // 渲染方式有table方式（IE兼容）和canvas方式
+        width: 80, //宽度
+        height: 80, //高度
+        text: utf16to8("https://www.yixiecha.cn/cardCode/card?id="+id), //内容
+        typeNumber: -1,//计算模式
+        correctLevel: 2,//二维码纠错级别
+        background: "#ffffff",//背景颜色
+        foreground: "#000000"  //二维码颜色
+    });
+}
 /**
  * 根据产品的ID获的医械推荐人
  */
-function queryRecommendPerson(id) {
-    /*$.getJSON(url_prex+"/method/selectUsersByProductId", function (json) {
-        console.log(json);
-    })*/
+function queryRecommendPerson(productid,num,size) {
     $.ajax({
         type: 'post',
         url: url_prex + '/method/selectUsersByProductId',
-        data: {"productid":id},
+        data: {"productid":productid,"num":num,"size":size},
         async: false,
         success: function (result) {
             var json = JSON.parse(result);
             contentRecommendPerson(json);
+            if(num == 0){
+                person_page = Math.ceil(json.matchCount/person_size);
+                if(json.matchCount > person_size){
+                    $(".pages_main").show();
+                }
+            }
         },
         error:function () {
 
@@ -94,22 +147,28 @@ function queryRecommendPerson(id) {
 /**
  * 填充推荐人
  */
-function contentRecommendPerson(json) {
+function contentRecommendPerson(data) {
+    $(".person_main").html("");
+    var json = data.datas;
     if(json.length > 0){
         for(let i = 0;i<json.length;i++){
             $(".person_main").append($("#person_template").html())
         }
         var data_list = $(".person");
         for(var j = 0;j < json.length;j++) {
-            $(data_list[j].getElementsByTagName("img")).attr("src",json[j].userinfo.headimg);
-            $(data_list[j].getElementsByTagName("h4")).html(json[j].userCard.realname);
-            $(data_list[j].getElementsByClassName("person_company")).html(json[j].userCard.job+"-"+json[j].userCard.companyname);
-            $(data_list[j].getElementsByClassName("person_address")).html(json[j].userCard.companyaddress);
+            $(data_list[j].getElementsByClassName("userid")).val(json[j].id);
+            $(data_list[j].getElementsByClassName("qrcode")).addClass("qrcode"+json[j].id);
+            $(data_list[j].getElementsByTagName("img")).attr("src",json[j].headimg);
+            $(data_list[j].getElementsByTagName("h4")).html(json[j].realname);
+            $(data_list[j].getElementsByClassName("person_company")).html(json[j].department+"-"+json[j].job);
+            $(data_list[j].getElementsByClassName("person_address")).html(json[j].companyname);
         }
+
     }else{
         $(".person_main").html($("#none_info").html());
     }
 }
+
 function detailContentActive(data){
     if(data.datas.length > 0){
         var obj = data.datas[0];

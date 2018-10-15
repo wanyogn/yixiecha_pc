@@ -2,6 +2,7 @@ var url_prex = "http://localhost:9001";
 var area_prex = "http://localhost:9090";
 var to_login = "../newWeb/login.html";
 var to_index = "../newWeb";
+var searchKey = "";
 $(function(){
 	var lr_systembtn = $("#lr_systembtn");
 	var lr_menu = $("#lr_menu");
@@ -15,7 +16,7 @@ $(function(){
 		lr_menu.fadeOut();
 	});
 	$(document).mouseover(function(){
-        //lastTime = new Date().getTime(); //更新操作时间
+        //lastTime = new Date().getTime(); //更新操作时间getSearch_ComURL
         var data = localStorage.getItem("user");
         var dataObj = JSON.parse(data);
         if(dataObj != null){
@@ -329,7 +330,30 @@ function parseDate(timestamp){
     var second = d.getSeconds()<10?"0"+d.getSeconds():d.getSeconds();
     return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
 }
-
+/**
+ * utf16转utf8
+ * @param str
+ * @returns {string}
+ */
+function utf16to8(str) {
+    var out, i, len, c;
+    out = "";
+    len = str.length;
+    for (i = 0; i < len; i++) {
+        c = str.charCodeAt(i);
+        if ((c >= 0x0001) && (c <= 0x007F)) {
+            out += str.charAt(i);
+        } else if (c > 0x07FF) {
+            out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+            out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+            out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+        } else {
+            out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+            out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+        }
+    }
+    return out;
+};
 /*产品搜索的url*/
 function getSearch_ProURL(num,key){
 	//var url = "/method/search_product_filter_condition?num="+num+"&keyword="+key;

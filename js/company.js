@@ -4,6 +4,7 @@ var ZB_Count = '';
 var page_size = 3;
 var start_page = 1;
 var start_page_zb = 1;
+
 $(document).ready(function(){
 	var scxk = 0,scba = 0,jyxk = 0,jyba = 0,xxfw = 0,jyfw = 0;
 	var flag = false;
@@ -25,9 +26,8 @@ $(document).ready(function(){
     	var keyword_from_url = window.location.search;//格式是【例：?class=pro&keyword=*】
 	    var keyword_sub = keyword_from_url.substring(19);
 	    keyword = decodeURI(keyword_sub);
-
 	    $.getJSON(getComURL(keyword), function (json) {
-	    	data = json;console.log(json);
+	    	data = json;
 	    	detailContentActive(data);
 	    	var beforeurl = decodeURI(document.referrer);
             var afterurl = decodeURI(document.location.href);
@@ -56,6 +56,7 @@ function detailContentActive(data){
 	var datas = data.datas;
 	var size = datas.length;
     $(".company_name").html(keyword);
+    searchKey=keyword;
 	if(size > 0){
 		//$(".company_name").html(data.datas[0].company_name);
 		for(var i = 0;i < size ; i++){
@@ -78,13 +79,9 @@ function detailContentActive(data){
 				service_xinxi.push(obj);
 			}
 		}
-	}/*else{
-		 alert("该公司的详细信息暂未收录！","", function () {
-		 		window.opener=null;  
-				window.open('','_self');  
-				window.close();
-             }, {type: 'warning', confirmButtonText: '确定'});
-	}*/
+	}else{
+	}
+    $(".main_right").load("right_iframe.html");
 	if(produce_xuke.length > 0){
 		scxk = 1;
 		var index = getMaxIndex(produce_xuke);

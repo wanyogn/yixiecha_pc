@@ -24,6 +24,7 @@
 	.tag {width:0;height:0;border-width:20px 20px 20px 20px;border-style:solid;border-color:transparent transparent green green;position: absolute;z-index: 100;bottom: 0;left: 0}
     .ivd_title{position: relative;}
     .ivd_p{margin-left: -20px;margin-bottom: 10px;color: #fff}
+
 </style>
 <body>
 	<iframe name="iframe_top_name" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="header.html" height="188px" width="100%"></iframe>
@@ -90,21 +91,6 @@
 						<h3>产品图片</h3>
 					</div>
 				</div>
-				<div class="same_product">
-					<div class="same_product_title">
-						<h3>同名产品<span class="count"></span></h3>
-					</div>
-					<div class="same_product_main">		
-						<div class="same_product_page" style="display: none;">
-							<a style="margin-right: 15px;" class="page_before">
-								<img src="images/left.png">
-							</a>
-							<a class="page_after">
-								<img src="images/right.png">
-							</a>
-						</div>
-					</div>
-				</div>
 				<style type="text/css">
 					.person{height: 80px;border-bottom: 1px solid #e5e5e5;}
 					.person_head{height: 80px;width: 55px}
@@ -114,24 +100,36 @@
 					.person h4{font-size: 16px;color: #f39800;font-weight: 700;margin-top: 12px;}
 					.person_content p{text-overflow: ellipsis;white-space:nowrap;overflow:hidden;color: #808080 }
 					.person h3{font-size: 18px;color: #9fa0a0;text-align: center;line-height: 80px;}
+					.qrcode{width: 100%;height: 80px;background: rgba(255,255,255,0.8);position: absolute;bottom: 0px;display: none}
 				</style>
 				<div class="same_product">
 					<div class="same_product_title">
 						<h3>医械人推荐<span class="person_count"></span></h3>
 					</div>
 					<div class="person_main">
-						<!--<div class="person">
-							<div class="person_head left">
-								<img src="https://wx.qlogo.cn/mmopen/vi_32/S5wtgJLqc77lLsYKU3D5iaxT6x9lj1yicL6dWlyWBiaydF1An088QYyJic8cziaSFrfV6995IgESIdennIhIm8eqr6Q/132" alt="头像">
-							</div>
-							<div class="person_content right">
-								<h4>万勇</h4>
-								<p>开发经理-南京伟思科技邮箱公司</p>
-								<p>南京建邺区</p>
-							</div>
-						</div>-->
-
-
+					</div>
+					<div class="pages_main" style="padding: 10px;display: none" >
+						<a style="margin-right: 15px;" class="before">
+							<img src="images/left.png">
+						</a>
+						<a class="after">
+							<img src="images/right.png">
+						</a>
+					</div>
+				</div>
+				<div class="same_product">
+					<div class="same_product_title">
+						<h3>同名产品<span class="count"></span></h3>
+					</div>
+					<div class="same_product_main">
+						<div class="same_product_page" style="display: none;">
+							<a style="margin-right: 15px;" class="page_before">
+								<img src="images/left.png">
+							</a>
+							<a class="page_after">
+								<img src="images/right.png">
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -149,14 +147,6 @@
 		</div>
 	</div>
 	<div class="same_product_page_template">
-		<!-- <div class="same_product_page">
-			<a style="margin-right: 15px;" class="page_before">
-				<img src="images/left.png">
-			</a>
-			<a class="page_after">
-				<img src="images/right.png">
-			</a>
-		</div> -->
 	</div>
 	<div id="no_pic" style="display: none;">
 		<div class="product_image_main_h">
@@ -487,7 +477,8 @@
 		</table>
 	</div>
 	<div id="person_template" style="display: none">
-		<div class="person">
+		<div class="person" style="position: relative" onmouseover="bindmouseover(this)" onmouseout="bindmouseout(this)">
+			<input type="hidden" value="" class="userid"/>
 			<div class="person_head left">
 				<img src="" alt="头像">
 			</div>
@@ -496,8 +487,16 @@
 				<p class="person_company"></p>
 				<p class="person_address"></p>
 			</div>
+			<div class="qrcode" style="position: absolute;">
+
+			</div>
 		</div>
 	</div>
+    <div class="pages" style="display: none">
+
+
+    </div>
+
 	<div id="none_info" style="display: none">
 		<div class="person">
 			<h3>医械查还未收录！</h3>
@@ -512,5 +511,6 @@
 	<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript" src="js/product.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.qrcode.min.js"></script>
 </body>
 </html>

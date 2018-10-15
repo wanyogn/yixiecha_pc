@@ -7,49 +7,141 @@
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 </head>
 <style type="text/css">
-	.content_right{
-		width: 245px;
-		height: auto;
-	}
-	.see {
-	    background: #efefef !important;
-	}
-	.see img {
-	    width: 245px;
-	}
+	.content_right{width: 245px;height: auto;}
+	.see {background: #efefef !important;}
+	.see img {width: 245px;}
+	.same_product{background: #fff;margin-top: 13px;}
+	.same_product_title{width: 100%;height: 30px;background: #f49f11;}
+	.same_product_title h3{color: #fff;font-size: 14px;line-height: 30px;margin-left: 15px;}
+	.person_main{padding: 0 15px;}
+	.person{height: 80px;border-bottom: 1px solid #e5e5e5;cursor: pointer}
+	.person_head{height: 80px;width: 55px}
+	.person_content{width: 150px;height: 80px;margin-left: 10px;}
+	.person_main{padding: 0 15px;}
+	.person img{width: 55px;height: 55px;border-radius: 50%;margin-top: 12.5px;}
+	.person h4{font-size: 16px;color: #f39800;font-weight: 700;margin-top: 12px;}
+	.person_content p{text-overflow: ellipsis;white-space:nowrap;overflow:hidden;color: #808080 }
+	.person h3{font-size: 18px;color: #9fa0a0;text-align: center;line-height: 80px;}
+	.qrcode{width: 100%;height: 80px;background: rgba(255,255,255,0.8);position: absolute;bottom: 0px;display: none}
 </style>
 <body>
 	<div class="content_right">
 		<div class="see">
-			<a href="http://www.zhixie.info/?fr=yxc" target="_blank"><img src="images/chanpin.jpg" style="margin-bottom: 15px;"></a>
+			<a href="http://www.fenleimulu.org.cn/?fr=yxc" target="_blank"><img src="images/chanpin.jpg" style="margin-bottom: 15px;"></a>
 			<a href="http://liexin.zhixie.info/?fr=yxc" target="_blank"><img src="images/chanpin2.jpg"></a>
 			<div style="clear: both;"></div>
 		</div>
-	</div>
-	
+		<div class="same_product">
+			<div class="same_product_title">
+				<h3>医械人推荐<span class="person_count"></span></h3>
+			</div>
+			<div class="person_main">
 
-	<!-- <div class="right_main see" style="margin-top: 23px;">
-		<h2>最近浏览</h2>
-		<div>
-			<a>浙江中旭富能能源有限公司</a>
-			<p>1分钟前</p>
+			</div>
 		</div>
-		<div>
-			<a>浙江中旭富能能源有限公司</a>
-			<p>1分钟前</p>
+	</div>
+	<div id="person_template" style="display: none">
+		<div class="person" style="position: relative">
+			<input type="hidden" value="" class="userid"/>
+			<div class="person_head left">
+				<img src="" alt="头像">
+			</div>
+			<div class="person_content right">
+				<h4 class="person_name"></h4>
+				<p class="person_company"></p>
+				<p class="person_address"></p>
+			</div>
+			<div class="qrcode" style="position: absolute;">
+
+			</div>
 		</div>
-		<div>
-			<a>浙江中旭富能能源有限公司</a>
-			<p>1分钟前</p>
+
+	</div>
+	<div id="none_info" style="display: none">
+		<div class="person">
+			<h3>医械查还未收录！</h3>
 		</div>
-		<div>
-			<a>浙江中旭富能能源有限公司</a>
-			<p>1分钟前</p>
-		</div>
-		<div>
-			<a>浙江中旭富能能源有限公司</a>
-			<p>1分钟前</p>
-		</div>
-	</div> -->
+	</div>
+<script type="text/javascript" charset="utf-8" src="js/jquery.qrcode.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		var url = location.href;
+        if(url.indexOf("?") != -1){//有问号
+            url = url.split("?")[0];
+            if(url.indexOf("company.html") != -1){//公司详情页
+                console.log("公司详情页");
+                queryUserCard(searchKey);
+			}else if(url.indexOf("hospital.html") != -1){//医院详情页
+                console.log("医院详情页");
+                var keyword_from_url = window.location.search;//
+                var keyword_sub = keyword_from_url.substring(14);console.log(keyword_sub);
+                queryUserCard(searchKey);
+			}
+        }
+        $(".person").hover(function () {
+            var userid = $(this).find(".userid").val();
+            makeCode(userid);
+			$(this).find(".qrcode").show();
+        },function () {
+            $(this).find(".qrcode").hide();
+        })
+    });
+	function queryUserCard(key){
+	    sendAjax(url_prex+"/method/queryCardByCompanyName",{"keyword":key,"num":0,"size":3},function (res) {
+			var json = JSON.parse(res);
+            contentRecommendPerson(json.datas);
+        })
+	}
+    /**
+     * 填充推荐人
+     */
+    function contentRecommendPerson(cardList) {
+        if(cardList.length > 0){
+            for(let i = 0;i<cardList.length;i++){
+                $(".person_main").append($("#person_template").html())
+            }
+            var data_list = $(".person");
+            for(var j = 0;j < cardList.length;j++) {
+                $(data_list[j].getElementsByClassName("userid")).val(cardList[j].id);
+                $(data_list[j].getElementsByClassName("qrcode")).addClass("qrcode"+cardList[j].id);
+                $(data_list[j].getElementsByTagName("img")).attr("src",cardList[j].headimg);
+                $(data_list[j].getElementsByTagName("h4")).html(cardList[j].realname);
+                $(data_list[j].getElementsByClassName("person_company")).html(cardList[j].department+"-"+cardList[j].job);
+                $(data_list[j].getElementsByClassName("person_address")).html(cardList[j].companyname);
+            }
+        }else{
+            $(".person_main").html($("#none_info").html());
+        }
+    }
+
+    function sendAjax(url,data,callback){
+        $.ajax({
+            type: 'post',
+            url: url,
+            data: data,
+            async: false,
+            success: function (result) {
+                callback(result);
+            },
+            error:function(error){
+                alert("系统繁忙。。");
+            }
+        });
+    }
+	function makeCode(id){
+        $(".qrcode"+id).html("");
+        $(".qrcode"+id).qrcode({
+            render: "canvas", // 渲染方式有table方式（IE兼容）和canvas方式
+            width: 80, //宽度
+            height: 80, //高度
+            text: utf16to8("https://www.yixiecha.cn/cardCode/card?id="+id), //内容
+            typeNumber: -1,//计算模式
+            correctLevel: 2,//二维码纠错级别
+            background: "#ffffff",//背景颜色
+            foreground: "#000000"  //二维码颜色
+        });
+	}
+
+</script>
 </body>
 </html>

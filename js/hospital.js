@@ -36,6 +36,8 @@ function detailContentActive(data){
 	$(".general_hospital_name_ch").html(obj.hospital_name);
 	$(".general_old_name").html("");
 	$(".general_register_code").html("");
+    searchKey=obj.hospital_name;
+    $(".main_right").load("right_iframe.html");
 
 	var hospital_grade = obj.hospital_grade;
 	if(hospital_grade.length > 0 && hospital_grade != ''){
