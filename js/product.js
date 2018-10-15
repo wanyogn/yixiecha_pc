@@ -3,6 +3,7 @@ var count = 0;//同名产品的总数量
 var size = 5;//每页的数量
 var num = 0;
 var page = 0;
+var id = '';
 
 $(document).ready(function(){
 
@@ -24,6 +25,7 @@ $(document).ready(function(){
     if(flag){
         var keyword_from_url = window.location.search;//格式是【例：?class=pro&id=*】
         var keyword_sub = keyword_from_url.substring(14);
+        id = keyword_sub;
         $.getJSON(getProURL(keyword_sub), function (json) {
             data = json;
             setHeader(data);
@@ -365,5 +367,123 @@ function contentActivePro(json){
             $(data_list[j].getElementsByClassName("register_a")).attr("href",$(data_list[j].getElementsByClassName("register_a")).attr("href")+obj.id);
         }    
     }
+}
+
+//弹出框水平垂直居中
+(window.onresize = function () {
+    var win_height = $(window).height();
+    var win_width = $(window).width();
+    if (win_width <= 768){
+        $(".tailoring-content").css({
+            "top": (win_height - $(".tailoring-content").outerHeight())/2,
+            "left": 0
+        });
+    }else{
+        $(".tailoring-content").css({
+            "top": (win_height - $(".tailoring-content").outerHeight())/2,
+            "left": (win_width - $(".tailoring-content").outerWidth())/2
+        });
+    }
+})();
+//弹出图片裁剪框
+$("#replaceImg").on("click",function () {
+    var flag = false;
+    var status = getStorage("user");
+    if(status == "noLogin"){
+        setStorage('referTo',window.location.href);
+        alert("您还未登录，请先进行登录!","", function () {
+            top.location.href = to_login;
+        }, {type: 'warning', confirmButtonText: '确定'});
+    }else if(status == "outTime"){
+        setStorage('referTo',window.location.href);
+        alert("您的登录状态已超时，请重新进行登录!","", function () {
+            top.location.href = to_login;
+        }, {type: 'warning', confirmButtonText: '确定'});
+    }else{
+        $.ajax({
+            type: 'post',
+            url: '/method/selectAuditCountByCondition',
+            data: {"objectid":id, userid: status.userid},
+            async: false,
+            success: function (data) {
+                if(data == 0) flag = true;
+                else alert("该产品你已提交过图片，并处于审核中");
+            }
+        })
+    }
+
+    if(flag) $(".tailoring-container").toggle();
+
+});
+//图像上传
+function selectImg(file) {
+    if (!file.files || !file.files[0]){
+        return;
+    }
+    var reader = new FileReader();
+    reader.onload = function (evt) {
+        var replaceSrc = evt.target.result;
+        //更换cropper的图片
+        $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+    }
+    reader.readAsDataURL(file.files[0]);
+}
+//cropper图片裁剪
+$('#tailoringImg').cropper({
+    aspectRatio: 1/1,//默认比例
+    preview: '.previewImg',//预览视图
+    guides: false,  //裁剪框的虚线(九宫格)
+    autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+    movable: false, //是否允许移动图片
+    dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+    movable: true,  //是否允许移动剪裁框
+    resizable: true,  //是否允许改变裁剪框的大小
+    zoomable: false,  //是否允许缩放图片大小
+    mouseWheelZoom: false,  //是否允许通过鼠标滚轮来缩放图片
+    touchDragZoom: false,  //是否允许通过触摸移动来缩放图片
+    rotatable: true,  //是否允许旋转图片
+    viewMode: 1,
+    minCropBoxWidth: 150,
+    minCropBoxHeight: 150,
+    crop: function(e) {
+        // 输出结果数据裁剪图像。
+    }
+});
+//旋转
+$(".cropper-rotate-btn").on("click",function () {
+    $('#tailoringImg').cropper("rotate", 90);
+});
+//复位
+$(".cropper-reset-btn").on("click",function () {
+    $('#tailoringImg').cropper("reset");
+});
+//裁剪后的处理
+$("#sureCut").on("click",function () {
+    if ($("#tailoringImg").attr("src") == null ){
+        return false;
+    }else{
+        var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
+        var base64url = cas.toDataURL('image/jpeg'); //转换为base64地址形式
+        $("#finalImg").prop("src",base64url);//显示为图片的形式
+        uploadFile(encodeURIComponent(base64url));
+        //关闭裁剪框
+        closeTailor();
+    }
+});
+//关闭裁剪框
+function closeTailor() {
+    $(".tailoring-container").toggle();
+}
+function uploadFile(file) {
+    var userid = getStorage("user").userid;
+    $.ajax({
+        url : '/method/uploadPicture',
+        type : 'POST',
+        data : "file=" + file+"&name="+key+"&id="+id+"&userid="+userid,
+        async : true,
+        success : function(data) {
+            alert("上传成功！请耐心等待，审核结果将在个人信息->审核信息中查看");
+        }
+    });
 }
 

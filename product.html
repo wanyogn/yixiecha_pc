@@ -7,8 +7,10 @@
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/header.css">
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
-	<link rel="stylesheet" type="text/css" href="css/product.css">
 	<link rel="stylesheet" href="css/beAlert.css">
+	<link rel="stylesheet" type="text/css"  href="css/cropper.min.css">
+	<link rel="stylesheet" type="text/css"  href="css/ImgCropping.css">
+	<link rel="stylesheet" type="text/css" href="css/product.css">
 	<script>
         var _hmt = _hmt || [];
         (function() {
@@ -82,10 +84,9 @@
 			
 			<div class="main_right right">
 				<div class="product_image">
-					<div class="product_image_main">
+					<div class="product_image_main" id="replaceImg">
 						
 					</div>
-					<div class="product_image_tip">建议选择500x500尺寸的图片(png,jpg)</div>
 					<div class="product_image_title">
 						<h3>产品图片</h3>
 					</div>
@@ -169,6 +170,43 @@
 	<div id="pic" style="display: none;">
 		<img src="" class="pro_img" />
 	</div>
+
+	<!--图片裁剪框 start-->
+	<div style="display: none" class="tailoring-container">
+		<div class="black-cloth" onclick="closeTailor(this)"></div>
+		<div class="tailoring-content">
+			<div class="tailoring-content-one">
+				<label title="上传图片" for="chooseImg" class="l-btn choose-btn">
+					<input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onchange="selectImg(this)">
+					选择图片
+				</label>
+				<div class="close-tailoring"  onclick="closeTailor(this)">×</div>
+			</div>
+			<div class="tailoring-content-two">
+				<div class="tailoring-box-parcel">
+					<img id="tailoringImg">
+				</div>
+				<div class="preview-box-parcel">
+					<p>图片预览：</p>
+					<div class="square previewImg"></div>
+					<div id="picture_tip">
+						<div class="picture_tip_text" id="picture_tip_text_one">图片要求：</div>
+						<div class="picture_tip_text" id="picture_tip_text_two">• 产品必须至少填满 85% 的图片。图片必须仅显示产品，不能包含商标、水印或内嵌图片。图片包含的文本内容只能是产品信息。</div>
+						<div class="picture_tip_text" id="picture_tip_text_three">• 图片背景建议是纯白色的商品照片（请不要用画出来的图）。</div>
+						<div class="picture_tip_text" id="picture_tip_text_four">• 图片建议采用正方形格式，最短边必须在 200像素以上。</div>
+						<div class="picture_tip_text" id="picture_tip_text_five">• 首选 JPEG 格式的图片，但您也可使用 TIFF 和 GIF 格式的图片。</div>
+					</div>
+				</div>
+			</div>
+			<div class="tailoring-content-three">
+				<button class="l-btn cropper-reset-btn">复位</button>
+				<button class="l-btn cropper-rotate-btn">旋转</button>
+				<button class="l-btn sureCut" id="sureCut">上传</button>
+			</div>
+		</div>
+	</div>
+	<!--图片裁剪框 end-->
+
 	<!--国产详情-->
 	<div id="product_gc" style="display: none;">
 		<table class="table table-striped table-bordered">
@@ -511,6 +549,7 @@
 	<script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
 	<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/cropper.min.js"></script>
 	<script type="text/javascript" src="js/product.js"></script>
 </body>
 </html>
