@@ -38,10 +38,18 @@
 			<div class="person_main">
 
 			</div>
+			<div class="pages_main" style="padding: 10px;display: none" >
+				<a style="margin-right: 15px;" class="before">
+					<img src="images/left.png">
+				</a>
+				<a class="after">
+					<img src="images/right.png">
+				</a>
+			</div>
 		</div>
 	</div>
 	<div id="person_template" style="display: none">
-		<div class="person" style="position: relative">
+		<div class="person" style="position: relative" onmouseover="bindmouseover(this)" onmouseout="bindmouseout(this)">
 			<input type="hidden" value="" class="userid"/>
 			<div class="person_head left">
 				<img src="" alt="头像">
@@ -64,6 +72,10 @@
 	</div>
 <script type="text/javascript" charset="utf-8" src="js/jquery.qrcode.min.js"></script>
 <script type="text/javascript">
+    var person_page=0;
+    var person_num=0;
+    var person_size=1;
+    var person_key='';
 	$(function () {
 		var url = location.href;
         if(url.indexOf("?") != -1){//有问号
@@ -75,9 +87,27 @@
                 console.log("医院详情页");
                 var keyword_from_url = window.location.search;//
                 var keyword_sub = keyword_from_url.substring(14);console.log(keyword_sub);
-                queryUserCard(searchKey);
+                queryUserCard(searchKey,0,person_size);
 			}
         }
+        /*医械人*/
+        $(".before").click(function(){
+            if(person_num > 0){
+                person_num--;
+                queryUserCard(searchKey,person_num,person_size);
+            }else{
+                console.log("before error")
+            }
+        });
+        $(".after").click(function(){
+            if(person_num < person_page-1){
+                person_num++;
+                queryUserCard(searchKey,person_num,person_size);
+            }else{
+                console.log("after error")
+            }
+
+        });
         $(".person").hover(function () {
             var userid = $(this).find(".userid").val();
             makeCode(userid);
@@ -86,16 +116,31 @@
             $(this).find(".qrcode").hide();
         })
     });
-	function queryUserCard(key){
-	    sendAjax(url_prex+"/method/queryCardByCompanyName",{"keyword":key,"num":0,"size":3},function (res) {
+    function bindmouseover(obj) {
+        var userid = $(obj).find(".userid").val();
+        makeCode(userid);
+        $(obj).find(".qrcode").show();
+    }
+    function bindmouseout(obj){
+        $(obj).find(".qrcode").hide();
+    }
+	function queryUserCard(key,num,size){
+	    sendAjax(url_prex+"/method/queryCardByCompanyName",{"keyword":key,"num":num,"size":size},function (res) {
 			var json = JSON.parse(res);
             contentRecommendPerson(json.datas);
+            if(num == 0){
+                person_page = Math.ceil(json.matchCount/person_size);
+                if(json.matchCount > person_size){
+                    $(".pages_main").show();
+                }
+            }
         })
 	}
     /**
      * 填充推荐人
      */
     function contentRecommendPerson(cardList) {
+        $(".person_main").html("");
         if(cardList.length > 0){
             for(let i = 0;i<cardList.length;i++){
                 $(".person_main").append($("#person_template").html())
