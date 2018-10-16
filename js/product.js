@@ -480,8 +480,20 @@ function selectImg(file) {
     var reader = new FileReader();
     reader.onload = function (evt) {
         var replaceSrc = evt.target.result;
+        var image = new Image();
+        image.onload=function(){
+            var width = image.width;
+            var height = image.height;
+            if(width < 200 || height < 200){
+                alert("图片最短边至少为200px！");
+                return;
+            }else{
+                $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+            }
+        };
+        image.src= replaceSrc;
         //更换cropper的图片
-        $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+
     }
     reader.readAsDataURL(file.files[0]);
 }
