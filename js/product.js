@@ -126,7 +126,7 @@ function queryRecommendPerson(productid,num,size) {
     $.ajax({
         type: 'post',
         url: url_prex + '/method/selectUsersByProductId',
-        data: {"productid":id},
+        data: {"productid":productid,"num":num,"size":size},
         async: false,
         success: function (result) {
             var json = JSON.parse(result);
