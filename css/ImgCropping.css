@@ -100,15 +100,16 @@
     padding: 5px 0;
 }
 .tailoring-content .tailoring-box-parcel{
-    width: 520px;
+    width: 450px;
     height: 450px;
     position: absolute;
     left: 0;
     border: solid 1px #ddd;
+    margin-left: 20px;
 }
 .tailoring-content .preview-box-parcel{
     display: inline-block;
-    width: 228px;
+    width: 260px;
     height: 450px;
     position: absolute;
     right: 0;

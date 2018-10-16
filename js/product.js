@@ -490,7 +490,7 @@ $('#tailoringImg').cropper({
     aspectRatio: 1/1,//默认比例
     preview: '.previewImg',//预览视图
     guides: false,  //裁剪框的虚线(九宫格)
-    autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+    autoCropArea: 1,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
     movable: false, //是否允许移动图片
     dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
     movable: true,  //是否允许移动剪裁框
