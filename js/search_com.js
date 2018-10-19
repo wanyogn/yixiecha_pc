@@ -110,7 +110,6 @@ $(document).ready(function(){
 		var data_list = $(".comList");
 		for(var i = 0;i < size;i++){
 			var obj = data.datas[i];
-			console.log(obj.production_type);
 			$(data_list[i].getElementsByClassName("com_name")).html(getText(obj.company_name,14));//公司名称
 			$(data_list[i].getElementsByClassName("com_name_a")).attr("href",$(data_list[i].getElementsByClassName("com_name_a")).attr("href")+obj.company_name);
 

@@ -25,17 +25,16 @@ table span{color: #f39800;font-weight: lighter;}
 .right_main div p{background: url(../images/clock.png) no-repeat;font-size: 10px;color: #bfc0c0;text-indent: 15px;}
 
 /* 同名产品 */
-.product_image{background: #fff;padding-top: 19px;}
-.product_image .product_image_main{border: 1px dashed #9fa0a0;margin: 0 20px;height: 205px;position:relative;margin-bottom: 16px;}
-.product_image .product_image_main .product_image_main_h{height:28px;margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;}
-.product_image .product_image_main .product_image_main_h div{display: inline-block;margin-left: 20%;cursor: pointer;}
-.product_image .product_image_main .product_image_main_h div .no_img{vertical-align: top;}
-.product_image .product_image_main .product_image_main_h div span{font-size: 18px;color: #aaabab;line-height: 28px}
+.product_image{}
+.product_image_main{width:245px;height: 245px;cursor: pointer}
+.product_image_main img{width: 100%;height: 100%}
+.product_image_main_pic{width:245px;height: auto;cursor: pointer}
+.product_image_main_pic img{width:100%;height: 245px;cursor: pointer}
+.product_image a{color: #f39800;float: right;}
+.product_image a:before{content: '+';margin-right: 5px;}
 .product_image .product_image_tip{font-size: 8px;color: #f39800;font-weight: lighter;text-align: center;margin: 12px 0 24px 0;}
 .product_image .product_image_title,.same_product .same_product_title{width: 100%;height: 30px;background:#f49f11 }
-.product_image .product_image_title h3{color: #fff;font-size: 14px;line-height: 30px;background: url(../images/product_img.png) left no-repeat;text-indent: 30px;margin-left: 20px;}
-
-.product_image_main .pro_img {width: 100%;height: 100%;}
+.product_image .product_image_title h3{color: #fff;font-size: 14px;line-height: 30px;margin-left: 15px;}
 
 .same_product{background: #fff;margin-top: 13px;}
 .same_product .same_product_title h3{color: #fff;font-size: 14px;line-height: 30px;margin-left: 15px;}
@@ -51,3 +50,4 @@ table span{color: #f39800;font-weight: lighter;}
 #picture_tip{margin-top: 4px;}
 .picture_tip_text{font-size: 13px;}
 #picture_tip_text_one,#picture_tip_text_two,#picture_tip_text_three,#picture_tip_text_four,#picture_tip_text_five{margin-bottom: 2px;}
+#picture_tip_text_one{margin-top:50px;color: red;}

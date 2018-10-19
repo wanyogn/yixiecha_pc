@@ -45,10 +45,28 @@ a:focus {text-decoration:none;}
         .code_con{
             z-index:1100;
             width:auto;
-            height:auto
+            height:auto;
             background-color:white;
             position:fixed;
             right:40%;
             top:30%;
             box-shadow: 0px 0px 15px black;
         }
+/*右侧的医械人*/
+.person{border-bottom: 1px solid #e5e5e5;cursor: pointer}
+.person_head{height: 80px;width: 55px}
+.person_content{width: 150px;height: 80px;margin-left: 10px;}
+.person_main{padding: 0 15px;}
+.person_top{}
+.person_bottom{display: none}
+.person_head img{width: 55px;height: 55px;border-radius: 50%;margin-top: 12.5px;}
+.person_content h4{font-size: 16px;color: #f39800;font-weight: 700;margin-top: 12px;}
+.person_content p{text-overflow: ellipsis;white-space:nowrap;overflow:hidden;color: #808080 }
+.person h3{font-size: 18px;color: #9fa0a0;text-align: center;line-height: 80px;}
+.person_bottom p{color: #348efd;text-align: center;}
+.qrcode{width: 116px;height: 116px;background: rgba(255,255,255,0.8);margin:10px auto;padding: 8px;border: 1px solid #348efd;box-shadow: #348efd 0 0 5px}
+/*没有医械人*/
+.none_person_head{width: 55px;height: 80px;}
+.none_person_head img{width: 55px;height: 55px;margin-top: 12.5px;}
+.none_person_content {width: 150px;height: 80px;margin-left: 10px;}
+.none_person_content h4{font-size: 14px; color: #808080;font-weight: 700;margin-top: 12px;}

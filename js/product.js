@@ -5,14 +5,14 @@ var num = 0;
 var page = 0;
 var person_page=0;
 var person_num=0;
-var person_size=1;
+var person_size=3;
 var person_key='';
 
 $(document).ready(function(){
 
     var flag = false;
     var status = getStorage("user");
-    if(status == "noLogin"){
+   if(status == "noLogin"){
         setStorage('referTo',window.location.href);
         alert("您还未登录，请先进行登录!","", function () {
             top.location.href = to_login;
@@ -89,29 +89,23 @@ $(document).ready(function(){
         }
 
     });
-
-    /*$(".person").hover(function () {console.log(111)
-        var userid = $(this).find(".userid").val();
-        makeCode(userid);
-        $(this).find(".qrcode").show();
-    },function () {
-        $(this).find(".qrcode").hide();
-    })*/
 })
-function bindmouseover(obj) {
+/**
+ * 绑定点击事件
+ * @param obj
+ */
+function bindClick(obj) {
     var userid = $(obj).find(".userid").val();
     makeCode(userid);
-    $(obj).find(".qrcode").show();
-}
-function bindmouseout(obj){
-    $(obj).find(".qrcode").hide();
+    $(obj).find(".person_bottom").slideDown();
+    $(obj).siblings().find(".person_bottom").slideUp();
 }
 function makeCode(id){
     $(".qrcode"+id).html("");
     $(".qrcode"+id).qrcode({
         render: "canvas", // 渲染方式有table方式（IE兼容）和canvas方式
-        width: 80, //宽度
-        height: 80, //高度
+        width: 100, //宽度
+        height: 100, //高度
         text: utf16to8("https://www.yixiecha.cn/cardCode/card?id="+id), //内容
         typeNumber: -1,//计算模式
         correctLevel: 2,//二维码纠错级别
@@ -133,6 +127,7 @@ function queryRecommendPerson(productid,num,size) {
             contentRecommendPerson(json);
             if(num == 0){
                 person_page = Math.ceil(json.matchCount/person_size);
+                $(".person_count").html(json.matchCount);
                 if(json.matchCount > person_size){
                     $(".pages_main").show();
                 }
@@ -213,10 +208,10 @@ function detailContentActive(data){
 	
 
     if(obj.picture_addr == undefined){
-       $(".product_image_main").html($("#no_pic").html());
+       $(".product_image").append($("#no_pic").html());
     }else{
-        $(".product_image_main").html($("#pic").html());
-        $(".product_image_main img").attr("src","../upload/"+obj.picture_addr);
+        $(".product_image").append($("#pic").html());
+        $(".product_image img").attr("src","../upload/"+obj.picture_addr);
     }
 }
 /*国产*/
@@ -443,7 +438,7 @@ function contentActivePro(json){
     }
 })();
 //弹出图片裁剪框
-$("#replaceImg").on("click",function () {
+$(".product_image").on("click","#replaceImg",function () {
     var flag = false;
     var status = getStorage("user");
     if(status == "noLogin"){
@@ -459,7 +454,7 @@ $("#replaceImg").on("click",function () {
     }else{
         $.ajax({
             type: 'post',
-            url: '/method/selectAuditCountByCondition',
+            url: url_prex+'/method/selectAuditCountByCondition',
             data: {"objectid":person_key, userid: status.userid},
             async: false,
             success: function (data) {
@@ -469,7 +464,7 @@ $("#replaceImg").on("click",function () {
         })
     }
 
-    if(flag) $(".tailoring-container").toggle();
+    if(flag) $(".tailoring-cropper").toggle();
 
 });
 //图像上传
@@ -507,8 +502,11 @@ $('#tailoringImg').cropper({
     }
 });
 //旋转
-$(".cropper-rotate-btn").on("click",function () {
+$(".cropper-rotate-right").on("click",function () {
     $('#tailoringImg').cropper("rotate", 90);
+});
+$(".cropper-rotate-left").on("click",function () {
+    $('#tailoringImg').cropper("rotate", -90);
 });
 //复位
 $(".cropper-reset-btn").on("click",function () {
@@ -517,6 +515,7 @@ $(".cropper-reset-btn").on("click",function () {
 //裁剪后的处理
 $("#sureCut").on("click",function () {
     if ($("#tailoringImg").attr("src") == null ){
+        alert("未选择有效图片！");
         return false;
     }else{
         var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
@@ -525,21 +524,31 @@ $("#sureCut").on("click",function () {
         uploadFile(encodeURIComponent(base64url));
         //关闭裁剪框
         closeTailor();
+
     }
 });
 //关闭裁剪框
 function closeTailor() {
-    $(".tailoring-container").toggle();
+    $(".tailoring-cropper").toggle();
+}
+function operSuccessTip() {
+    $(".tailoring-tip").toggle();
 }
 function uploadFile(file) {
     var userid = getStorage("user").userid;
     $.ajax({
-        url : '/method/uploadPicture',
+        url : url_prex+'/method/uploadPicture',
         type : 'POST',
         data : "file=" + file+"&name="+key+"&id="+person_key+"&userid="+userid,
         async : true,
         success : function(data) {
-            alert("上传成功！请耐心等待，审核结果将在个人信息->审核信息中查看");
+            //alert("上传成功！请耐心等待，审核结果将在个人信息->审核信息中查看");
+            if(data == "success"){
+                operSuccessTip();
+            }
+        },
+        error:function(error){
+            alert("系统异常..");
         }
     });
 }

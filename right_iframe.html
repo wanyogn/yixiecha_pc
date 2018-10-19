@@ -13,16 +13,6 @@
 	.same_product{background: #fff;margin-top: 13px;}
 	.same_product_title{width: 100%;height: 30px;background: #f49f11;}
 	.same_product_title h3{color: #fff;font-size: 14px;line-height: 30px;margin-left: 15px;}
-	.person_main{padding: 0 15px;}
-	.person{height: 80px;border-bottom: 1px solid #e5e5e5;cursor: pointer}
-	.person_head{height: 80px;width: 55px}
-	.person_content{width: 150px;height: 80px;margin-left: 10px;}
-	.person_main{padding: 0 15px;}
-	.person img{width: 55px;height: 55px;border-radius: 50%;margin-top: 12.5px;}
-	.person h4{font-size: 16px;color: #f39800;font-weight: 700;margin-top: 12px;}
-	.person_content p{text-overflow: ellipsis;white-space:nowrap;overflow:hidden;color: #808080 }
-	.person h3{font-size: 18px;color: #9fa0a0;text-align: center;line-height: 80px;}
-	.qrcode{width: 100%;height: 80px;background: rgba(255,255,255,0.8);position: absolute;bottom: 0px;display: none}
 </style>
 <body>
 	<div class="content_right">
@@ -49,25 +39,33 @@
 		</div>
 	</div>
 	<div id="person_template" style="display: none">
-		<div class="person" style="position: relative" onmouseover="bindmouseover(this)" onmouseout="bindmouseout(this)">
-			<input type="hidden" value="" class="userid"/>
-			<div class="person_head left">
-				<img src="" alt="头像">
+		<div class="person" onclick="bindClick(this)">
+			<div class="person_top clearfix">
+				<input type="hidden" value="" class="userid"/>
+				<div class="person_head left">
+					<img src="" alt="头像">
+				</div>
+				<div class="person_content right">
+					<h4 class="person_name"></h4>
+					<p class="person_company"></p>
+					<p class="person_address"></p>
+				</div>
 			</div>
-			<div class="person_content right">
-				<h4 class="person_name"></h4>
-				<p class="person_company"></p>
-				<p class="person_address"></p>
-			</div>
-			<div class="qrcode" style="position: absolute;">
-
+			<div class="person_bottom">
+				<p>微信扫码了解详情</p>
+				<div class="qrcode" ></div>
 			</div>
 		</div>
-
 	</div>
 	<div id="none_info" style="display: none">
-		<div class="person">
-			<h3>医械查还未收录！</h3>
+		<div class="person clearfix">
+			<div class="none_person_head left">
+				<img src="images/zxxcode.png" alt="头像">
+			</div>
+			<div class="none_person_content right">
+				<h4>暂未收录相关医械人</h4>
+				<h4>扫描二维码添加</h4>
+			</div>
 		</div>
 	</div>
 <script type="text/javascript" charset="utf-8" src="js/jquery.qrcode.min.js"></script>
@@ -82,7 +80,7 @@
             url = url.split("?")[0];
             if(url.indexOf("company.html") != -1){//公司详情页
                 console.log("公司详情页");
-                queryUserCard(searchKey);
+                queryUserCard(searchKey,0,person_size);
 			}else if(url.indexOf("hospital.html") != -1){//医院详情页
                 console.log("医院详情页");
                 var keyword_from_url = window.location.search;//
@@ -108,21 +106,16 @@
             }
 
         });
-        $(".person").hover(function () {
-            var userid = $(this).find(".userid").val();
-            makeCode(userid);
-			$(this).find(".qrcode").show();
-        },function () {
-            $(this).find(".qrcode").hide();
-        })
     });
-    function bindmouseover(obj) {
+    /**
+     * 绑定点击事件
+     * @param obj
+     */
+    function bindClick(obj) {
         var userid = $(obj).find(".userid").val();
         makeCode(userid);
-        $(obj).find(".qrcode").show();
-    }
-    function bindmouseout(obj){
-        $(obj).find(".qrcode").hide();
+        $(obj).find(".person_bottom").slideDown();
+        $(obj).siblings().find(".person_bottom").slideUp();
     }
 	function queryUserCard(key,num,size){
 	    sendAjax(url_prex+"/method/queryCardByCompanyName",{"keyword":key,"num":num,"size":size},function (res) {
@@ -177,8 +170,8 @@
         $(".qrcode"+id).html("");
         $(".qrcode"+id).qrcode({
             render: "canvas", // 渲染方式有table方式（IE兼容）和canvas方式
-            width: 80, //宽度
-            height: 80, //高度
+            width:100, //宽度
+            height: 100, //高度
             text: utf16to8("https://www.yixiecha.cn/cardCode/card?id="+id), //内容
             typeNumber: -1,//计算模式
             correctLevel: 2,//二维码纠错级别

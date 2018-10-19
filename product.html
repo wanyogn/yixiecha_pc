@@ -84,25 +84,15 @@
 			</div>
 			
 			<div class="main_right right">
-				<div class="product_image">
-					<div class="product_image_main" id="replaceImg">
-						
-					</div>
-					<div class="product_image_title">
-						<h3>产品图片</h3>
-					</div>
+				<div class="product_image clearfix">
+                    <div class="product_image_title">
+                        <h3>产品图片</h3>
+                    </div>
+					<!--<div class="product_image_main" id="replaceImg">
+
+					</div>-->
+
 				</div>
-				<style type="text/css">
-					.person{height: 80px;border-bottom: 1px solid #e5e5e5;}
-					.person_head{height: 80px;width: 55px}
-					.person_content{width: 150px;height: 80px;margin-left: 10px;}
-					.person_main{padding: 0 15px;}
-					.person img{width: 55px;height: 55px;border-radius: 50%;margin-top: 12.5px;}
-					.person h4{font-size: 16px;color: #f39800;font-weight: 700;margin-top: 12px;}
-					.person_content p{text-overflow: ellipsis;white-space:nowrap;overflow:hidden;color: #808080 }
-					.person h3{font-size: 18px;color: #9fa0a0;text-align: center;line-height: 80px;}
-					.qrcode{width: 100%;height: 80px;background: rgba(255,255,255,0.8);position: absolute;bottom: 0px;display: none}
-				</style>
 				<div class="same_product">
 					<div class="same_product_title">
 						<h3>医械人推荐<span class="person_count"></span></h3>
@@ -150,26 +140,24 @@
 	<div class="same_product_page_template">
 	</div>
 	<div id="no_pic" style="display: none;">
-		<div class="product_image_main_h">
-			<div>
-				<img src="images/product_camera.png" class="no_img">
-				<span>添加图片</span>
-			</div>
-		</div>
+        <div class="product_image_main" id="replaceImg">
+            <img src="images/uploadimg.png" />
+        </div>
+
 	</div>
 	<div id="pic" style="display: none;">
-		<img src="" class="pro_img" />
+        <div class="product_image_main">
+            <img src="" class="pro_img" />
+        </div>
+        <a href="javascript:void(0)" id="replaceImg">添加图片</a>
 	</div>
 
 	<!--图片裁剪框 start-->
-	<div style="display: none" class="tailoring-container">
+	<div style="display: none" class="tailoring-container tailoring-cropper">
 		<div class="black-cloth" onclick="closeTailor(this)"></div>
 		<div class="tailoring-content">
 			<div class="tailoring-content-one">
-				<label title="上传图片" for="chooseImg" class="l-btn choose-btn">
-					<input type="file" accept="image/jpg,image/jpeg,image/png,image/tiff" name="file" id="chooseImg" class="hidden" onchange="selectImg(this)">
-					选择图片
-				</label>
+                <label class="tailoring-title">添加产品图片</label>
 				<div class="close-tailoring"  onclick="closeTailor(this)">×</div>
 			</div>
 			<div class="tailoring-content-two">
@@ -180,22 +168,52 @@
 					<p>图片预览：</p>
 					<div class="square previewImg"></div>
 					<div id="picture_tip">
-						<div class="picture_tip_text" id="picture_tip_text_one">图片要求：</div>
-						<div class="picture_tip_text" id="picture_tip_text_two">• 产品必须至少填满 85% 的图片。图片必须仅显示产品，不能包含商标、水印或内嵌图片。图片包含的文本内容只能是产品信息。</div>
-						<div class="picture_tip_text" id="picture_tip_text_three">• 图片背景建议是纯白色的商品照片（请不要用画出来的图）。</div>
-						<div class="picture_tip_text" id="picture_tip_text_four">• 图片建议采用正方形格式，最短边必须在 200像素以上。</div>
-						<div class="picture_tip_text" id="picture_tip_text_five">• 首选 JPEG 格式的图片，但您也可使用 TIFF 和 PNG 格式的图片。</div>
+						<div class="picture_tip_text" id="picture_tip_text_one">为保证快速通过审核，请按要求上传图片：</div>
+						<div class="picture_tip_text" id="picture_tip_text_two">• 产品必须至少填满 85% 的图片</div>
+						<div class="picture_tip_text" id="picture_tip_text_three">• 图片包含的文本内容只能是产品信息</div>
+						<div class="picture_tip_text" id="picture_tip_text_four">• 图片背景建议纯白色，请不要使用手绘图片</div>
+						<div class="picture_tip_text" id="picture_tip_text_five">• 图片最短边必须在 200像素以上</div>
+                        <div class="picture_tip_text" id="picture_tip_text_five">• 仅支持JPEG 、TIFF、PNG 格式的图片</div>
 					</div>
 				</div>
 			</div>
-			<div class="tailoring-content-three">
-				<button class="l-btn cropper-reset-btn">复位</button>
-				<button class="l-btn cropper-rotate-btn">旋转</button>
-				<button class="l-btn sureCut" id="sureCut">上传</button>
+			<div class="tailoring-content-three ">
+                <div class="cropper-rotate-main">
+                    <img src="images/arrow-right.png" alt="右旋转"  class="pull-right cropper-rotate-right"/>
+                    <img src="images/arrow-left.png" alt="左旋转" class="pull-right cropper-rotate-left"/>
+                </div>
+                <div class="cropper-upload clearfix">
+                    <label title="选择图片" for="chooseImg" class="l-btn choose-btn">
+                        <input type="file" accept="image/jpg,image/jpeg,image/png,image/tiff" name="file" id="chooseImg" class="hidden" onchange="selectImg(this)">
+                        选择图片
+                    </label>
+                    <!--<button class="l-btn cropper-reset-btn">复位</button>
+                    <button class="l-btn cropper-rotate-btn">旋转</button>-->
+                    <button class="l-btn sureCut" id="sureCut">上传图片</button>
+                </div>
+
 			</div>
 		</div>
 	</div>
 	<!--图片裁剪框 end-->
+    <!--上传成功的提示框 start-->
+    <div style="display: none" class="tailoring-container tailoring-tip">
+        <div class="black-cloth" onclick="operSuccessTip(this)"></div>
+        <div class="tailoring-content">
+            <div class="tailoring-content-one">
+                <label class="tailoring-title">成功提示</label>
+                <div class="close-tailoring"  onclick="operSuccessTip(this)">×</div>
+            </div>
+            <div class="tailoring-content-two tailoring-content-tip">
+                <h2>上传成功！</h2>
+                <div class="tip-img">
+                    <img src="images/upload-success.png" alt="上传成功" />
+                </div>
+                <p>恭喜您成功上传产品图片，请您耐心等待审核结果！</p>
+            </div>
+        </div>
+    </div>
+    <!--上传成功的提示框 end-->
 
 	<!--国产详情-->
 	<div id="product_gc" style="display: none;">
@@ -515,29 +533,38 @@
 		</table>
 	</div>
 	<div id="person_template" style="display: none">
-		<div class="person" style="position: relative" onmouseover="bindmouseover(this)" onmouseout="bindmouseout(this)">
-			<input type="hidden" value="" class="userid"/>
-			<div class="person_head left">
-				<img src="" alt="头像">
+		<div class="person" onclick="bindClick(this)">
+			<div class="person_top clearfix">
+				<input type="hidden" value="" class="userid"/>
+				<div class="person_head left">
+					<img src="" alt="头像">
+				</div>
+				<div class="person_content right">
+					<h4 class="person_name"></h4>
+					<p class="person_company"></p>
+					<p class="person_address"></p>
+				</div>
 			</div>
-			<div class="person_content right">
-				<h4 class="person_name"></h4>
-				<p class="person_company"></p>
-				<p class="person_address"></p>
-			</div>
-			<div class="qrcode" style="position: absolute;">
+			<div class="person_bottom">
+				<p>微信扫码了解详情</p>
+				<div class="qrcode" >
 
+				</div>
 			</div>
+
 		</div>
 	</div>
     <div class="pages" style="display: none">
-
-
     </div>
-
 	<div id="none_info" style="display: none">
-		<div class="person">
-			<h3>医械查还未收录！</h3>
+		<div class="person clearfix">
+            <div class="none_person_head left">
+                <img src="images/zxxcode.png" alt="头像">
+            </div>
+            <div class="none_person_content right">
+                <h4>暂未收录相关医械人</h4>
+                <h4>扫描二维码添加</h4>
+            </div>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
