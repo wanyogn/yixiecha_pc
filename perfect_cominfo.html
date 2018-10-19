@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>医械查 | 最好用的医疗器械查询工具</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/beAlert.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/perfect_cominfo.css">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a682153e748c3ea879d3ee5e305d3196";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+    <iframe name="iframe_top_name" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="header.html" height="188px" width="100%"></iframe>
+    <div class="content">
+        <div class="content_center">
+            <div class="content_center_top">完善企业信息</div>
+            <div class="content_center_company_name">
+                <label class="content_center_tip">*</label>
+                <label class="content_center_tip_text">企业名称:</label>
+                <input id="company_name_input">
+                <img src="images/close.png" class="close_img">
+            </div>
+            <div class="content_center_company_name" style="height: 175px;">
+                <div class="info_left">
+                    <label class="content_center_tip">*</label>
+                    <label class="content_center_tip_text">认证资质:</label>
+                </div>
+                <div class="info_center">
+                    <div class="radio_div"><input type="radio" name="radio" value="1">医疗器械生产许可证</div>
+                    <div class="radio_div"><input type="radio" name="radio" value="2">医疗器械经营许可证</div>
+                    <div class="radio_div"><input type="radio" name="radio" value="3">医疗器械经营备案凭证</div>
+                    <div class="radio_div"><input type="radio" name="radio" value="4">第一类医疗器械生产备案凭证</div>
+                    <div class="radio_div"><input type="radio" name="radio" value="5">营业执照(经营范围必须包含一类医疗器械销售)</div>
+                </div>
+                <input type="file" id="chooseImage" name="file" style="display: none;" accept="image/jpg,image/jpeg" onchange="gen_base64(this)">
+                <div class="info_picture_div">
+                    <img src="images/certificate.jpg" id="pictureImage">
+                    <div class="picture_tip_div">上传证件</div>
+                </div>
+                <div style="background-color: #fbfbfb;float: left;margin-left: 20px;">
+                    <div class="picture_tip_text">
+                        <div style="margin-bottom: 6px;"><span style="color: red;font-size: 11px;margin-left: -13px;">为保证快速通过审核，请满足以下条件：</span></div>
+                        <ul>
+                            <li>企业名称需按全称填写完整</li>
+                            <li>相关证件仅需要上传一种即可</li>
+                            <li>营业执照中信息必须与工商信息一致</li>
+                            <li>医疗器械相关证件必须与CFDA信息一致</li>
+                            <li>上传图片必须为实物图片，并且露出四个角</li>
+                            <li>上传图片为复印件时，需加盖公司红章</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="content_center_top">
+                <span class="submit_button" onclick="submit()">提 交</span>
+            </div>
+            <div class="content_center_company_name" style="margin-top: 40px;">
+                <div class="bottom_tip">用户提交的申请信息，只作为审核使用，不会在页面公开展示</div>
+                <div class="bottom_tip">依据《公司法》相关规定，未经依法登记而冒用公司或分公司的名义将被处以最高 10 万元的罚款，并追究相关刑事责任！</div>
+            </div>
+        </div>
+    </div>
+    <iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
+    <div class="service">
+
+    </div>
+
+    <div id="success_template" style="display: none">
+        <div class="content_center_company_name">
+            <div class="upload_success_text">上传成功！</div>
+            <img src="images/upload_success.png" class="upload_success_img">
+            <div class="success_tip_div">
+                <img src="images/success.png" class="success_tip_img">
+                <span>恭喜您成功添加企业信息，请您耐心等待审核结果！</span>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+    <script>
+        $(".service").load("service.html");
+    </script>
+    <script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/perfect_cominfo.js"></script>
+</body>
+</html>

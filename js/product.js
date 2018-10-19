@@ -475,8 +475,20 @@ function selectImg(file) {
     var reader = new FileReader();
     reader.onload = function (evt) {
         var replaceSrc = evt.target.result;
+        var image = new Image();
+        image.onload=function(){
+            var width = image.width;
+            var height = image.height;
+            if(width < 200 || height < 200){
+                alert("图片最短边至少为200px！");
+                return;
+            }else{
+                $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+            }
+        };
+        image.src= replaceSrc;
         //更换cropper的图片
-        $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+
     }
     reader.readAsDataURL(file.files[0]);
 }
@@ -485,7 +497,7 @@ $('#tailoringImg').cropper({
     aspectRatio: 1/1,//默认比例
     preview: '.previewImg',//预览视图
     guides: false,  //裁剪框的虚线(九宫格)
-    autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+    autoCropArea: 1,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
     movable: false, //是否允许移动图片
     dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
     movable: true,  //是否允许移动剪裁框
