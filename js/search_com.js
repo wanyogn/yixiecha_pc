@@ -5,6 +5,7 @@ var start_page = 1;
 var production_type = -1;
 var manage_type = -1;
 var web_type = -1;
+var page_total = 0;
 $(document).ready(function(){
 
 	var flag = false;
@@ -86,7 +87,7 @@ $(document).ready(function(){
 			//$("#product_content > .data_list").show();
 		}
 
-		var page_total = Math.ceil(all_Count/page_size);
+		page_total = Math.ceil(all_Count/page_size);
 		if(page_total > 1000){page_total =1000}
 		$('.page').pagination({  
 	       	currentPage: start_page,
@@ -106,7 +107,10 @@ $(document).ready(function(){
 			    	contentCompanyActive(data);
 	        	});
 	        }
-	    }); 
+	    });
+        if(start_page == page_total){
+            $("#product_content").append("<div class='comList' id='add_company' onclick='add_company()'><img src='images/add_company.jpg'></div>");
+        }
 		var data_list = $(".comList");
 		for(var i = 0;i < size;i++){
 			var obj = data.datas[i];
@@ -181,4 +185,7 @@ function getAllUrl(){
 		choice += ("&web_type="+web_type);
 	}
 	return choice;
+}
+function add_company() {
+    window.location.href="perfect_cominfo.html";
 }

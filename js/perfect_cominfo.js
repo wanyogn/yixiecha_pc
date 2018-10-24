@@ -108,7 +108,6 @@ function submit() {
         alert("请选择资质!");
         return;
     }
-    console.log(file);
 
     var formdata=new FormData();
     formdata.append("file",file);
