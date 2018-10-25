@@ -108,7 +108,7 @@ $(document).ready(function(){
 	        	});
 	        }
 	    });
-        if(start_page == page_total){
+        if(start_page == page_total || page_total == 0){
             $("#product_content").append("<div class='comList' id='add_company' onclick='add_company()'><img src='images/add_company.jpg'></div>");
         }
 		var data_list = $(".comList");
