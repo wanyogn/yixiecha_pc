@@ -379,7 +379,7 @@ function setHeader(data){
 }
 
 function getSamePro(key,num){
-    $.getJSON(getSameProURL(num,key,size), function (json) {
+    $.getJSON(getSameProURL(num,key,size,person_key), function (json) {
         count = json.matchCount;
         $(".count").html(count);
         if(count > 0){

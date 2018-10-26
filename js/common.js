@@ -405,9 +405,9 @@ function getHosURL(id){
 	return url;
 }
 /*根据产品名称查找同名产品信息*/
-function getSameProURL(num,keyword,size){
+function getSameProURL(num,keyword,size,id){
 	//var url = "/method/search_product_same_name?keyword="+keyword+"&num="+num+"&size="+size;
-	var url = url_prex + "/method/search_product_same_name?keyword="+keyword+"&num="+num+"&size="+size;
+	var url = url_prex + "/method/search_product_same_name?keyword="+keyword+"&num="+num+"&size="+size+"&id="+id;
 	return url;
 }
 function getUserCenter(userid){
