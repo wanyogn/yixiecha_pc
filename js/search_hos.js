@@ -106,7 +106,17 @@ function contentHospitalActive(data){
 	var data_list = $(".comList");
 	for(var i = 0;i < size;i++){
 		var obj = data.datas[i];
-		$(data_list[i].getElementsByClassName("hos_name")).html(getText(obj.hospital_name,14));
+        var hospital_name_html = '';
+        var hospital_name = getText(obj.hospital_name,14);
+        for(var j = 0;j < hospital_name.length;j++){
+            var val = hospital_name.substring(j,j+1);
+            if(keyword.indexOf(val) >= 0){
+                hospital_name_html += ("<em style='color:#f39800;font-style: normal;'>" + val + "</em>");
+            }else{
+                hospital_name_html += val;
+            }
+        }
+		$(data_list[i].getElementsByClassName("hos_name")).html(hospital_name_html);
 		$(data_list[i].getElementsByClassName("hos_name_a")).attr("href",$(data_list[i].getElementsByClassName("hos_name_a")).attr("href")+obj.id);
 
 		//$(data_list[i].getElementsByClassName("hos_oldName")).html(getText("别名："+obj.hospital_name,17));//别名

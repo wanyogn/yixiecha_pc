@@ -114,7 +114,17 @@ $(document).ready(function(){
 		var data_list = $(".comList");
 		for(var i = 0;i < size;i++){
 			var obj = data.datas[i];
-			$(data_list[i].getElementsByClassName("com_name")).html(getText(obj.company_name,14));//公司名称
+			var company_name_html = '';
+			var company_name = getText(obj.company_name,14);
+			for(var j = 0;j < company_name.length;j++){
+                var val = company_name.substring(j,j+1);
+                if(keyword.indexOf(val) >= 0){
+                    company_name_html += ("<em style='color:#f39800;font-style: normal;'>" + val + "</em>");
+				}else{
+                	company_name_html += val;
+				}
+			}
+            $(data_list[i].getElementsByClassName("com_name")).html(company_name_html);//公司名称
 			$(data_list[i].getElementsByClassName("com_name_a")).attr("href",$(data_list[i].getElementsByClassName("com_name_a")).attr("href")+obj.company_name);
 
 			/*$(data_list[i].getElementsByClassName("com_oldName")).html(getText("曾用名："+obj.company_name,17));*///曾用名

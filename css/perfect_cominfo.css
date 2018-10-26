@@ -123,14 +123,14 @@ li{
 #pic{position: absolute; display: none;}
 #pic1{ width: 300px; height: 300px; border-radius: 5px; -webkit-box-shadow: 5px 5px 5px 5px hsla(0,0%,5%,1.00); box-shadow: 5px 5px 5px 0px hsla(0,0%,5%,0.3); }
 
-.upload_success_text{
+.ccess_text{
     margin-left: 35%;
     padding-top: 90px;
     font-size: 20px;
     color: #0587ff;
     font-weight: 600;
 }
-.upload_success_img{
+.ccess_img{
     margin-left: 25%;
     width: 30%;
     margin-top: 10px;

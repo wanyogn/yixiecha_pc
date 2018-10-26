@@ -26,31 +26,32 @@ $(function(){
 });
 $(document).ready(function(){
 	/*app*/
-	$(".app").mouseover(function(){
-		$($(this).find("img")).attr("src","images/app_hover.png");
+	$(".xcx").mouseover(function(){
+		$($(this).find("img")).attr("src","images/xcx_hover.png");
 		$($(this).find("p")).css("color","#0084ff");
-		$(".appcontent").show();
+        $(".wxcontent").show();
+
 	}).mouseout(function(){
-		$($(this).find("img")).attr("src","images/app_03.png");
+		$($(this).find("img")).attr("src","images/xcx.png");
 		$($(this).find("p")).css("color","#7d8292");
-		$(".appcontent").hide();
+        $(".wxcontent").hide();
 	});
 	/*微信*/
 	$(".wx").mouseover(function(){
 		$($(this).find("img")).attr("src","images/wx_hover.png");
 		$($(this).find("p")).css("color","#0084ff");
-		$(".wxcontent").show();
+        $(".gzcontent").show();
 	}).mouseout(function(){
 		$($(this).find("img")).attr("src","images/wx_03.png");
 		$($(this).find("p")).css("color","#7d8292");
-		$(".wxcontent").hide();
+        $(".gzcontent").hide();
 	});
 	/*反馈*/
 	$(".fk").mouseover(function(){
 		$($(this).find("img")).attr("src","images/fankui_hover.png");
 		$($(this).find("p")).css("color","#0084ff");
 	}).mouseout(function(){
-		$($(this).find("img")).attr("src","images/fankui_07.png");
+		$($(this).find("img")).attr("src","images/fankui.png");
 		$($(this).find("p")).css("color","#7d8292");
 	});
 	$(".fk").click(function(){

@@ -23,8 +23,8 @@
 .hot_search{margin-top: 20px;}
 .hot_search a{margin-right: 20px;}
 .hot_search img{float: left;}
-.hot_search p{float: left;color: #fff;}
-.hot_search div:first-child{float: left;}
+.hot_search p{float: left;color: #fff;margin-left: 10px;margin-right: 20px;letter-spacing: 3px;}
+.hot_search div:first-child{float: left;line-height: 27px;}
 .hot_search div:last-child{float: right;cursor: pointer;}
 .hot_search div:last-child img{margin-top: 8px;margin-right: 10px;}
 

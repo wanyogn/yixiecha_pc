@@ -487,7 +487,7 @@ function contentProductActive(data){
         if(obj.picture_addr == undefined){
 	       $(data_list[i].getElementsByClassName("product_img_main")).attr("src","images/produce.png");
 	    }else{
-	        $(data_list[i].getElementsByClassName("product_img_main")).attr("src","../upload/"+obj.picture_addr);
+	        $(data_list[i].getElementsByClassName("product_img_main")).attr("src","../upload/product/"+obj.picture_addr);
 	    }
 	}
 }

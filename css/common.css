@@ -21,13 +21,13 @@ a:focus {text-decoration:none;}
 
   /* 客服 */
  .service{position: fixed;right: 10px;z-index: 1020px;border:1px solid #e0e0e0;bottom: 146px;background: #efefef;}
- .service .service_li{width: 39px;height: 61px;position: relative;border-bottom: 1px solid #fff;cursor: pointer;}
+ .service .service_li{width: 50px;height: 61px;position: relative;border-bottom: 1px solid #fff;cursor: pointer;}
  .service .zd{border-bottom: none;}
  .service_image{line-height: 30px;}
- .service_image img{padding-left: 9px;}
- .service p{color: #7d8292;text-align: center;}
- .code_main{width: 129px;height: 160px;background: #fff;border: 1px solid #e0e0e0;position: absolute;right: 39px;text-align: center;}
- .code_main img{width: 129px;height: 129px;}
+ .service_image img{padding-left: 15px;}
+ .service p{color: #7d8292;text-align: center;font-size: 12px;}
+ .code_main{width: 129px;height: 160px;background: #fff;border: 1px solid #e0e0e0;position: absolute;right: 51px;text-align: center;}
+ .code_main img{width: 127px;height: 127px;}
 
  .code_cov{
             width:100%;

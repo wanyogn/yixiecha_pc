@@ -83,8 +83,8 @@ function fillAuditInfo(data) {
         var tr = $("<tr class='audit_table_tr'></tr>");
 
         var td = $("<td></td>");
-        var a = $("<a class=\"audit_img_a\" href='../upload/"+data.objectid+"\\"+data.picturename+"'></a>");
-        var img = $("<img class=\"audit_td_img\" src='../upload/"+data.objectid+"\\"+data.picturename+"' >");
+        var a = $("<a class=\"audit_img_a\" href='../upload/product/"+data.objectid+"\\"+data.picturename+"'></a>");
+        var img = $("<img class=\"audit_td_img\" src='../upload/product/"+data.objectid+"\\"+data.picturename+"' >");
         a.append(img);
         td.append(a);
         tr.append(td);

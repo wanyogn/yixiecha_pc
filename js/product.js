@@ -99,6 +99,7 @@ function bindClick(obj) {
     makeCode(userid);
     $(obj).find(".person_bottom").slideDown();
     $(obj).siblings().find(".person_bottom").slideUp();
+
 }
 function makeCode(id){
     $(".qrcode"+id).html("");
@@ -211,7 +212,7 @@ function detailContentActive(data){
        $(".product_image").append($("#no_pic").html());
     }else{
         $(".product_image").append($("#pic").html());
-        $(".product_image img").attr("src","../upload/"+obj.picture_addr);
+        $(".product_image img").attr("src","../upload/product/"+obj.picture_addr);
     }
 }
 /*国产*/
