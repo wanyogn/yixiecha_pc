@@ -10,16 +10,32 @@ $(function () {
         location.href = "../";
     }
     initPasswordLogin();
-
-   
-
+    if($.cookie("password") != ''){
+        $("#pw_password_input").val($.cookie("password"));
+    }
+    if($.cookie("name") != ''){
+        $("#pw_username_input").val($.cookie("name"));
+    }
 });
+function check(){
+    //记住我功能使用
+    //写入cookie
+    if ($("#rememberme").prop("checked") == true) {
+        var name = $("#pw_username_input").val();
+        var password = $("#pw_password_input").val();
+        $.cookie("name", name);
+        $.cookie("password", password,{ expires: 7 }); // 存储一个带7天期限的 cookie 如果{ expires: 7 } 不写则cookie只相当回话效果
+    } else {
+        $.cookie("name", "");
+        $.cookie("password", "");
+    }
+}
 /**确认修改密码*/
 function sureForget(){
     var username = $("#for_username_input").val();
     var code = $("#for_info_input").val();
     var pass = $("#for_password_input").val();
-
+    var rpass = $("#repeat_password_input").val();
     if(!IsPhone(username)){
         $("#danger_tip").html("邮箱输入不合法");
         $("#danger_div").show();
@@ -50,7 +66,7 @@ function sureForget(){
                 return;
             }
         }
-        
+
     }else{
         $("#danger_tip").html("验证码错误");
         $("#danger_div").show();
@@ -72,6 +88,13 @@ function sureForget(){
         $("#register_password_input").parent().parent().css("box-shadow", "inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #f2989f");
          return;
     }
+    if (pass != rpass) {
+        $("#danger_tip").html("两次输入密码不同，请重新输入");
+        $("#danger_div").show();
+        $("#repeat_password_input").parent().parent().css("border","1px solid #e73d4a");
+        $("#repeat_password_input").parent().parent().css("box-shadow", "inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #f2989f");
+        return;
+    }
     $.ajax({
         type: 'post',
         url: url_prex + '/method/updatePsw',
@@ -85,7 +108,7 @@ function sureForget(){
                 /*getReferURL("referTo");*/
                 //var json = JSON.parse(result);
                 //setStorage('user',json);
-                window.location.href="../newWeb/login.html";
+                window.location.href=to_login;
                // window.location.href="../newWeb/";
             }
         },
@@ -226,6 +249,7 @@ function initPasswordLogin(){
                         getReferURL("referTo");
                         var json = JSON.parse(result);
                         setStorage('user',json);
+                        check();
                     }
                 },
                 error:function(error){
@@ -315,9 +339,13 @@ function initVerifyLogin() {
                     $("#danger_tip").html("登录失败");
                     $("#danger_div").show();
                 }else{
-                    getReferURL("referTo");
-                    var json = JSON.parse(result);
+                    var json = JSON.parse(result);console.log(json);
                     setStorage('user',json);
+                    if(json.password == "" || json.password == undefined){
+                        window.location.href = to_index+"/setpsw.html?username="+mail;
+                    }else{
+                        getReferURL("referTo");
+                    }
                 }
             },
             error:function(error){
