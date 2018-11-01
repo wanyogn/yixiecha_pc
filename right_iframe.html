@@ -13,6 +13,9 @@
 	.same_product{background: #fff;margin-top: 13px;}
 	.same_product_title{width: 100%;height: 30px;background: #f49f11;}
 	.same_product_title h3{color: #fff;font-size: 14px;line-height: 30px;margin-left: 15px;}
+	.person_count{margin-left: 10px;font-weight: bold;}
+	.pages_main .ui-pagination-container a{padding: 0 6px;}
+	.active{background: #568dbd !important;}
 </style>
 <body>
 	<div class="content_right">
@@ -29,12 +32,6 @@
 
 			</div>
 			<div class="pages_main" style="padding: 10px;display: none" >
-				<a style="margin-right: 15px;" class="before">
-					<img src="images/left.png">
-				</a>
-				<a class="after">
-					<img src="images/right.png">
-				</a>
 			</div>
 		</div>
 	</div>
@@ -71,18 +68,16 @@
 <script type="text/javascript" charset="utf-8" src="js/jquery.qrcode.min.js"></script>
 <script type="text/javascript">
     var person_page=0;
-    var person_num=0;
-    var person_size=1;
+    var person_num=1;
+    var person_size=3;
     var person_key='';
 	$(function () {
 		var url = location.href;
         if(url.indexOf("?") != -1){//有问号
             url = url.split("?")[0];
             if(url.indexOf("company.html") != -1){//公司详情页
-                console.log("公司详情页");
                 queryUserCard(searchKey,0,person_size);
 			}else if(url.indexOf("hospital.html") != -1){//医院详情页
-                console.log("医院详情页");
                 var keyword_from_url = window.location.search;//
                 var keyword_sub = keyword_from_url.substring(14);console.log(keyword_sub);
                 queryUserCard(searchKey,0,person_size);
@@ -118,26 +113,49 @@
         $(obj).siblings().find(".person_bottom").slideUp();
     }
 	function queryUserCard(key,num,size){
-	    sendAjax(url_prex+"/method/queryCardByCompanyName",{"keyword":key,"num":num,"size":size},function (res) {
-			var json = JSON.parse(res);
+	    sendAjax(url_prex+"/method/queryCardByCompanyName",{"keyword":key,"num":num,"size":size},function (result) {
+			/*var json = JSON.parse(res);
             contentRecommendPerson(json.datas);
             if(num == 0){
                 person_page = Math.ceil(json.matchCount/person_size);
                 if(json.matchCount > person_size){
                     $(".pages_main").show();
                 }
+            }*/
+            var json = JSON.parse(result);
+
+            $(".person_count").html(json.matchCount);
+            person_page = Math.ceil(json.matchCount/person_size);
+            if(json.matchCount > person_size){
+                $(".pages_main").show();
             }
+            contentRecommendPerson(json.datas);
         })
 	}
     /**
      * 填充推荐人
      */
     function contentRecommendPerson(cardList) {
-        $(".person_main").html("");
+        $(".person_main").html("");console.log(cardList);
         if(cardList.length > 0){
             for(let i = 0;i<cardList.length;i++){
                 $(".person_main").append($("#person_template").html())
             }
+            $('.pages_main').pagination({
+                currentPage: person_num,
+                totalPage: person_page,
+                isShow: false,
+                count: 5,
+                prevPageText: "<",
+                nextPageText: ">",
+                callback:function(current){
+                    person_num = current;
+                    sendAjax(url_prex+"/method/queryCardByCompanyName",{"keyword":searchKey,"num":current-1,"size":person_size},function (result) {
+                        var json = JSON.parse(result);
+                        contentRecommendPerson(json.datas);
+                    })
+                }
+            });
             var data_list = $(".person");
             for(var j = 0;j < cardList.length;j++) {
                 $(data_list[j].getElementsByClassName("userid")).val(cardList[j].id);

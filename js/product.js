@@ -1,10 +1,9 @@
 var key = '';
 var count = 0;//同名产品的总数量
 var size = 5;//每页的数量
-var num = 0;
-var page = 0;
+var start_page = 1;
 var person_page=0;
-var person_num=0;
+var person_num=1;
 var person_size=3;
 var person_key='';
 
@@ -40,55 +39,6 @@ $(document).ready(function(){
         });
         queryRecommendPerson(person_key,0,person_size);
     }
-    
-    $(".page_before,.before").mouseover(function(){
-    	$(this).css("background","#f49f11");
-    	$(this).find("img").attr("src","images/left_hover.png");
-    }).mouseout(function(){
-    	$(this).css("background","#fff");
-    	$(this).find("img").attr("src","images/left.png");
-    });
-    $(".page_after, .after").mouseover(function(){
-    	$(this).css("background","#f49f11");
-    	$(this).find("img").attr("src","images/right_hover.png");
-    }).mouseout(function(){
-    	$(this).css("background","#fff");
-    	$(this).find("img").attr("src","images/right.png");
-    });
-
-    $(".page_before").click(function(){
-        
-        if(num > 0){
-            num--;
-            contentSamePro(key,num);
-        }
-    });
-     $(".page_after").click(function(){
-        
-        if(num < page-1){
-            num++;
-            contentSamePro(key,num);
-        }
-        
-     });
-     /*医械人*/
-    $(".before").click(function(){
-        if(person_num > 0){
-            person_num--;console.log(person_num)
-            queryRecommendPerson(person_key,person_num,person_size);
-        }else{
-            console.log("before error")
-        }
-    });
-    $(".after").click(function(){
-        if(person_num < person_page-1){console.log(person_page);
-            person_num++;
-            queryRecommendPerson(person_key,person_num,person_size);
-        }else{
-            console.log("after error")
-        }
-
-    });
 })
 /**
  * 绑定点击事件
@@ -125,14 +75,13 @@ function queryRecommendPerson(productid,num,size) {
         async: false,
         success: function (result) {
             var json = JSON.parse(result);
-            contentRecommendPerson(json);
-            if(num == 0){
-                person_page = Math.ceil(json.matchCount/person_size);
-                $(".person_count").html(json.matchCount);
-                if(json.matchCount > person_size){
-                    $(".pages_main").show();
-                }
+
+            $(".person_count").html(json.matchCount);
+            person_page = Math.ceil(json.matchCount/person_size);
+            if(json.matchCount > person_size){
+                $(".pages_main").show();
             }
+            contentRecommendPerson(json);
         },
         error:function () {
 
@@ -150,6 +99,21 @@ function contentRecommendPerson(data) {
         for(let i = 0;i<json.length;i++){
             $(".person_main").append($("#person_template").html())
         }
+        $('.pages_main').pagination({
+            currentPage: person_num,
+            totalPage: person_page,
+            isShow: false,
+            count: 5,
+            prevPageText: "<",
+            nextPageText: ">",
+            callback:function(current){
+                person_num = current;
+                sendAjax(url_prex +'/method/selectUsersByProductId',{"productid":person_key,"num":current-1,"size":person_size},function (result) {
+                    var json = JSON.parse(result);
+                    contentRecommendPerson(json);
+                })
+            }
+        });
         var data_list = $(".person");
         for(var j = 0;j < json.length;j++) {
             $(data_list[j].getElementsByClassName("userid")).val(json[j].id);
@@ -378,33 +342,48 @@ function setHeader(data){
 	header.val(obj.product_name_ch);
 }
 
+/**
+ * 同名产品
+ * @param key
+ * @param num
+ */
 function getSamePro(key,num){
     $.getJSON(getSameProURL(num,key,size,person_key), function (json) {
         count = json.matchCount;
         $(".count").html(count);
         if(count > 0){
             contentActivePro(json);
-            if(count > size){
-                $(".same_product_page").show();
-                page = Math.ceil(count/size)
-            }
+            $("#same_product").show();
+        }else{
+            //$("#same_product").remove();
         }
-    });
-}
-function contentSamePro(key,num){
-    $(".same_product_page").prevAll().remove();
-    $.getJSON(getSameProURL(num,key,size), function (json) {
-        contentActivePro(json);
     });
 }
 function contentActivePro(json){
-    var size = json.datas.length;
+    $(".same_product_page").prevAll().remove();
+    var dataSize = json.datas.length;
     if(size > 0){
-        for(var i = 0;i < size;i++){
+        for(var i = 0;i < dataSize;i++){
             $(".same_product_page").before($(".same_product_template").html());
         }
+        page_total = Math.ceil(count/size);
+        $('.page').pagination({
+            currentPage: start_page,
+            totalPage: page_total,
+            isShow: false,
+            count: 5,
+            isShow: false,// 是否显示首尾页
+            prevPageText: "<",
+            nextPageText: ">",
+            callback:function(current){
+                start_page = current;
+                $.getJSON(getSameProURL(current-1,key,size,person_key), function (json) {
+                    contentActivePro(json);
+                })
+            }
+        });
         var data_list = $(".product");
-        for(var j = 0;j < size;j++){
+        for(var j = 0;j < dataSize;j++){
             var obj = json.datas[j];
             $(data_list[j].getElementsByTagName("h3")).html(getText(obj.product_name_ch,10));
             $(data_list[j].getElementsByClassName("name_a")).attr("href",$(data_list[j].getElementsByClassName("name_a")).attr("href")+obj.id);

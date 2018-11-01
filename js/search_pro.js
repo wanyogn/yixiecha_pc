@@ -326,33 +326,36 @@ function addTable_Mulu_Name(){
 count:记录数
 */
 function addTr_Produce_Name(data){
+	let date = (data.new_date=='2200-01-01'?'未知':data.new_date)
 	var _html = '<tr>'
 					+'<td><a onclick="getTable_Result(this,0)">'+data.product_name+'</a></td>'
 					+'<td>'+data.product_count+'</td>'
 					+'<td><a onclick="getTable_Result(this,1)">'+data.company_count+'</a></td>'
 					+'<td><a onclick="getTable_Result(this,2)">'+data.code_count+'</a></td>'
 					+'<td>'+data.old_date+'</td>'
-					+'<td>'+data.new_date+'</td>'
+					+'<td>'+date+'</td>'
 				+'</tr>';
 	$(".dT table").append(_html);
 }
 /*添加表格的主体部分---点击企业数量*/
 function addTr_Company_Name(data){
+    let date = (data.new_date=='2200-01-01'?'未知':data.new_date)
 	var _html = '<tr>'
 					+'<td><a onclick="getTable_Result(this,1)">'+data.company_name+'</a></td>'
 					+'<td>'+data.product_count+'</td>'
 					+'<td>'+data.old_date+'</td>'
-					+'<td>'+data.new_date+'</td>'
+					+'<td>'+date+'</td>'
 				+'</tr>';
 	$(".dT table").append(_html);
 }
 /*添加表格的主体部分---点击分类目录*/
 function addTr_Mulu_Name(data){
+    let date = (data.new_date=='2200-01-01'?'未知':data.new_date)
 	var _html = '<tr>'
 					+'<td><a onclick="getTable_Result(this,2)" id="'+data.code_name+'">'+getClass_Code(data.code_name)+'</a></td>'
 					+'<td>'+data.product_count+'</td>'
 					+'<td>'+data.old_date+'</td>'
-					+'<td>'+data.new_date+'</td>'
+					+'<td>'+date+'</td>'
 				+'</tr>';
 	$(".dT table").append(_html);
 	
@@ -411,7 +414,7 @@ function getTable_Result(obj,num){
 		}
 		//url_after = url_after+"&product_name="+product_name+"&class_code="+class_code;
 	}
-	url_after = url_after+getAllUrl();console.log(url_after);
+	url_after = url_after+getAllUrl();
 	$.getJSON(url_after, function (json) {
     	data = json;
     	if(num == 0){
