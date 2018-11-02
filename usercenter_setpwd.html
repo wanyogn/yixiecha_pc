@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>医械查 | 最好用的医疗器械查询工具</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.pagination.css">
+    <link rel="stylesheet" type="text/css" href="css/usercenter_setpwd.css">
+    <link rel="stylesheet" href="css/beAlert.css">
+    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/jquery.pagination.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/usercenter_setpwd.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a682153e748c3ea879d3ee5e305d3196";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<iframe name="iframe_top_name" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="header.html" height="188px" width="100%"></iframe>
+<div class="content">
+    <div class="content_main">
+        <div class="main_left left">
+            <div class="user-box">
+                <div class="user-box-top">
+                    <div class="">
+                        <div class="user-pic text-center">
+
+                        </div>
+                        <div class="mobile pt10 sec-c1 pb10" id="username"></div>
+                    </div>
+                </div>
+                <div class="list-group">
+                    <a href="usercenter_audit.html" class="list-group-item">审核信息</a>
+                    <a href="usercenter_setpwd.html" class="list-group-item active">安全设置</a>
+                    <a href="usercenter.html" class="list-group-item">个人中心</a>
+                    <a href="javascript:void(0)" class="list-group-item" onclick="loginout()">退出登录</a>
+                </div>
+            </div>
+        </div>
+        <div class="main_right right">
+            <div class="user-body">
+                <div class="body-head">
+                    <span class="blueborder bluetip">密码重置</span>
+                </div>
+                <div class="bgContent">
+                    <div id="bindEmail" style="display: none;">
+                        <div class="-block pb25">
+                            <span>此功能仅对邮箱用户提供。</span>
+                            <span>如果您没有注册用户，请点击<a href="register.html">这里</a>前往注册；</span>
+                            <span>如果注册过，请点击<a href="javascript:void(0);" onclick="showDialog();">这里</a>完成绑定。</span>
+                        </div>
+                    </div>
+                    <div id="change_pwd" style="display: none">
+                        <div class="-block pb25">
+                            <input type="text" class="form-control" disabled="disabled" value="" id="email">
+                        </div>
+                        <div class="pb25 clearfix">
+                            <input type="text" class="form-control contactscode pull-left code" placeholder="请输入邮箱验证码" autocomplete="off">
+                            <button class="scode pull-left" onclick="sendCode()">获取验证码</button>
+                        </div>
+                        <div class="-block pb25">
+                            <input type="password" class="form-control password_input" placeholder="密码为8-20位数字和字母组合" autocomplete="off">
+                        </div>
+                        <div class="-block pb25">
+                            <input type="password" class="form-control repeat_password_input" placeholder="请确认密码" autocomplete="off">
+                        </div>
+                        <div class="-block pb15" id="danger_tip" style="display: none">
+
+                        </div>
+                        <div class="-block pb25">
+                            <button class="btn btn-primary btn-block" onclick="sureEvent()">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+</div>
+<iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
+<div class="ui-mask" id="mask" onselectstart="return false"></div>
+<div class="ui-dialog" id="dialogMove" onselectstart='return false;'>
+    <div class="ui-dialog-title" id="dialogDrag"  onselectstart="return false;" >
+        绑定账号
+        <a class="ui-dialog-closebutton" href="javascript:hideDialog();"></a>
+    </div>
+    <div class="ui-dialog-content">
+        <lebel class="tip"></lebel>
+        <div class="ui-dialog-l40 ui-dialog-pt15 mart0">
+            <input class="ui-dialog-input ui-dialog-input-username" type="text" placeholder="邮箱账号" value="" />
+        </div>
+        <div class="ui-dialog-l40 ui-dialog-pt15">
+            <input class="ui-dialog-input ui-dialog-input-password" type="password" placeholder="密码" value="" />
+        </div>
+        <div>
+            <a class="ui-dialog-submit" href="#" >确认绑定</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var dialogInstace , onMoveStartId , mousePos = {x:0,y:0};	//	用于记录当前可拖拽的对象
+    // var zIndex = 9000;
+    //	获取元素对象
+    function g(id){return document.getElementById(id);}
+    //	自动居中元素（el = Element）
+    function autoCenter( el ){
+        var bodyW = document.documentElement.clientWidth;
+        var bodyH = document.documentElement.clientHeight;
+        var elW = el.offsetWidth;
+        var elH = el.offsetHeight;
+        el.style.left = (bodyW-elW)/2 + 'px';
+        el.style.top = (bodyH-elH)/2 + 'px';
+
+    }
+    //	自动扩展元素到全部显示区域
+    function fillToBody( el ){
+        el.style.width  = document.documentElement.clientWidth  +'px';
+        el.style.height = document.body.scrollHeight  + 'px';
+    }
+    //	Dialog实例化的方法
+    function Dialog( dragId , moveId ){
+        var instace = {} ;
+        instace.dragElement  = g(dragId);	//	允许执行 拖拽操作 的元素
+        instace.moveElement  = g(moveId);	//	拖拽操作时，移动的元素
+        instace.mouseOffsetLeft = 0;			//	拖拽操作时，移动元素的起始 X 点
+        instace.mouseOffsetTop = 0;			//	拖拽操作时，移动元素的起始 Y 点
+        instace.dragElement.addEventListener('mousedown',function(e){
+            var e = e || window.event;
+            dialogInstace = instace;
+            instace.mouseOffsetLeft = e.pageX - instace.moveElement.offsetLeft ;
+            instace.mouseOffsetTop  = e.pageY - instace.moveElement.offsetTop ;
+
+            onMoveStartId = setInterval(onMoveStart,10);
+            return false;
+            // instace.moveElement.style.zIndex = zIndex ++;
+        })
+        return instace;
+    }
+    //	在页面中侦听 鼠标弹起事件
+    document.onmouseup = function(e){
+        dialogInstace = false;
+        clearInterval(onMoveStartId);
+    }
+    document.onmousemove = function( e ){
+        var e = window.event || e;
+        mousePos.x = e.clientX;
+        mousePos.y = e.clientY;
+        e.stopPropagation && e.stopPropagation();
+        e.cancelBubble = true;
+        e = this.originalEvent;
+        e && ( e.preventDefault ? e.preventDefault() : e.returnValue = false );
+        document.body.style.MozUserSelect = 'none';
+    }
+    function onMoveStart(){
+        var instace = dialogInstace;
+        if (instace) {
+            var maxX = document.documentElement.clientWidth -  instace.moveElement.offsetWidth;
+            var maxY = document.documentElement.clientHeight - instace.moveElement.offsetHeight ;
+            instace.moveElement.style.left = Math.min( Math.max( ( mousePos.x - instace.mouseOffsetLeft) , 0 ) , maxX) + "px";
+            instace.moveElement.style.top  = Math.min( Math.max( ( mousePos.y - instace.mouseOffsetTop ) , 0 ) , maxY) + "px";
+        }
+    }
+    //	重新调整对话框的位置和遮罩，并且展现
+    function showDialog(){
+        g('dialogMove').style.display = 'block';
+        g('mask').style.display = 'block';
+        autoCenter( g('dialogMove') );
+        fillToBody( g('mask') );
+    }
+    //	关闭对话框
+    function hideDialog(){
+        g('dialogMove').style.display = 'none';
+        g('mask').style.display = 'none';
+    }
+    Dialog('dialogDrag','dialogMove');
+    //默认设置弹出层启动
+    hideDialog();
+</script>
+
+</body>
+</html>
