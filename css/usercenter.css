@@ -1,5 +1,5 @@
-.main_left{width: 245px;height: 740px;background: #f9f9f9;border: 1px solid #e0e0e0;}
-.main_right{width: 933px;height: 740px;display: inline-block;background: #f9f9f9;border: 1px solid #e0e0e0;}
+.main_left{width: 245px;height: 740px;background: #fff;border: 1px solid #e0e0e0;}
+.main_right{width: 933px;height: 740px;display: inline-block;background: #fff;border: 1px solid #e0e0e0;}
 .user-box-top{padding: 10px 20px;}
 .user-pic{margin: auto;width: 72px;height: 72px;border-radius: 50%;color: #e0e0e0;}
 .no-pic{border: 1px solid #e0e0e0;line-height: 72px;background: #fff;font-size: 40px;}
@@ -16,6 +16,7 @@
 .pb-24{padding-bottom: 24px;}
 #qrcode{width: 200px;height: 200px;background: #efefef}
 #qrcode img{width: 200px !important;height: 200px !important;}
+.list-group-item.active{background: #e0e0e0;color: #337ab7;border: none}
 
 /*弹出的登录页面*/
 .link{text-align: right;line-height: 20px;padding-right: 40px;}

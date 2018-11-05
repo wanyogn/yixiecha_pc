@@ -9,12 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="css/usercenter_audit.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery.pagination.css">
     <link rel="stylesheet" href="css/beAlert.css">
-    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/usercenter_audit.js"></script>
-    <script type="text/javascript" src="js/common.js"></script>
 	<script>
         var _hmt = _hmt || [];
         (function() {
@@ -40,28 +34,66 @@
 						</div>
 					</div>
 					<div class="list-group">
-						<a href="usercenter_audit.html" class="list-group-item active">审核信息</a>
+						<a href="usercenter_audit.html" class="list-group-item active">我的消息</a>
 						<a href="usercenter_setpwd.html" class="list-group-item">安全设置</a>
-						<a href="usercenter.html" class="list-group-item">个人中心</a>
+						<a href="usercenter.html" class="list-group-item">我的账户</a>
 						<a href="javascript:void(0)" class="list-group-item" onclick="loginout()">退出登录</a>
 					</div>
 				</div>
 			</div>
 			<div class="main_right right">
 				<div class="user-body">
-					<div class="body-head">
-						<span class="blueborder bluetip">审核信息</span>
+					<div class="body-head clearfix">
+						<div class="pull-left">
+							<span class="blueborder bluetip">消息中心</span>
+							<span class="blueborder">产品图片</span>
+							<span class="blueborder">企业资质</span>
+						</div>
+						<div class="input-group search_div pull-right">
+							<input type="text" class="form-control keyword" placeholder="请输入产品/企业名称">
+							<span class="input-group-btn">
+								<button class="btn btn-default searchBtn" type="button"><span class="glyphicon glyphicon-search"></span></button>
+							</span>
+						</div><!-- /input-group -->
 					</div>
 					<div class="bgContent">
-						<table id="audit_table" cellpadding="10px">
-							<tr>
-								<th>图片</th>
-								<th>名称</th>
-								<th>审核状态</th>
-								<th>时间</th>
-							</tr>
-						</table>
-						<div class="page"></div>
+						<!--我的消息-->
+						<div class="bg_div" id="div_one">
+							<div id="myinfo">
+
+							</div>
+							<div class="page page1"></div>
+						</div>
+
+						<!--产品图片-->
+						<div class="bg_div" id="div_two" style="display: none">
+							<table id="audit_table" cellpadding="10px">
+								<tr>
+									<th>序号</th>
+									<th>产品名称</th>
+									<th>上传内容</th>
+									<th>审核</th>
+									<th>操作</th>
+									<th>创建时间</th>
+								</tr>
+							</table>
+							<div class="page page2"></div>
+						</div>
+						<!--企业资质-->
+						<div class="bg_div" id="div_three" style="display: none">
+							<table id="company_table" cellpadding="10px">
+								<tr>
+									<th>序号</th>
+									<th>企业名称</th>
+									<th>资证类型</th>
+									<th>上传内容</th>
+									<th>审核</th>
+									<th>操作</th>
+									<th>创建时间</th>
+								</tr>
+							</table>
+							<div class="page page3"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -70,7 +102,11 @@
 
 	</div>
 	<iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="footer.html" height="680px" width="100%"></iframe>
-
-
+	<script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/usercenter_audit.js"></script>
 </body>
 </html>

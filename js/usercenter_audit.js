@@ -1,6 +1,10 @@
-var dataCount = -1;
+var myinfoCount = 0;
+var productCount = 0;
+var companyCount = 0;
+var currentItem=0;//当前的item
 var userid = '';
 var num = 0;
+
 
 $(function(){
 
@@ -19,35 +23,26 @@ $(function(){
     }else{
         flag = true;
     }
-    var index_url = window.location.search;//格式是【例：?code=*&state=*】
 
     if(flag){
         userid = status.userid;
         $.getJSON(getUserCenter(userid), function (result) {
             contentActive(result.userinfo);
         });
+        showContent(0,0,"");//默认第一页
+        $(".body-head .pull-left span").click(function () {
+            $(this).addClass("bluetip");
+            $(this).siblings().removeClass("bluetip");
 
-        //获得审核信息
-        $.ajax({
-            type: 'post',
-            url: "/method/selectAuditByCondition",
-            data: {
-                userid: userid,
-                num: num
-            },
-            async: false,
-            success: function (data) {
-                fillAuditInfo(data);
-                pageConfig();
-            }
-
-        });
+            currentItem = $(".body-head .pull-left span").index($(this)[0]);//获的当前选择的索引值
+            showContent(currentItem,0,"");
+            $(".bgContent .bg_div").eq(currentItem).show();
+            $(".bgContent .bg_div").eq(currentItem).siblings().hide()
+        })
     }
-
 });
 /*填充个人信息*/
 function contentActive(json) {
-
     if(json.nickname == undefined || json.nickname == ""){
         if(json.email == undefined || json.email == ""){
             if(json.username == undefined || json.username == ""){
@@ -72,21 +67,112 @@ function contentActive(json) {
         $(".user-pic").html("<img src=\""+json.headimg+"\" class=\"head-img\">")
     }
 }
+/*发送请求
+* 根据索引判断*/
+function  showContent(index,currentNum,keyword) {
+    var classtype = 'all';
+    if(index == 0){//消息中心
+        classtype = 'all'
+    }else if(index == 1){//产品图片
+        classtype = 'pro'
+    }else if(index == 2){//企业资质
+        classtype = 'com'
+    }
+    $.ajax({
+        type: 'post',
+        url: url_prex+"/method/selectAuditByCondition",
+        data: {userid:userid,num:currentNum,classtype:classtype,keyword:keyword},
+        async: false,
+        success: function (data) {
+            contentContent(classtype,data,currentNum);
+        }
+    });
+}
 
-/*填充审核信息*/
-function fillAuditInfo(data) {
+/**
+ * 装配信息
+ * @param classify 类型
+ * @param num 数量
+ */
+function contentContent(classify,data,num) {
+    var json = JSON.parse(data);
+    if(classify == "all"){//我的消息
+        $("#myinfo").html("");
+        if(num == 0){myinfoCount = json.count;}
+        if(myinfoCount > 0){
+            for(var index in json.datas){
+                let ele = `<div class="item clearfix">
+								<span class="title">${json.datas[index].name}</span>
+								<span class="time">${json.datas[index].createdate}</span>
+								<a href="" class="detail">详情</a>
+							</div>`;
+                $("#myinfo").append(ele);
+            }
+            $(".page1").pagination({
+                currentPage: num+1,
+                totalPage: Math.ceil(myinfoCount/5),
+                isShow: true,
+                count: 5,
+                homePageText: "首页",
+                endPageText: "尾页",
+                prevPageText: "上一页",
+                nextPageText: "下一页",
+                callback: function(current) {
+                    showContent(0,current-1)
+                }
+            });
+        }
+
+    }else if(classify == "pro"){//产品图片上传
+        if(num == 0){productCount = json.count;}
+        if(productCount > 0){
+            fillAuditInfo(data,num);
+            $(".page2").pagination({
+                currentPage: num+1,
+                totalPage: Math.ceil(productCount/5),
+                isShow: true,
+                count: 5,
+                homePageText: "首页",
+                endPageText: "尾页",
+                prevPageText: "上一页",
+                nextPageText: "下一页",
+                callback: function(current) {
+                    showContent(1,current-1)
+                }
+            });
+        }
+    }else if(classify == "com"){//企业资质上传
+        if(num == 0){companyCount = json.count;}
+        if(companyCount > 0){
+            fillCompanyInfo(data,num);
+            $(".page3").pagination({
+                currentPage: num+1,
+                totalPage: Math.ceil(companyCount/5),
+                isShow: true,
+                count: 5,
+                homePageText: "首页",
+                endPageText: "尾页",
+                prevPageText: "上一页",
+                nextPageText: "下一页",
+                callback: function(current) {
+                    showContent(2,current-1)
+                }
+            });
+        }
+    }
+}
+
+/*填充产品审核信息*/
+function fillAuditInfo(data,num) {
     $(".audit_table_tr").remove();
     var obj = JSON.parse(data);
-    if(dataCount == -1) dataCount = obj.count;
+    //if(dataCount == -1) dataCount = obj.count;
     for(var i = 0; i < obj.datas.length; i++){
         var data = obj.datas[i];
         var tr = $("<tr class='audit_table_tr'></tr>");
 
         var td = $("<td></td>");
-        var a = $("<a class=\"audit_img_a\" href='../upload/product/"+data.objectid+"\\"+data.picturename+"'></a>");
-        var img = $("<img class=\"audit_td_img\" src='../upload/product/"+data.objectid+"\\"+data.picturename+"' >");
-        a.append(img);
-        td.append(a);
+        td.append(5*num+i+1);
         tr.append(td);
 
         var td = $("<td></td>");
@@ -97,23 +183,45 @@ function fillAuditInfo(data) {
         tr.append(td);
 
         var td = $("<td></td>");
+        var a = $("<a class=\"audit_img_a\" href='../upload/product/"+data.objectid+"\\"+data.picturename+"'></a>");
+        var img = $("<img class=\"audit_td_img\" src='../upload/product/"+data.objectid+"\\"+data.picturename+"' >");
+        a.append(img);
+        td.append(a);
+        tr.append(td);
+
         var state = data.state;
         if(state == "1"){
+            var td = $("<td></td>");
             var div = $("<div>等待审核</div>");
             td.append(div);
-            var div = $("<div class=\"audit_td_recall\" onclick=\"auditRecall("+data.id+")\">撤回</div>");
+            tr.append(td);
+            var td = $("<td></td>");
+            var div = $("<div class=\"audit_td_recall\" onclick=\"auditRecall("+data.id+",'pro')\">撤回</div>");
             td.append(div);
+            tr.append(td);
         }else if(state == "2"){
+            var td = $("<td></td>");
             var div = $("<div>已撤回</div>");
             td.append(div);
+            tr.append(td);
+            var td = $("<td></td>");
+            tr.append(td);
         }else if(state == "3"){
+            var td = $("<td></td>");
             var div = $("<div>通过</div>");
             td.append(div);
+            tr.append(td);
+            var td = $("<td></td>");
+            tr.append(td);
         }else if(state == "4"){
+            var td = $("<td></td>");
             var div = $("<div>未通过审核</div>");
             td.append(div);
+            tr.append(td);
+            var td = $("<td></td>");
             var div = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason+"\")'>查看原因</div>");
             td.append(div);
+            tr.append(td);
         }
         tr.append(td);
 
@@ -136,55 +244,140 @@ function fillAuditInfo(data) {
     });
 }
 
-/*装配分页信息*/
-function pageConfig() {
+/**
+ * 填充公司信息
+ * @param data
+ */
+function fillCompanyInfo(data) {
+    $(".company_table_tr").remove();
+    var obj = JSON.parse(data);
+    //if(dataCount == -1) dataCount = obj.count;
+    for(var i = 0; i < obj.datas.length; i++){
+        var data = obj.datas[i];
+        var tr = $("<tr class='company_table_tr'></tr>");
 
-    $(".page").pagination({
-        currentPage: 1,
-        totalPage: Math.ceil(dataCount/10),
-        isShow: true,
-        count: 5,
-        homePageText: "首页",
-        endPageText: "尾页",
-        prevPageText: "上一页",
-        nextPageText: "下一页",
-        callback: function(current) {
-            dataSelectCondition(current);
+        var td = $("<td></td>");
+        td.append(5*num+i+1);
+        tr.append(td);
+
+        var td = $("<td></td>");
+        var div = $("<div class=\"audit_name_div\"></div>");
+        var a = $("<a class=\"audit_td_a\" target=\"_blank\" href='http://www.yixiecha.cn/product.html?class=pro&id="+data.objectid+"'>"+data.companyname+"</a>");
+        div.append(a);
+        td.append(div);
+        tr.append(td);
+
+        var td = $("<td></td>");
+        var state = data.type;
+        if(state == 1){
+            state = "医疗器械生产备案凭证";
+        }else if(state == 2){
+            state = "医疗器械生产许可证";
+        }else if(state == 3){
+            state = "医疗器械经营备案凭证";
+        }else if(state == 4){
+            state = "医疗器械经营许可证";
+        }else if(state == 5){
+            state = "营业执照";
         }
+        td.append(state);
+        tr.append(td);
+
+        var td = $("<td></td>");
+        var a = $("<a class=\"audit_img_a\" href='../upload/company/"+userid+"\\"+data.picturename+"'></a>");
+        var img = $("<img class=\"audit_td_img\" src='../upload/company/"+userid+"\\"+data.picturename+"' >");
+        a.append(img);
+        td.append(a);
+        tr.append(td);
+
+        var state = data.state;
+        if(state == "1"){
+            var td = $("<td></td>");
+            var div = $("<div>等待审核</div>");
+            td.append(div);
+            tr.append(td);
+            var td = $("<td></td>");
+            var div = $("<div class=\"audit_td_recall\" onclick=\"auditRecall("+data.id+",'com')\">撤回</div>");
+            td.append(div);
+            tr.append(td);
+        }else if(state == "2"){
+            var td = $("<td></td>");
+            var div = $("<div>已撤回</div>");
+            td.append(div);
+            tr.append(td);
+            var td = $("<td></td>");
+            tr.append(td);
+        }else if(state == "3"){
+            var td = $("<td></td>");
+            var div = $("<div>通过</div>");
+            td.append(div);
+            tr.append(td);
+            var td = $("<td></td>");
+            tr.append(td);
+        }else if(state == "4"){
+            var td = $("<td></td>");
+            var div = $("<div>未通过审核</div>");
+            td.append(div);
+            tr.append(td);
+            var td = $("<td></td>");
+            var div = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason+"\")'>查看原因</div>");
+            td.append(div);
+            tr.append(td);
+        }
+        tr.append(td);
+
+        var td = $("<td>"+data.createdate.substring(0,data.createdate.length-2)+"</td>");
+        tr.append(td);
+
+        $("#company_table").append(tr);
+    }
+    $(".audit_img_a").hover(function(){
+        $(this).append("<p id='pic'><img src='"+this.href+"' id='pic1'></p>");
+        $(".audit_img_a").mousemove(function(e){
+            $("#pic").css({
+                "top":(e.pageY+10)+"px",
+                "left":(e.pageX+20)+"px"
+            }).fadeIn("fast");
+            // $("#pic").fadeIn("fast");
+        });
+    },function(){
+        $("#pic").remove();
     });
 }
+/*搜索*/
+$(".searchBtn").click(function () {
+    var keyword = $(".keyword").val();
+    showContent(currentItem,0,keyword);
+});
+$(".keyword").keydown(function(e) {
+    if (e.keyCode == 13) {
+        $(".searchBtn").click();
+    }
+});
 
-function dataSelectCondition(current) {
-    num = current - 1;
-    //获得审核信息
-    $.ajax({
-        type: 'post',
-        url: "/method/selectAuditByCondition",
-        data: {
-            userid: userid,
-            num: num
-        },
-        async: false,
-        success: function (data) {
-            fillAuditInfo(data);
-        }
-
-    });
-}
-
-//撤回操作
-function auditRecall(id) {
+/**
+ * 撤回操作
+ * @param id  id
+ * @param classtype 类型
+ */
+function auditRecall(id,classtype) {
     confirm("确定撤回嘛?", "", function (isConfirm) {
         if (isConfirm) {
             $.ajax({
                 type: 'post',
-                url: "/method/recallAuditById",
+                url: url_prex+"/method/recallAuditById",
                 data: {
                     id: id,
+                    classtype:classtype
                 },
                 async: false,
                 success: function () {
-                    dataSelectCondition(num + 1)
+                    if(classtype == 'pro'){
+                        showContent(1,0,"");
+                    }else if(classtype == 'com'){
+                        showContent(2,0,"");
+                    }
+
                 }
 
             });
