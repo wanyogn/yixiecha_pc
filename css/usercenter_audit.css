@@ -9,7 +9,7 @@
 .body-head{border-bottom: 1px solid #e0e0e0;height: 33px;color: #737373;}
 .blueborder{padding-bottom: 8px;font-size: 17px;color: #202020;cursor: pointer;margin-right: 40px;}
 .bgContent{padding-top: 30px;height: 660px;}
-.bluetip{border-bottom: 2px solid #0084ff;color: #337ab7;font-weight: bold;}
+.bluetip{border-bottom: 2px solid #0084ff;color: #0084ff;font-weight:900;}
 .search_div {width: 300px;margin-top: -10px;}
 
 .list-item{display: block;padding: 10px 15px;color: #808080;border-top: 1px solid #ddd;text-align: center}

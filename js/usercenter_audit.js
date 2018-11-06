@@ -36,7 +36,8 @@ $(function(){
             currentItem = $(".body-head .pull-left span").index($(this)[0]);//获的当前选择的索引值
             showContent(currentItem,0,"");
             $(".bgContent .bg_div").eq(currentItem).show();
-            $(".bgContent .bg_div").eq(currentItem).siblings().hide()
+            $(".bgContent .bg_div").eq(currentItem).siblings().hide();
+            $(".keyword").val("");
         })
     }
 });
@@ -96,9 +97,12 @@ function  showContent(index,currentNum,keyword) {
 function contentContent(classify,data,num) {
     var json = JSON.parse(data);
     if(classify == "all"){//我的消息
-        $("#myinfo").html("");
+        let _html = `<div id="myinfo"></div>
+                    <div class="page pagination pull-right" id="page1"></div>`;
+        $("#div_one").html("");
         if(num == 0){myinfoCount = json.count;}
         if(myinfoCount > 0){
+            $("#div_one").html(_html);
             for(var index in json.datas){
                 if(json.datas[index].classtype == "pro"){
                     json.datas[index].title = `"${json.datas[index].name}"产品图片上传审核结果`;
@@ -128,7 +132,6 @@ function contentContent(classify,data,num) {
                 }
             })
         }else{
-            $("#div_one").empty();
             let _html = `<div class="none_main">
 								<img src="images/usercenter/none_info.png">
 								<p>您暂无任何信息哦~</p>
@@ -138,6 +141,7 @@ function contentContent(classify,data,num) {
 
     }else if(classify == "pro"){//产品图片上传
         if(num == 0){productCount = json.count;}
+        $("#div_two").empty();
         if(productCount > 0){
             fillAuditInfo(data,num);
             new Page({
@@ -155,7 +159,6 @@ function contentContent(classify,data,num) {
                 }
             })
         }else{
-            $("#div_two").empty();
             let _html = `<div class="none_main">
 								<img src="images/usercenter/none_info.png">
 								<p>您暂无任何信息哦~</p>
@@ -164,6 +167,7 @@ function contentContent(classify,data,num) {
         }
     }else if(classify == "com"){//企业资质上传
         if(num == 0){companyCount = json.count;}
+        $("#div_three").empty();
         if(companyCount > 0){
             fillCompanyInfo(data,num);
             new Page({
@@ -181,7 +185,6 @@ function contentContent(classify,data,num) {
                 }
             })
         }else{
-            $("#div_three").empty();
             let _html = `<div class="none_main">
 								<img src="images/usercenter/none_info.png">
 								<p>您暂无任何信息哦~</p>
@@ -193,7 +196,21 @@ function contentContent(classify,data,num) {
 
 /*填充产品审核信息*/
 function fillAuditInfo(data,num) {
-    $(".audit_table_tr").remove();
+    let _html = `<table id="audit_table" cellpadding="10px">
+                    <tr>
+                        <th>序号</th>
+                        <th>产品名称</th>
+                        <th>上传内容</th>
+                        <th>审核</th>
+                        <th>操作</th>
+                        <th>创建时间</th>
+                    </tr>
+                </table>
+                <div class="bottom clearfix">
+                    <button class="btn btn-primary pull-left mt20" onclick="delPro()">删除</button>
+                    <div class="page pagination pull-right" id="page2"></div>
+                </div>`;
+    $("#div_two").html(_html);
     var obj = JSON.parse(data);
     //if(dataCount == -1) dataCount = obj.count;
     for(var i = 0; i < obj.datas.length; i++){
@@ -284,7 +301,22 @@ function fillAuditInfo(data,num) {
  * @param data
  */
 function fillCompanyInfo(data) {
-    $(".company_table_tr").remove();
+    let _html = `<table id="company_table" cellpadding="10px">
+                    <tr>
+                        <th>序号</th>
+                        <th>企业名称</th>
+                        <th>资证类型</th>
+                        <th>上传内容</th>
+                        <th>审核</th>
+                        <th>操作</th>
+                        <th>创建时间</th>
+                    </tr>
+                </table>
+                <div class="bottom clearfix">
+                    <button class="btn btn-primary pull-left mt20" onclick="delCom()">删除</button>
+                    <div class="page pagination pull-right" id="page3"></div>
+                </div>`;
+    $("#div_three").html(_html);
     var obj = JSON.parse(data);
     for(var i = 0; i < obj.datas.length; i++){
         var data = obj.datas[i];
