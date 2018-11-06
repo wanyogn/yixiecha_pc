@@ -105,26 +105,14 @@ function contentContent(classify,data,num) {
                 }else if(json.datas[index].classtype == "com"){
                     json.datas[index].title = `"${json.datas[index].name}"企业资质上传审核结果`;
                 }
+                json.datas[index].date = json.datas[index].createdate.substring(0,json.datas[index].createdate.length-2)
                 let ele = `<div class="item clearfix">
 								<span class="title">${json.datas[index].title}</span>
-								<span class="time">${json.datas[index].createdate}</span>
+								<span class="time">${json.datas[index].date}</span>
 								<a href="javascript:void(0)" onclick="toDetail('${json.datas[index].classtype}')" class="detail">详情</a>
 							</div>`;
                 $("#myinfo").append(ele);
             }
-            /*$(".page1").pagination({
-                currentPage: num+1,
-                totalPage: Math.ceil(myinfoCount/5),
-                isShow: true,
-                count: 5,
-                homePageText: "首页",
-                endPageText: "尾页",
-                prevPageText: "上一页",
-                nextPageText: "下一页",
-                callback: function(current) {
-                    showContent(0,current-1)
-                }
-            });*/
             new Page({
                 id: 'page1',
                 pageTotal: Math.ceil(myinfoCount/5), //必填,总页数
@@ -139,25 +127,19 @@ function contentContent(classify,data,num) {
                     showContent(0,page-1)
                 }
             })
+        }else{
+            $("#div_one").empty();
+            let _html = `<div class="none_main">
+								<img src="images/usercenter/none_info.png">
+								<p>您暂无任何信息哦~</p>
+							</div>`;
+            $("#div_one").html(_html);
         }
 
     }else if(classify == "pro"){//产品图片上传
         if(num == 0){productCount = json.count;}
         if(productCount > 0){
             fillAuditInfo(data,num);
-            /*$(".page2").pagination({
-                currentPage: num+1,
-                totalPage: Math.ceil(productCount/5),
-                isShow: true,
-                count: 5,
-                homePageText: "首页",
-                endPageText: "尾页",
-                prevPageText: "上一页",
-                nextPageText: "下一页",
-                callback: function(current) {
-                    showContent(1,current-1)
-                }
-            });*/
             new Page({
                 id: 'page2',
                 pageTotal: Math.ceil(productCount/5), //必填,总页数
@@ -172,24 +154,18 @@ function contentContent(classify,data,num) {
                     showContent(1,page-1)
                 }
             })
+        }else{
+            $("#div_two").empty();
+            let _html = `<div class="none_main">
+								<img src="images/usercenter/none_info.png">
+								<p>您暂无任何信息哦~</p>
+							</div>`;
+            $("#div_two").html(_html);
         }
     }else if(classify == "com"){//企业资质上传
         if(num == 0){companyCount = json.count;}
         if(companyCount > 0){
             fillCompanyInfo(data,num);
-            /*$(".page3").pagination({
-                currentPage: num+1,
-                totalPage: Math.ceil(companyCount/5),
-                isShow: true,
-                count: 5,
-                homePageText: "首页",
-                endPageText: "尾页",
-                prevPageText: "上一页",
-                nextPageText: "下一页",
-                callback: function(current) {
-                    showContent(2,current-1)
-                }
-            });*/
             new Page({
                 id: 'page3',
                 pageTotal: Math.ceil(companyCount/5), //必填,总页数
@@ -204,6 +180,13 @@ function contentContent(classify,data,num) {
                     showContent(2,page-1)
                 }
             })
+        }else{
+            $("#div_three").empty();
+            let _html = `<div class="none_main">
+								<img src="images/usercenter/none_info.png">
+								<p>您暂无任何信息哦~</p>
+							</div>`;
+            $("#div_three").html(_html);
         }
     }
 }
@@ -218,6 +201,10 @@ function fillAuditInfo(data,num) {
         var tr = $("<tr class='audit_table_tr'></tr>");
 
         var td = $("<td></td>");
+        if(data.state != 1){
+            var div = $("<input type='checkbox' name='product' style='vertical-align: top;margin-right: 10px;' value='"+data.id+"'/>");
+            td.append(div);
+        }
         td.append(5*num+i+1);
         tr.append(td);
 
@@ -266,7 +253,7 @@ function fillAuditInfo(data,num) {
             tr.append(td);
             var td = $("<td></td>");
             var div1 = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason+"\")'>查看详情</div>");
-            var div2 = $("<div class=\"audit_td_reason\" onclick='reUploadPro(\""+data.objectid+"\",\""+data.id+"\")'>重新上传</div>");
+            var div2 = $("<div class=\"audit_td_reason reupload\" onclick='reUploadPro(\""+data.objectid+"\",\""+data.id+"\")'>重新上传</div>");
             td.append(div1);
             td.append(div2);
             tr.append(td);
@@ -304,6 +291,10 @@ function fillCompanyInfo(data) {
         var tr = $("<tr class='company_table_tr'></tr>");
 
         var td = $("<td></td>");
+        if(data.state != 1){
+            var div = $("<input type='checkbox' name='company' style='vertical-align: top;margin-right: 10px;' value='"+data.id+"'/>");
+            td.append(div);
+        }
         td.append(5*num+i+1);
         tr.append(td);
 
@@ -368,7 +359,7 @@ function fillCompanyInfo(data) {
             tr.append(td);
             var td = $("<td></td>");
             var div1 = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason+"\")'>查看详情</div>");
-            var div2 = $("<div class=\"audit_td_reason\" onclick='reUploadCom(\""+data.companyname+"\",\""+data.id+"\")'>重新上传</div>");
+            var div2 = $("<div class=\"audit_td_reason reupload\" onclick='reUploadCom(\""+data.companyname+"\",\""+data.id+"\")'>重新上传</div>");
             td.append(div1);
             td.append(div2);
             tr.append(td);
@@ -463,6 +454,64 @@ function auditRecall(id,classtype) {
             //after click the cancel
         }
     }, {confirmButtonText: '确定', cancelButtonText: '返回'});
+}
+
+/**
+ * 删除产品
+ */
+function delPro() {
+    var products=$("input[name='product']:checked");
+    if(products.length > 0){
+        var delIds = '';
+        products.each(function(i){
+            delIds += $(this).val();
+        })
+        handlerDel(delIds,"pro",function () {
+            showContent(1,0,"");
+        })
+    }else{
+        alert("请勾选需要删除的信息！");
+    }
+}
+
+/**
+ * 删除公司
+ */
+function delCom() {
+    var companys = $("input[name='company']:checked");
+    if(companys.length > 0){
+        var delIds = '';
+        companys.each(function(i){
+            delIds += $(this).val();
+        })
+        console.log(delIds);
+        handlerDel(delIds,"com",function () {
+            showContent(2,0,"");
+        })
+    }else{
+        alert("请勾选需要删除的信息！");
+    }
+}
+
+/**
+ * 执行删除操作
+ * @param ids  删除的ids
+ * @param classtype 类型
+ */
+function handlerDel(ids,classtype,callback){
+    $.ajax({
+        type: 'post',
+        url: url_prex+"/method/deleteAuditById",
+        data: {
+            ids: ids,
+            classtype:classtype
+        },
+        async: false,
+        success: function () {
+            callback();
+        }
+
+    });
 }
 
 //查看驳回原因

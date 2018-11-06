@@ -57,13 +57,16 @@
 							</span>
 						</div><!-- /input-group -->
 					</div>
+					<style>
+
+					</style>
 					<div class="bgContent">
 						<!--我的消息-->
 						<div class="bg_div" id="div_one">
 							<div id="myinfo">
 
 							</div>
-							<div class="page pagination" id="page1"></div>
+							<div class="page pagination pull-right" id="page1"></div>
 						</div>
 
 						<!--产品图片-->
@@ -78,7 +81,10 @@
 									<th>创建时间</th>
 								</tr>
 							</table>
-							<div class="page pagination" id="page2"></div>
+							<div class="bottom clearfix">
+								<button class="btn btn-primary pull-left mt20" onclick="delPro()">删除</button>
+								<div class="page pagination pull-right" id="page2"></div>
+							</div>
 						</div>
 						<!--企业资质-->
 						<div class="bg_div" id="div_three" style="display: none">
@@ -93,7 +99,10 @@
 									<th>创建时间</th>
 								</tr>
 							</table>
-							<div class="page pagination" id="page3"></div>
+							<div class="bottom clearfix">
+								<button class="btn btn-primary pull-left mt20" onclick="delCom()">删除</button>
+								<div class="page pagination pull-right" id="page3"></div>
+							</div>
 						</div>
 					</div>
 				</div>

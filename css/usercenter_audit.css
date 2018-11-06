@@ -48,3 +48,7 @@ th{ background-color: #ebf2fa;}
 #pic{position: absolute; display: none;}
 #pic1{ width: 300px; height: 300px; border-radius: 5px; -webkit-box-shadow: 5px 5px 5px 5px hsla(0,0%,5%,1.00); box-shadow: 5px 5px 5px 0px hsla(0,0%,5%,0.3); }
 .list-group .active_link{background-color: #e0e0e0 !important;color: #0081ff;border: none}
+.mt20{margin-top: 20px;padding: 3px 12px;}
+.none_main{padding-top: 200px;padding-left: 350px;}
+.none_main p{margin-left: 10px;margin-top:10px;}
+.reupload{color: #DA0000;text-decoration: underline}
