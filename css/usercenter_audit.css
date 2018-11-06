@@ -11,6 +11,14 @@
 .bgContent{padding-top: 30px;height: 660px;}
 .bluetip{border-bottom: 2px solid #0084ff;color: #337ab7;font-weight: bold;}
 .search_div {width: 300px;margin-top: -10px;}
+
+.list-item{display: block;padding: 10px 15px;color: #808080;border-top: 1px solid #ddd;text-align: center}
+.list-item:nth-child(1){background: url("../images/usercenter/myinfo_cli.png") no-repeat 60px 13px;}
+.list-item:nth-child(2){background: url("../images/usercenter/safe.png") no-repeat 62px 13px;}
+.list-item:nth-child(3){background: url("../images/usercenter/myaccount.png") no-repeat 60px 10px;}
+.list-item:nth-child(4){background: url("../images/usercenter/loginout.png") no-repeat 60px 13px;}
+.loginout{border-bottom:1px solid #ddd; }
+
 #audit_table{width: 100%;}
 tr{height: 35px;border-bottom: solid 1px lightgrey;}
 th,td{text-align: center;font-weight: initial;}
@@ -39,4 +47,4 @@ th{ background-color: #ebf2fa;}
 
 #pic{position: absolute; display: none;}
 #pic1{ width: 300px; height: 300px; border-radius: 5px; -webkit-box-shadow: 5px 5px 5px 5px hsla(0,0%,5%,1.00); box-shadow: 5px 5px 5px 0px hsla(0,0%,5%,0.3); }
-.list-group-item.active{background: #e0e0e0;color: #337ab7;border: none}
+.list-group .active_link{background-color: #e0e0e0 !important;color: #0081ff;border: none}

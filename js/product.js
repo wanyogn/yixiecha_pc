@@ -6,6 +6,8 @@ var person_page=0;
 var person_num=1;
 var person_size=3;
 var person_key='';
+var beforeurl = '';//由哪个页面传过来
+var delId = '';//需要删除的图片ID
 
 $(document).ready(function(){
 
@@ -26,18 +28,23 @@ $(document).ready(function(){
     }
     if(flag){
         var keyword_from_url = window.location.search;//格式是【例：?class=pro&id=*】
-        person_key = keyword_from_url.substring(14);
+       // person_key = keyword_from_url.substring(14);console.log(person_key);
+        person_key = getQueryVariable("id");
+        beforeurl = decodeURI(document.referrer);
         $.getJSON(getProURL(person_key), function (json) {
             data = json;
             setHeader(data);
             detailContentActive(data);
             getSamePro(key,0);
 
-            var beforeurl = decodeURI(document.referrer);
             var afterurl = decodeURI(document.location.href);
             getInsertUserurljumpURL(status.userid,beforeurl,afterurl,data.datas[0].product_name_ch);
         });
         queryRecommendPerson(person_key,0,person_size);
+        if(beforeurl.endsWith("usercenter_audit.html")){
+            $(".tailoring-cropper").toggle();
+            delId = getQueryVariable("delId");
+        }
     }
 })
 /**
@@ -431,13 +438,13 @@ $(".product_image").on("click","#replaceImg",function () {
         alert("您的登录状态已超时，请重新进行登录!","", function () {
             top.location.href = to_login;
         }, {type: 'warning', confirmButtonText: '确定'});
-    }else{
+    }else{console.log(person_key+status.userid);
         $.ajax({
             type: 'post',
             url: url_prex+'/method/selectAuditCountByCondition',
             data: {"objectid":person_key, userid: status.userid},
             async: false,
-            success: function (data) {
+            success: function (data) {;
                 if(data == 0) flag = true;
                 else alert("该产品你已提交过图片，并处于审核中");
             }
@@ -513,7 +520,11 @@ $("#sureCut").on("click",function () {
         var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
         var base64url = cas.toDataURL('image/jpeg'); //转换为base64地址形式
         $("#finalImg").prop("src",base64url);//显示为图片的形式
-        uploadFile(encodeURIComponent(base64url));
+        if(beforeurl.endsWith("usercenter_audit.html")){//重新上传图片
+            againUploadByCondition(encodeURIComponent(base64url));
+        }else{
+            uploadFile(encodeURIComponent(base64url));
+        }
         //关闭裁剪框
         closeTailor();
 
@@ -538,6 +549,24 @@ function uploadFile(file) {
             if(data == "success"){
                 operSuccessTip();
             }
+        },
+        error:function(error){
+            alert("系统异常..");
+        }
+    });
+}
+
+/**
+ * 删除图片
+ */
+function againUploadByCondition(file) {
+    $.ajax({
+        url : url_prex+'/method/againUploadByCondition',
+        type : 'POST',
+        data : {id:delId,classtype:'pro'},
+        async : true,
+        success : function(data) {
+            uploadFile(file);
         },
         error:function(error){
             alert("系统异常..");

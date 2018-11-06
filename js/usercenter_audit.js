@@ -5,7 +5,6 @@ var currentItem=0;//当前的item
 var userid = '';
 var num = 0;
 
-
 $(function(){
 
     var flag = false;
@@ -101,14 +100,19 @@ function contentContent(classify,data,num) {
         if(num == 0){myinfoCount = json.count;}
         if(myinfoCount > 0){
             for(var index in json.datas){
+                if(json.datas[index].classtype == "pro"){
+                    json.datas[index].title = `"${json.datas[index].name}"产品图片上传审核结果`;
+                }else if(json.datas[index].classtype == "com"){
+                    json.datas[index].title = `"${json.datas[index].name}"企业资质上传审核结果`;
+                }
                 let ele = `<div class="item clearfix">
-								<span class="title">${json.datas[index].name}</span>
+								<span class="title">${json.datas[index].title}</span>
 								<span class="time">${json.datas[index].createdate}</span>
-								<a href="" class="detail">详情</a>
+								<a href="javascript:void(0)" onclick="toDetail('${json.datas[index].classtype}')" class="detail">详情</a>
 							</div>`;
                 $("#myinfo").append(ele);
             }
-            $(".page1").pagination({
+            /*$(".page1").pagination({
                 currentPage: num+1,
                 totalPage: Math.ceil(myinfoCount/5),
                 isShow: true,
@@ -120,14 +124,28 @@ function contentContent(classify,data,num) {
                 callback: function(current) {
                     showContent(0,current-1)
                 }
-            });
+            });*/
+            new Page({
+                id: 'page1',
+                pageTotal: Math.ceil(myinfoCount/5), //必填,总页数
+                pageAmount: 5,  //每页多少条
+                dataTotal: myinfoCount, //总共多少条数据
+                curPage:num+1, //初始页码,不填默认为1
+                pageSize: 5, //分页个数,不填默认为5
+                showPageTotalFlag:true, //是否显示数据统计,不填默认不显示
+                showSkipInputFlag:true, //是否支持跳转,不填默认不显示
+                getPage: function (page) {
+                    //获取当前页数
+                    showContent(0,page-1)
+                }
+            })
         }
 
     }else if(classify == "pro"){//产品图片上传
         if(num == 0){productCount = json.count;}
         if(productCount > 0){
             fillAuditInfo(data,num);
-            $(".page2").pagination({
+            /*$(".page2").pagination({
                 currentPage: num+1,
                 totalPage: Math.ceil(productCount/5),
                 isShow: true,
@@ -139,13 +157,27 @@ function contentContent(classify,data,num) {
                 callback: function(current) {
                     showContent(1,current-1)
                 }
-            });
+            });*/
+            new Page({
+                id: 'page2',
+                pageTotal: Math.ceil(productCount/5), //必填,总页数
+                pageAmount: 5,  //每页多少条
+                dataTotal: productCount, //总共多少条数据
+                curPage:num+1, //初始页码,不填默认为1
+                pageSize: 5, //分页个数,不填默认为5
+                showPageTotalFlag:true, //是否显示数据统计,不填默认不显示
+                showSkipInputFlag:true, //是否支持跳转,不填默认不显示
+                getPage: function (page) {
+                    //获取当前页数
+                    showContent(1,page-1)
+                }
+            })
         }
     }else if(classify == "com"){//企业资质上传
         if(num == 0){companyCount = json.count;}
         if(companyCount > 0){
             fillCompanyInfo(data,num);
-            $(".page3").pagination({
+            /*$(".page3").pagination({
                 currentPage: num+1,
                 totalPage: Math.ceil(companyCount/5),
                 isShow: true,
@@ -157,7 +189,21 @@ function contentContent(classify,data,num) {
                 callback: function(current) {
                     showContent(2,current-1)
                 }
-            });
+            });*/
+            new Page({
+                id: 'page3',
+                pageTotal: Math.ceil(companyCount/5), //必填,总页数
+                pageAmount: 5,  //每页多少条
+                dataTotal: companyCount, //总共多少条数据
+                curPage:num+1, //初始页码,不填默认为1
+                pageSize: 5, //分页个数,不填默认为5
+                showPageTotalFlag:true, //是否显示数据统计,不填默认不显示
+                showSkipInputFlag:true, //是否支持跳转,不填默认不显示
+                getPage: function (page) {
+                    //获取当前页数
+                    showContent(2,page-1)
+                }
+            })
         }
     }
 }
@@ -219,8 +265,10 @@ function fillAuditInfo(data,num) {
             td.append(div);
             tr.append(td);
             var td = $("<td></td>");
-            var div = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason+"\")'>查看原因</div>");
-            td.append(div);
+            var div1 = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason+"\")'>查看详情</div>");
+            var div2 = $("<div class=\"audit_td_reason\" onclick='reUploadPro(\""+data.objectid+"\",\""+data.id+"\")'>重新上传</div>");
+            td.append(div1);
+            td.append(div2);
             tr.append(td);
         }
         tr.append(td);
@@ -251,7 +299,6 @@ function fillAuditInfo(data,num) {
 function fillCompanyInfo(data) {
     $(".company_table_tr").remove();
     var obj = JSON.parse(data);
-    //if(dataCount == -1) dataCount = obj.count;
     for(var i = 0; i < obj.datas.length; i++){
         var data = obj.datas[i];
         var tr = $("<tr class='company_table_tr'></tr>");
@@ -262,7 +309,7 @@ function fillCompanyInfo(data) {
 
         var td = $("<td></td>");
         var div = $("<div class=\"audit_name_div\"></div>");
-        var a = $("<a class=\"audit_td_a\" target=\"_blank\" href='http://www.yixiecha.cn/product.html?class=pro&id="+data.objectid+"'>"+data.companyname+"</a>");
+        var a = $("<a class=\"audit_td_a\" target=\"_blank\" href='http://www.yixiecha.cn/company.html?class=com&keyword=="+data.companyname+"'>"+data.companyname+"</a>");
         div.append(a);
         td.append(div);
         tr.append(td);
@@ -320,8 +367,10 @@ function fillCompanyInfo(data) {
             td.append(div);
             tr.append(td);
             var td = $("<td></td>");
-            var div = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason+"\")'>查看原因</div>");
-            td.append(div);
+            var div1 = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason+"\")'>查看详情</div>");
+            var div2 = $("<div class=\"audit_td_reason\" onclick='reUploadCom(\""+data.companyname+"\",\""+data.id+"\")'>重新上传</div>");
+            td.append(div1);
+            td.append(div2);
             tr.append(td);
         }
         tr.append(td);
@@ -354,6 +403,35 @@ $(".keyword").keydown(function(e) {
         $(".searchBtn").click();
     }
 });
+
+/**
+ * 详情
+ */
+function toDetail(classtype) {
+    if(classtype == 'pro'){
+        $(".body-head .pull-left span").eq(1).click();
+    }else if(classtype == 'com'){
+        $(".body-head .pull-left span").eq(2).click();
+    }
+}
+
+/**
+ * 重新上传产品
+ * @param id 产品ID
+ * @param delId 删除的信息ID
+ */
+function reUploadPro(id,delId) {
+    window.open("product.html?class=pro&id="+id+"&delId="+delId);
+}
+
+/**
+ * 重新上传企业
+ * @param companyname  公司名称
+ * @param delId 删除的信息id
+ */
+function reUploadCom(companyname,delId) {
+    window.open(encodeURI("perfect_cominfo.html?companyname="+companyname+"&delId="+delId));
+}
 
 /**
  * 撤回操作

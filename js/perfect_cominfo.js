@@ -1,4 +1,6 @@
 var file = '';
+var beforeurl = '';//由哪个页面传过来
+var delId = '';//需要删除的图片ID
 
 $(function() {
 
@@ -52,7 +54,12 @@ $(function() {
     $(".close_img").click(function () {
         $("#company_name_input").val("");
     });
-
+    beforeurl = decodeURI(document.referrer);
+    if(beforeurl.endsWith("usercenter_audit.html")){
+        let companyName = decodeURI(getQueryVariable("companyname"));
+        delId = getQueryVariable("delId");
+        $("#company_name_input").val(companyName);
+    }
 });
 function gen_base64(_this) {
 
@@ -108,17 +115,22 @@ function submit() {
         alert("请选择资质!");
         return;
     }
-
+    if(beforeurl.endsWith("usercenter_audit.html")){
+        againUploadByCondition(file,status.userid,company_name,type);
+    }else{
+        uploadPic(file,status.userid,company_name,type);
+    }
+}
+function uploadPic(file,userid,company_name,type) {
     var formdata=new FormData();
     formdata.append("file",file);
-    formdata.append("userid",status.userid);
+    formdata.append("userid",userid);
     formdata.append("company_name",company_name);
     formdata.append("type",type);
 
     $.ajax({
-        url: '/method/uploadCompanyCertificate',
+        url: url_prex+'/method/uploadCompanyCertificate',
         type: 'post',
-        //data: {"file="+file+"&userid="+ status.userid +"&company_name="+ company_name +"&state="+ state},
         data: formdata,
         processData : false,
         contentType : false,
@@ -128,5 +140,22 @@ function submit() {
             $(".content_center").append($("#success_template").html())
         }
     });
-
+}
+/**
+ * 删除图片
+ */
+function againUploadByCondition(file,userid,company_name,type) {
+    $.ajax({
+        url : url_prex+'/method/againUploadByCondition',
+        type : 'POST',
+        data : {id:delId,classtype:'com'},
+        async : true,
+        success : function(data) {
+            //uploadFile(file);
+            uploadPic(file,userid,company_name,type)
+        },
+        error:function(error){
+            alert("系统异常..");
+        }
+    });
 }

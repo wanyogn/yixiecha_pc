@@ -16,7 +16,14 @@
 .pb-24{padding-bottom: 24px;}
 #qrcode{width: 200px;height: 200px;background: #efefef}
 #qrcode img{width: 200px !important;height: 200px !important;}
-.list-group-item.active{background: #e0e0e0;color: #337ab7;border: none}
+.list-group .active_link{background-color: #e0e0e0 !important;color: #0081ff;border: none}
+
+.list-item{display: block;padding: 10px 15px;color: #808080;border-top: 1px solid #ddd;text-align: center}
+.list-item:nth-child(1){background: url("../images/usercenter/myinfo.png") no-repeat 60px 13px;}
+.list-item:nth-child(2){background: url("../images/usercenter/safe.png") no-repeat 62px 13px;}
+.list-item:nth-child(3){background: url("../images/usercenter/myaccount_cli.png") no-repeat 60px 10px;}
+.list-item:nth-child(4){background: url("../images/usercenter/loginout.png") no-repeat 60px 13px;}
+.loginout{border-bottom:1px solid #ddd; }
 
 /*弹出的登录页面*/
 .link{text-align: right;line-height: 20px;padding-right: 40px;}

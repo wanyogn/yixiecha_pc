@@ -7,8 +7,9 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
 	<link rel="stylesheet" type="text/css" href="css/usercenter_audit.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery.pagination.css">
-    <link rel="stylesheet" href="css/beAlert.css">
+	<!--<link rel="stylesheet" type="text/css" href="css/jquery.pagination.css">-->
+	<link rel="stylesheet" href="js/components/jquerypage/myPagination.css">
+	<link rel="stylesheet" href="css/beAlert.css">
 	<script>
         var _hmt = _hmt || [];
         (function() {
@@ -34,10 +35,10 @@
 						</div>
 					</div>
 					<div class="list-group">
-						<a href="usercenter_audit.html" class="list-group-item active">我的消息</a>
-						<a href="usercenter_setpwd.html" class="list-group-item">安全设置</a>
-						<a href="usercenter.html" class="list-group-item">我的账户</a>
-						<a href="javascript:void(0)" class="list-group-item" onclick="loginout()">退出登录</a>
+						<a href="usercenter_audit.html" class="list-item active_link">我的消息</a>
+						<a href="usercenter_setpwd.html" class="list-item">安全设置</a>
+						<a href="usercenter.html" class="list-item">我的账户</a>
+						<a href="javascript:void(0)" class="list-item loginout" onclick="loginout()">退出登录</a>
 					</div>
 				</div>
 			</div>
@@ -62,7 +63,7 @@
 							<div id="myinfo">
 
 							</div>
-							<div class="page page1"></div>
+							<div class="page pagination" id="page1"></div>
 						</div>
 
 						<!--产品图片-->
@@ -77,7 +78,7 @@
 									<th>创建时间</th>
 								</tr>
 							</table>
-							<div class="page page2"></div>
+							<div class="page pagination" id="page2"></div>
 						</div>
 						<!--企业资质-->
 						<div class="bg_div" id="div_three" style="display: none">
@@ -92,7 +93,7 @@
 									<th>创建时间</th>
 								</tr>
 							</table>
-							<div class="page page3"></div>
+							<div class="page pagination" id="page3"></div>
 						</div>
 					</div>
 				</div>
@@ -105,7 +106,8 @@
 	<script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/beAlert.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
+	<!--<script type="text/javascript" src="js/jquery.pagination.min.js"></script>-->
+	<script type="text/javascript" src="js/components/jquerypage/myPagination.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/usercenter_audit.js"></script>
 </body>
