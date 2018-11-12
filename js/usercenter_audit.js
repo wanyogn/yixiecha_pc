@@ -269,7 +269,7 @@ function fillAuditInfo(data,num) {
             td.append(div);
             tr.append(td);
             var td = $("<td></td>");
-            var div1 = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason+"\")'>查看详情</div>");
+            var div1 = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason.trim()+"\")'>查看详情</div>");
             var div2 = $("<div class=\"audit_td_reason reupload\" onclick='reUploadPro(\""+data.objectid+"\",\""+data.id+"\")'>重新上传</div>");
             td.append(div1);
             td.append(div2);
@@ -390,7 +390,7 @@ function fillCompanyInfo(data) {
             td.append(div);
             tr.append(td);
             var td = $("<td></td>");
-            var div1 = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason+"\")'>查看详情</div>");
+            var div1 = $("<div class=\"audit_td_reason\" onclick='auditReason(\""+data.reason.trim()+"\")'>查看详情</div>");
             var div2 = $("<div class=\"audit_td_reason reupload\" onclick='reUploadCom(\""+data.companyname+"\",\""+data.id+"\")'>重新上传</div>");
             td.append(div1);
             td.append(div2);

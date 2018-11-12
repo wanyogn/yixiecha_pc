@@ -9,6 +9,7 @@ ul,li{list-style-type:none;}
 a {color:#fff;text-decoration:none;cursor: pointer;transition: all .3s}
 a:hover {color:#ab0003;text-decoration:none;}
 a:focus {text-decoration:none;}
+table{word-break:break-all}
 
 .left{float: left;}
 .right{float: right;}
