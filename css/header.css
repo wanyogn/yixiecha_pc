@@ -6,7 +6,7 @@
 .top_height{line-height: 44px;}
 .top_height .top_left_tip{width: 86px;float: left;}
 .header_bottom{height: 144px;}
-.top_main div:first-child a:last-child{margin-left: 10px;}
+.top_main div:first-child a{margin-right: 40px;}
 .top_main div:last-child a:not(:last-child){margin-right: 32px;}
 .bottom_main_content{width: 100%;padding-top: 28px;}
 .search1{padding-top: 7px;float: right;}
